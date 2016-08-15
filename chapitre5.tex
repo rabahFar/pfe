@@ -1,0 +1,451 @@
+\chapter{\sc Réalisation et déploiement de la solution}
+\label{chap:realisation-dep}
+Nous  consacrons ce dernier chapitre à la présentation de la phase de réalisation de notre projet.  La partie réalisation est tout aussi importante que la conception. En effet,  c'est au cours de celle-ci que nous concrétisons notre travail. Ceci par l'implémentation d'un prototype de la solution présentée dans les précédents  chapitres. \\[0.7\baselineskip]
+Dans la suite de ce chapitre, nous décrivons, d'une part, les plates-formes matérielles et logicielles sur lesquelles nous avons développé notre solution, ainsi que les  différents choix techniques que nous avons adopté. D'autre part, nous présentons notre application, ainsi achevée, à travers des captures d'écrans des interfaces relatives aux fonctionnalités principales.
+\section{Environnement de travail}
+La réalisation de tout projet informatique nécessite des choix matériels ainsi que logiciels, lesquels constituent ce que nous appelons environnement de travail.
+\subsection{Environnement matériel}
+Le développement de l'application s'est fait sur deux machines de type PC portables. Nous donnons ici, la marque et quelques caractéristiques de chacune d'elles :\\
+
+\begin{itemize}
+\item \textbf{Machine 1 :} Acer TravelMate 5735
+\begin{itemize}
+\item[$\bullet$] Microprocesseur : Intel Core 2 Duo 2.2 GHz,
+\item[$\bullet$] RAM : DDR3 2 GB,
+\item[$\bullet$] Disque dur : 250 GB.
+\end{itemize}
+\item \textbf{Machine 2 :} Toshiba  Sattelite Pro C650
+\begin{itemize}
+\item[$\bullet$] Microprocesseur : Intel Core 2 Duo 2.10 GHz,
+\item[$\bullet$] RAM : DDR3 4 GB,
+\item[$\bullet$] Disque dur : 500 GB.
+\end{itemize}
+
+
+\end{itemize}
+
+
+\subsection{Environnement logiciel}
+Durant toute la phase de développement, nous avons utilisé l'environnement logiciel décrit ci-dessous.
+\subsubsection{Système d'exploitation}
+Les deux machines utilisées pour le développement sont équipées d'un système d'exploitation Windows et dont les caractéristiques sont les suivantes :
+
+\begin{itemize}
+\item \textbf{Édition Windows }: Windows 7 Professionnel Service Pack 1
+\item \textbf{Type du système :} Système d'exploitation 32 bits
+\end{itemize}
+\subsubsection{Choix du SGBD}
+Le choix du SGBD relève de l'entreprise d'accueil et nous a été imposé comme étant une contrainte technique dans la réalisation de notre projet. En effet, celle-ci détient des licences d'Oracle et préfère travailler avec le serveur déjà en place. \\[0.7\baselineskip]
+Oracle est un SGBD relationnel (Système de Gestion de Bases de Données) édité et fourni par la société du même nom Oracle Corporation. C'est une solution très reconnue pour les applications professionnelles en entreprise.\\
+\begin{wrapfigure}{r}{5.5cm}
+\includegraphics[width=4cm,height=3cm]{./image_chapitre5/logo_oracle10g}
+\end{wrapfigure}
+Oracle SGBD fournit une multitude de fonctionnalités, dont : 
+\begin{itemize}
+\item Un système de droits et de mots de passe très souple et surtout très sécurisé qui prend en charge même la vérification des hôtes qui se connectent au SGBD.
+\item Un langage de programmation propre à Oracle (PL/SQL), utilisé pour créer des triggers lors de l'insertion, la modification ou la suppression d'éléments. 
+\item Un accès rapide aux données grâce notamment aux vues et procédures stockées.
+\end{itemize}
+
+\subsubsection{Choix de l'IDE}
+L'IDE avec lequel nous avons choisi de travailler est Zend Studio. Nous justifions ce choix par les nombreux avantages que procure l'utilisation de celui-ci par rapport à d'autres, particulièrement son support aux dernières versions des langages PHP, HTML et CSS.\\
+\begin{wrapfigure}{r}{4cm}
+\includegraphics[width=3.5cm,height=3cm]{./image_chapitre5/zendstudio}
+\end{wrapfigure}
+Zend Studio est un IDE (environnement de développement intégré) professionnel destiné aux développeurs  PHP et Zend Framework. Basé sur Eclipse, Zend Studio est disponible sur tous les systèmes d'exploitation disposant d'une machine virtuelle Java.  Il offre des fonctionnalités très avancées côté développement, débogage, déploiement et gestion des applications PHP. 
+
+
+\subsubsection{Serveur Web}
+Tout au long du développement de notre application, nous avons utilisé le serveur Apache version 2.2.22. Apache offre diverses fonctionnalités dont la possibilité de définir des restrictions d'accès grâce aux fichiers htaccess (que nous avons notamment utilisé dans notre application, voir la figure \autoref{fig:folder-structure}), ainsi qu'un support de serveurs virtuels.\\[0.7\baselineskip]
+Pour l'environnement de développement de l'application, nous avons utilisé un serveur virtuel basé sur les noms, et dont la configuration est comme suit :
+
+\begin{verbatim}
+    <VirtualHost *:80>
+	     ServerName netman.localhost
+	     DocumentRoot C:\www\netman\public
+	     SetEnv APPLICATION_ENV "development"
+	     <Directory C:\www\netman\public>
+		     DirectoryIndex index.php
+		     AllowOverride All
+		     Order allow,deny
+		     Allow from all
+	     </Directory>
+     </VirtualHost>
+\end{verbatim}
+
+\section{Choix techniques}
+Avant de se lancer dans le développement, il est nécessaire de faire des choix techniques. Ces derniers dépendent généralement des objectifs et moyens du projet. Nous ne pouvons pas parler de bons choix dans l'absolu mais des choix bien adaptés à nos besoins ont été adoptés, et dont la description est donnée dans la suite de cette section.
+
+\subsection{Choix du langage}
+En développement, chaque technologie a ses propres spécificités, ses avantages et ses inconvénients. Le choix d'une technologie est un choix qui peut être qualifié de crucial, car il engage le développeur tout au long de son projet. Il existe de nombreuses architectures et langages pour la réalisation d'application Web. On distingue, généralement, trois grandes plateformes : 
+\begin{itemize}
+\item J2EE (Java 2 Platform, Enterprise Edition),
+\item Microsoft Dot Net,
+\item et PHP (Hypertext Preprocessor).
+\end{itemize}
+Dans notre cas, nous avons décidé d'adopter le langage PHP en tant que principale technologie pour la réalisation du projet. Notre choix n'est pas fortuit mais découle d'une logique que nous pouvons résumer en citant les avantages majeurs qu'offre ce langage par rapport aux autres :
+\begin{itemize}
+\item Tout d'abord, PHP est gratuit et ne nécessite aucune licence d'utilisation. De plus, il s'agit du langage de programmation Web le plus utilisé,
+\item Côté performances, PHP est visiblement plus rapide que les autres langages puisqu'il ne requiert aucune précompilation,
+\item Depuis sa version 5, PHP supporte les concepts de la programmation orientée objets. Ce qui le change du statut d'un simple langage de script pour pages personnelles et l'ouvre à des réalisations complexes structurées et performantes. Ceci a causé notamment l'apparition de nombreux Frameworks PHP (Zend, Symphony et autres).
+
+\end{itemize}
+
+\subsection{Nécessité d'un Framework}
+\subsubsection{Framework PHP}
+Traduit littéralement en français, le terme Framework signifie «cadre de travail». C'est un ensemble de bibliothèques et de conventions permettant le développement rapide d'une application. Il fournit une palette de briques logicielles et impose suffisamment de rigueur de développement pour pouvoir produire une application aboutie et facile à maintenir. Ces composants sont organisés pour être utilisés en interaction les uns avec les autres \cite{ok14}.
+
+\subsubsection{Avantages des Frameworks}
+Certes il n'est guère indispensable d'utiliser un Framework pour le développement d'une application Web. Et contrairement aux idées reçues, un Framework, en soi, n'est pas forcément un gage de qualité ni de sécurité. Tout dépend de son utilisation et de sa maîtrise, comme tout autre outil. Cependant, les Frameworks de développement ont de multiples avantages, et parmi lesquels, nous pouvons citer :
+\begin{itemize}
+\item Développement rapide d'application (il n'est plus nécessaire de redévelopper tout un tas de fonctions),
+
+\item Organisation du projet (séparation des logiques techniques et logiques de présentation),
+
+\item Des composants et bibliothèques réutilisables (un composant peut servir dans plusieurs projets),
+
+\item Instauration de bonnes pratiques de codage (comme les standard PSR; PHP Standards Recommendation),
+
+\item La souplesse (laisse de nombreuses libertés au développeur).
+\end{itemize}
+  
+\subsection{Zend Framework}
+\begin{wrapfigure}{r}{5.5cm}
+\includegraphics[width=5.5cm,height=3cm]{./image_chapitre5/zend-framework}
+\end{wrapfigure}
+C'est un Framework pour PHP5 distribué sous licence BSD. Il  permet de faciliter et de fiabiliser le développement d'applications Web.\\
+C'est un Framework qui met beaucoup l'accent sur les bonnes pratiques. ZF est très utilisé par les entreprises (BBC, BNP Paribas, etc.) et est recommandé pour les moyens et grands projets.
+\subsubsection{Fonctionnalités principales}
+Zend est considéré comme le Framework le plus puissant, grâce notamment aux nombreuses fonctionnalités qu'il met à la disposition de ses utilisateurs \cite{zf15} :
+\begin{itemize}
+\item \textbf{Sécurité : } protection contre injection SQL, filtrage et validation, etc.
+\item \textbf{Organisation du code :} L'organisation des répertoires et des classes suit certaines normes.
+\item \textbf{URL simples et claires :} forme des URL  entièrement paramétrable.
+\item \textbf{Séparation MVC :} offre de base une architecture MVC permettant de séparer la présentation, la navigation et l'accès aux données.
+\item \textbf{Facilitation fonctions courantes  :} moteur de recherche, accès en base de données, authentification, droits d'accès, etc.
+\end{itemize}
+
+\subsubsection{Choix de Zend Framework}
+Nous avons préféré Zend aux autres Frameworks PHP car c'est un Framework qui nous est familier, et dont les mécanismes de fonctionnement ne nous sont pas totalement méconnus. Ceci diminue considérablement le temps d'apprentissage et améliore la capacité  à résoudre les problèmes liés au développement durant la phase de codage.\\[0.7\baselineskip]
+Par ailleurs notre choix est aussi motivé par les nombreux avantages offerts par ce Framework :
+\begin{itemize}
+\item Il est soutenu par la société Zend et bénéficie d'une grande notoriété, 
+
+\item Une courbe d'apprentissage relativement rapide,
+
+\item Des librairies sous forme de module,
+
+\item Librairie stable et fiable.
+
+\end{itemize}
+\subsubsection{Anatomie d'un projet avec Zend Framework}
+
+Contrairement aux applications traditionnelles qui possèdent de multiples point d'entrées, les applications Zend Framework utilisent majoritairement le design MVC associé à un dispatcher. Pour cela ZF utilise ce qu'on appelle un  contrôleur frontal (Front Controller) qui constitue l'unique point d'entrée de l'application, et dont le rôle est de centraliser la gestion des requêtes entrantes.\\[0.7\baselineskip]
+La figure \autoref{fig:anatomie-zf} montre l'architecture, ainsi décrite, d'une application Zend Framework.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{./image_chapitre5/mvc}
+\caption{Architecture d'une application Zend Framework}
+\label{fig:anatomie-zf}
+\end{figure}
+
+\begin{description}
+\item[Router :] il permet le routage des requêtes vers le contrôleur correspondant et détermine quelle action du contrôleur devant être exécutée pour satisfaire le requête.
+\item[Dispatcher :] le dispatching est un processus permettant l'appel de la bonne fonction dans la bonne classe pour une requête donnée. Le dispatcher par défaut de ZF fournit assez de fonctionnalités pour la plus part des situations, cependant il est possible de créer son propre dispatcher. 
+\item[Model, View et Controller :] étant les différentes couches du design pattern MVC que nous aborderons en détail dans la section \ref{sec:standard-dev} de ce chapitre.
+\end{description}
+
+
+
+\subsection{Doctrine ORM}
+\subsubsection{Définition d'un ORM}
+Un ORM, pour Object-Relational Mapping, est une couche d'abstraction entre l'application et la base de données. Il donne l'illusion de travailler avec une base de données orientée objet. En effet, il permet de mapper directement la base de données relationnelle en objet.  De ce fait, le développeur ne se soucie quasiment plus des requêtes SQL ni du SGBD que l'application utilise.
+\subsubsection{Doctrine}
+Doctrine est, sans doute, l'ORM le plus connu actuellement dans l'univers de la programmation Web. Utilisé dans des Frameworks très connus comme Symphony ou encore Zend Framework, il est aussi simple à prendre en main que puissant.\\[0.7\baselineskip]
+La figure \autoref{fig:Doctrine-layers} schématise le fonctionnement de Doctrine ORM.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/Doctrine-layers}
+\caption{Les différentes couches de Doctrine ORM}
+\label{fig:Doctrine-layers}
+\end{figure}\\[0.7\baselineskip]
+Le schéma est relativement simple à comprendre. Nous pouvons distinguer trois couches principales :
+\begin{description}
+\item[Couche ORM :] c'est elle qui est responsable de la communication entre les objets PHP de l'application et la couche DBAL. Celle-ci fournit une interface orientée objet pour manipuler la base de données.
+\item[Couche DBAL :] Database Abstraction Layer est une abstraction de la base de données physique. À ce niveau-là nous ne pouvons pas encore parler d'orienté objets. Son but est tel que l'on ne se soucie plus du fonctionnement du SGBD et de la base de données utilisée par l'application.
+\item[Couche PDO :] celle-ci est responsable de l'abstraction des accès à la base de donnés. Il ne faut pas la confondre avec le PDO (PHP Data Objects, interface pour accéder à une base de données depuis PHP) qui lui ne propose pas d'abstraction de la base de données.
+\end{description}
+
+
+\subsection{Choix du standard de développement}
+\label{sec:standard-dev} 
+Il est généralement intéressant de suivre un certain design pattern (patron de conception) pour rendre le code plus aisé à maintenir et à faire évoluer. \\[0.7\baselineskip]
+Pour le développement de notre application, nous avons décidé de suivre le pattern MVC. L'architecture MVC est devenue un standard de conception des applications Web modernes. Suivant ce modèle,  la plupart du code d'une application se retrouve dans l'une de ces couches : présentation, logique métier, et accès aux données. Le pattern MVC modélise cette séparation d'une manière quasi-parfaite. Cette séparation est indispensable pour maintenir le code global organisé, particulièrement lorsque plusieurs développeurs travaillent ensemble sur la même application.\\[0.7\baselineskip]
+MVC est très utilisé avec PHP. Il est même devenu le pattern architectural le plus utilisé dans les Frameworks PHP, et ZF n'en fait pas exception.\\[0.7\baselineskip]
+La figure \autoref{fig:mvc-patern} résume les différentes interactions entre les couches du modèle MVC.   
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/mvc-patern}
+\caption{Schéma des interations entre couches du modèle MVC}
+\label{fig:mvc-patern}
+\end{figure}\\[0.7\baselineskip]
+Pour mieux comprendre ce découpage, nous allons détailler chacune des trois couches :
+
+\begin{description}
+\item[Model :] Le modèle contient le code permettant d'interroger la base de données. Généralement on utilise des ORM, dans le but de manipuler les données via des objets.
+\item[View :] La vue traite ce qui sera présenté à l'utilisateur dans un navigateur Web. Il s'agira globalement de code HTML et CSS.  Les données représentées par chaque vue sont envoyées par les contrôleurs. Les vues servent aussi à la collecte de données de l'utilisateur. 
+\item[Controller :] Les contrôleurs sont le lien entre la vue et le modèle. Ils gèrent les interactions avec l'utilisateur et décident de la vue à rendre en fonction de la requête et d'autres facteurs. D'une manière générale, il va utiliser les données du modèle, les traiter en fonction de l'action de l'utilisateur, et les envoyer à la vue afin qu'elle les affiche.
+\end{description}
+Dans cette optique, il est donc important de définir une arborescence de répertoires et de fichiers capable de bien organiser notre code source suivant les préconisations de ce modèle.
+
+\subsubsection{Organisation du projet Netman}
+La hiérarchie de notre projet est comme présentée dans la figure \autoref{fig:folder-structure}. Notons que l'application est composée de cinq modules. La notion de module est propre à la version 2 de Zend Framework. En gros, les modules ont pour objectif de pouvoir être indépendant du reste de l'application d'une manière à pouvoir s'adapter aisément dans un autre projet, moyennant quelques réglages de configuration. Chaque module possède sa propre configuration, ses contrôleurs et vues.  L'avantage de séparer notre application en plusieurs modules est qu'il est désormais possible de désactiver l'un d'entre eux temporairement sans affecter le c{\oe}ur de l'application. Ainsi, on peut par exemple avoir la partie administration en maintenance mais l'utilisateur pourra toujours utiliser l'application. 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.3]{./image_chapitre5/folder-structure}
+\caption{Arborescence de l'application selon le design MVC}
+\label{fig:folder-structure}
+\end{figure}\\[0.7\baselineskip]
+Dans ce qui suit, nous donnons une brève explication de chaque répertoire du projet : 
+
+\begin{itemize}
+\item \textbf{Module Netman :} qui représente le c{\oe}ur de l'application (fabriques, configurations, modèles de données, etc.) et qui contient aussi les contrôleurs et vues des fonctionnalités de base de l'application telles que l'authentification, la recherche et la navigation.
+\item \textbf{Module Administration :} qui contient les contrôleurs et vues relatifs l'administration de l'application.
+\item \textbf{Module Management :} ce module fournit les contrôleurs et vues pour les opérations de gestion de l'infrastructure physique du réseau (sites, bâtiments, niveaux, salles, prises). 
+\item \textbf{Module Inventory :} qui contient les contrôleurs et vues nécessaires à la fonctionnalité d'inventaire des équipements réseau (auto-découverte, configuration)
+\item \textbf{Module Network :} contient les contrôleurs et vue pour la représentation du réseau, la gestion des switches ainsi que l'élaboration de statistiques sur le réseau.
+\item \textbf{vendor :} contient la librairie ZF ainsi que d'autres modules développés par des parties tiers et utilisés par l'application, tel que Doctrine ORM.
+\item \textbf{config :} contient le fichier \emph{application.config} qui est le fichier de configuration de base de toute l'application (déclaration des modules notamment), et qui est utilisé par l'application pour charger les modules. Ce répertoire contient aussi d'autres fichiers de l'autoload comme \emph{local.php} et \emph{global.php} que nous utilisons  pour configurer les paramètres de la base de données (username, passwd, driver, etc.)
+\item \textbf{data :} pour les besoins de cache, les logs ou les fichiers temporaires, car un module n'est pas censé écrire dans son dossier.
+\item \textbf{public :} contient tous les fichiers publiques de l'application et qui sont accessibles depuis un navigateur web. (index, images, js, css)
+\item \textbf{init\_autoloader.php :} pour initier le Zend Autoloader, responsable du chargement des classes de l'application.
+\end{itemize}
+  
+
+\subsection{Choix de la technologie de sécurité}
+De nos jours, les vulnérabilités liées à la sécurité des applications Web sont considérées comme étant le vecteur le plus important des attaques dirigées contre la sécurité des entreprises. Ces attaques proviennent de différents milieux et s'appuient généralement sur l'injection de fautes ; une technique permettant d'exploiter les vulnérabilités de la syntaxe et de la sémantique d'une application Web \cite{qu09}. Ainsi, La gestion de la sécurité est un aspect essentiel lors du développement d'applications et ne doit en aucun cas être pris à la légère. Ceci requiert une très grande vigilance aussi bien lors de la conception que durant le codage. \\[0.7\baselineskip]
+Assurer la sécurité de notre application revient à sécuriser des aspects tels que l'authentification, les formulaires et les contrôles d'accès. Pour cela, nous pouvons tirer avantage de Zend Framework qui fournit des composants prêts à l'emploi et qui permettent de protéger l'application, d'une manière assez aisée, de la majorité des attaques communes.
+
+\subsubsection{Sécurisation des interactions avec l'utilisateur}
+\label{sec:secu-inject} 
+Les applications Web sont caractérisées par un très grand nombre d'échanges entre l'utilisateur et le serveur. Ces échanges constituent une véritable source de risques qu'il faut à la fois connaître et maîtriser \cite{gb13}.  Une règle générale consiste à ne jamais placer confiance dans les données transmises ou reçues par le serveur, de façon à pouvoir empêcher les attaques les plus communes telles que :
+\begin{itemize}
+\item \textbf{Injection SQL:} qui consiste à saisir des requêtes SQL dans un champ de formulaire, pour obtenir des informations sur le fonctionnement de l'application, de passer outre certaines autorisations, voire même de prendre le contrôle d'un serveur.
+\item \textbf{Attaques CSRF:} celles-ci ciblent des utilisateurs authentifiés, et tentent de leur faire exécuter des actions à leur insu.
+\item \textbf{Attaques XSS:} l'attaque XSS consiste en  l'injection de code côté client (HTML, JavaScript, etc.). Celle-ci concerne les données en sortie de l'application, et vise à exécuter des actions à l'insu de l'utilisateur, voler une session et même voler des identifiants grâce à des techniques comme le phishing (hameçonnage).
+\end{itemize}
+
+\subsubsection*{Validation et filtrage des formulaires}
+Il faut toujours vérifier et filtrer toutes les entrées pour s'assurer qu'elles correspondent à ce que l'on attend réellement. À cet effet, Zend fournit deux composants facilitant la validation des formulaires : Zend/Filter et Zend/Validator. Les filtres vont transformer les données ne correspondant pas à ce qu'ils attendent pour les rendre conformes. Alors que les validateurs vont laisser les données intactes mais bloquer la validation du formulaire \cite{ok14}.
+
+\subsubsection*{Protection contre les injections SQL}
+La protection contre les injections SQL est assurée par Doctrine ORM. Avec une bonne utilisation des méthodes offertes par ce dernier, le risque d'injection est quasiment nul. 
+
+\subsubsection*{Protection contre les attaques CSRF}
+Les protections envers les attaques CSRF sont généralement basées sur des jetons secrets de formulaire dépendants de la session. Pour immuniser les formulaires de notre application contre ce type d'attaque, nous avons utilisé un élément que propose Zend à ce fait. Il s'agit d'une sécurité appelée CSRF et qui est ajoutée dans chaque formulaire de l'application. 
+
+\subsubsection*{Protection contre les attaques XSS}
+Les vulnérabilités de type XSS apparaissent dans les vues (le rendu HTML de l'application). Pour pallier ce problème, nous utiliserons le composant Zend/Escaper. Ce dernier fournit des méthodes pour échapper les données en sortie. Il existe des méthodes pour échapper du code HTML, des scripts, des éléments de style, et des URI.\\[1.0\baselineskip]
+Notons que les contrôles de sécurité que nous avons cité ci-dessus sont réalisés côté serveur. Ceci veut dire qu'il y a nécessité d'interagir avec le serveur avant de renvoyer les messages de validation au client.  
+
+
+\subsubsection{Authentification et contrôles d'accès } 
+La plupart des Frameworks PHP modernes possèdent les concepts d'authentification ou de contrôle d'accès. Dans le cas de ZF, l'authentification est gérée par le composant Zend/Authentication, alors que le contrôle d'accès est géré par Zend/Acl qui utilise des listes d'accès. Dans notre application, nous utiliserons conjointement Zend et Doctrine  pour l'authentification. 
+
+
+\subsubsection{Journalisation des erreurs de l'application}
+Les journaux (logs) jouent un rôle très important dans la sécurité des applications. En effet, le journal d'erreur est un bon indicateur pour repérer les attaques et enregistrer toutes les erreurs d'exécution. \\[0.7\baselineskip]
+Notre application utilise Zend/Log qui fournit une bibliothèque complète pour l'enregistrement des événements de l'application, permettant d'écrire les événements vers des fichiers, des bases de données, ou des adresses e-mail. 
+
+\subsection{Autres choix technologiques}
+\subsubsection{jQuery}
+\begin{wrapfigure}{r}{4cm}
+\includegraphics[width=4cm,height=2cm]{./image_chapitre5/jquery}
+\end{wrapfigure}
+jQuery est une bibliothèque libre développée en JavaScript (dit également Framework JavaScript). C'est un logiciel open source distribué sous les licences combinées du MIT et GPL.  JQuery permet de manipuler d'une manière aisée le Document Object Model plus connu sous son abréviation DOM, et qui est un standard du W3C. \\[0.7\baselineskip]
+La bibliothèque jQuery est particulièrement adaptée pour :
+\begin{itemize}
+\item Sélectionner  et manipuler les éléments du DOM (l'arbre des éléments HTML),
+\item Gérer des événements du navigateur (clic souris, survole, etc.),
+\item Ajouter des effets et des animations visuels (fondu, disparation, etc.),
+\item Gérer les styles CSS et attributs des balises HTML,
+\item Gérer des interactions AJAX (communication asynchrone avec le serveur).
+\end{itemize}
+
+\subsubsection{jQuery Validation}
+jQuery Validation est un plugin jQuery distribué sous licence MIT, et permettant de gérer la validation des formulaires côté client. Pour chaque champ d'un formulaire, le plugin va stocker toutes les règles de validation  correspondantes et les vérifier à l'envoi. Si le formulaire n'est pas valide, alors l'envoi est annulé et des messages d'erreurs sont affichés.\\[0.7\baselineskip]
+Dans la section \ref{sec:secu-inject}, nous avons abordé l'utilisation des filtres et validateurs offerts par ZF côté serveur. Ces composants sont testés et éprouvés, donc nous pouvons être sûrs de la fiabilité des contrôles réalisés au niveau du serveur. Cependant, la validation côté client s'avère tout aussi importante puisque c'est simple et surtout rapide, et permet d'éviter la surcharge du serveur. \\[0.7\baselineskip]
+Malgré la puissance et la simplicité de ce plugin, nous sommes amenés à garder les contrôles côté serveur puisqu'il se peut que JavaScript soit désactivé côté client. Et dans ce cas, l'application devient vulnérable et des failles de sécurité peuvent alors apparaitre. 
+
+\section{Nmap et le balayage du réseau}
+Comme nous l'avons cité dans la section \ref{archichap1} du chapitre \ref{chap:presentation}, nous utilisons l'outil Nmap pour la tâche du balayage du réseau.  Celui-ci scanne les ports ouverts sur le réseau en utilisant les protocoles TCP et UDP. 
+Quand l'utilisateur lance le balayage du réseau, l'application lance Nmap en arrière-plan et lui passe les paramètres du scan. \\[0.7\baselineskip] 
+La commande utilisée par défaut dans l'application est :
+\begin{verbatim}
+nmap -sS -T4 -O -F  cible -oX output.xml 
+\end{verbatim}
+Où :
+{\renewcommand\labelitemi{}
+\begin{itemize}
+\item \textbf{nmap} : c'est la commande pour lancer l'outil Nmap.
+\item \textbf{-sS} : option pour spécifier qu'il s'agit d'un scan de type TCP SYN, ceci permet de ne pas ouvrir une connexion TCP complète pour optimiser le temps du scan.
+\item \textbf{-T4} et \textbf{-F} : options de timing du scan à effectuer, toujours dans le but d'optimisation. 
+\item \textbf{-O} : pour permettre la détection du système d'exploitation. 
+\item \textbf{cible} : adresse IP de la cible à scanner : peut être une machine, un ensemble de machines, ou bien un réseau.
+\item \textbf{-oX} : pour spécifier que le résultat du scan va être écrit dans un fichier XML.
+\item \textbf{output.xml} : fichier de sortie de Nmap.\\
+\end{itemize}}
+Cette commande est optimisée de façon à permettre un scan rapide du réseau et écrire le résultat dans un fichier XML qui sera exploité par l'application.  
+Les informations retournées par Nmap sont comme suit :
+\begin{itemize}
+\item Nom de l'hôte (hostname) : si connu,
+\item Adresse IP : l'adresse IP de l'hôte,
+\item Adresse Mac : Adresse Mac de l'hôte,
+\item Type de matériel : si connu, et peut être ordinateur, téléphone, imprimante, scanner,
+\item Famille du système d'exploitation (OS family) : Nmap essaie de deviner le système d'exploitation de l'hôte et sa version, ceci grâce à l'option \emph{-O} de la commande du balayage,
+\item Date fin du balayage.\\
+\end{itemize}
+En traitant le fichier XML en sortie de Namp, nous pouvons avoir une liste des équipements découverts sur le réseau.
+
+\subsection{Correspondance prises réseaux - équipements}
+
+Une fois le balayage effectué et la liste des équipements établie, l'application récupère le port switch pour chaque adresse Mac. Une fois le port connu, nous pouvons faire la correspondance avec la prise à laquelle est branché l'équipement, puisque notre base de données contient pour chaque prise le switch et le port lui correspondant. \\[0.7\baselineskip] 
+Ceci permet de renseigner toutes les autres tables de la base de données, et d'avoir une vue globale sur la structure du réseau. \\[0.7\baselineskip] 
+Pour la récupération du port switch  de chaque adresse Mac, l'application interroge un système déjà en place, dans l'entreprise. Il s'agit  de l'application Cisco SpiceWorks LMS 3.2 avec laquelle ils gèrent actuellement leur réseau. Pour cela, nous avons besoin des identifiants de l'administrateur réseau et de la commande permettant de récupérer le code du switch et le port correspondant pour une adresse MAC donnée. 
+
+
+\section{Pratiques Adoptées}
+\subsection*{L'ergonomie}
+L'interface de notre application doit être suffisamment souple, simple et intuitive à l'utilisation. L'ensemble des pages doit être conçu de telle façon à réduire le temps de lecture de l'utilisateur, et à réduire au minimum le nombre d'étapes nécessaires pour effectuer une tâche sur l'application. 
+\subsection*{La gestion des erreurs}
+La problématique de gestion des erreurs dans une application Web consiste en l'implémentation d'un gestionnaire d'erreurs pour permettre à l'utilisateur d'avoir une idée des erreurs qui surviennent pendant l'utilisation du système.
+Nous faisons, pour cela, usage des mécanismes offerts par Zend Framework permettant la capture des erreurs de l'application.
+
+\subsection*{La Cohérence}
+La cohérence concerne l'interface et les mécanismes de navigation de l'application. Assurer ce critère revient à avoir :
+\begin{itemize}
+\item Les éléments de navigation présentés dans un ordre relativement similaire,
+\item Tous les éléments de navigation et tous les boutons offrant une fonctionnalité similaire sont identifiés de la même façon.
+\item Dans un ensemble de pages Web,  les composants qui ont la même fonctionnalité sont identifiés de la même façon.
+\end{itemize}
+
+\section{Interfaces de l'application}
+Le prototype que nous avons réalisé est mono-utilisateur et sera utilisé, dans un premier temps, uniquement au niveau du réseau de la DP de Sonatrach. Par la suite l'entreprise pourrait décider de l'étendre sur l'ensemble de ses sites à travers le territoire national. \\[0.7\baselineskip] 
+Nous donnons dans ce qui suit les principales interfaces de l'application produite.
+\subsection{Interface d'authentification}
+
+\subsubsection*{Authentification}
+C'est la première interface qui apparait au lancement de l'application (voir figure \autoref{fig:interface-auth}).
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/interface-auth}
+\caption{Interface d'authentification de l'application}
+\label{fig:interface-auth}
+\end{figure}
+\subsubsection*{Recouvrement de mot de passe}
+En cas d'oubli de mot de passe, l'utilisateur peut demander un nouveau mot de passe que le système envoie par e-mail (voir figure \autoref{fig:recouverement-pswd}). Évidemment l'utilisateur doit introduire une adresse e-mail valide (c'est-à-dire qui existe dans la base de données).
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/recouverement-pswd}
+\caption{Recouverement de mot de passe en cas d'oubli}
+\label{fig:recouverement-pswd}
+\end{figure}
+
+\subsection{Interface principale}
+L'interface principale de l'application (page d'accueil) est représenté sur la figure \autoref{fig:interface-principale}.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\linewidth]{./image_chapitre5/interface-principale}
+\caption{Page d'accueil de l'application}
+\label{fig:interface-principale}
+\end{figure}\\
+Cette interface est assez simple d'utilisation. Nous pouvons distinguer deux volets principaux :
+\begin{itemize}
+\item \textbf{Menu de navigation :} celui-ci est positionné à gauche de l'interface (menu vertical) et contient cinq principaux menus :
+\begin{itemize}
+\item GESTION : regroupe les fonctionnalités relatives à la gestion des sites, bâtiments, niveaux, salles, et prises réseaux.
+\item INVENTAIRE : possède deux sous menus qui sont l'inventaire des équipements et la fonctionnalité de balayage du réseau (auto-découverte).
+\item RÉSEAU : offre trois sous menus : la structure du réseau, la gestion des switches et les statistiques
+\item OUTILS : offre la fonctionnalité de recherche personnalisée.
+\item COMPTE : regroupe deux liens : un pour les paramètres du compte de l'utilisateur et un autre pour se déconnecter du système. 
+\end{itemize}
+\item \textbf{Le corps de l'application :} à droite sur la figure ci-dessus, il contient les interfaces de manipulation de l'application. Dans le cas de la page d'accueil on y présente les fonctionnalités principales à base d'icônes.
+\end{itemize}
+En haut nous pouvons voir le logo et le nom de l'application, ainsi que le logo de la Sonatrach (extrême droite). Remarquons aussi la présence d'un champ pour la recherche rapide dans le système. D'autres éléments sont présents, notamment le nom de l'utilisateur ainsi qu'un menu pour permettant de savoir dans quelle page on est. 
+\subsection{Principales fonctionnalités}
+\subsubsection*{Gestion des sites du réseau}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/gestion-sites}
+\caption{Interface de gestion des sites du réseau}
+\label{fig:gestion-sites}
+\end{figure}
+
+\subsubsection*{Gestion des bâtiments}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/gestion-batiments}
+\caption{Interface de gestion des bâtiments}
+\label{fig:gestion-batiments}
+\end{figure}
+\clearpage
+\subsubsection*{Gestion des niveaux}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/gestion-niveau}
+\caption{Interface de gestion des niveaux}
+\label{fig:gestion-niveau}
+\end{figure}
+
+\subsubsection*{Gestion des salles}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/gestion-salles}
+\caption{Interface de gestion des salles}
+\label{fig:gestion-salles}
+\end{figure}
+
+\subsubsection*{Gestion des prises réseau}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth, height=5cm]{./image_chapitre5/gestion-prises}
+\caption{Interface de gestion des prises réseaux}
+\label{fig:gestion-prises}
+\end{figure}
+
+
+\subsubsection*{Auto-découverte du réseau}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/config-balayage}
+\caption{Interface de configuration du balayage réseau}
+\label{fig:config-balayage}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/resultat-balayage}
+\caption{Résultat du balayage : liste des équipements découverts}
+\label{fig:resultat-balayage}
+\end{figure}
+
+\subsubsection*{Recherche}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/recherche}
+\caption{Interface pour lancer une recherche personnalisée}
+\label{fig:recherche}
+\end{figure}
+
+\clearpage
+\subsubsection*{Paramètres de compte utilisateur}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\linewidth]{./image_chapitre5/compte}
+\caption{Interface des paramètres du compte utilisateur}
+\label{fig:compte}
+\end{figure}
+
+\section{Conclusion}
+À travers ce dernier chapitre, nous avons décrit la partie réalisation de notre solution. Ainsi, nous avons exposé, en premier lieu, l'environnement matériel et logiciel dans lequel nous avons développé notre application, suivi d'une présentation de nos différents choix technologique.\\[0.7\baselineskip]
+Nous avons, par la suite, présenté les interfaces les plus significatives de notre application moyennant des captures d'écrans, tout en donnant des explications brèves des fonctionnalités offertes par l'application finale.

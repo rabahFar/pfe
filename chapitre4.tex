@@ -1,0 +1,1347 @@
+
+\chapter{\sc Étude conceptuelle }
+\section{Introduction}
+Après avoir achevé l'étude de l'existant qui nous a permis d'analyser le fonctionnement de la maintenance au sein du groupe SAIDAL et d'en déduire les anomalies, les dysfonctionnements et les suggestions, et après avoir écouté les propositions de la sous-direction de la maintenance , nous abordons l'étape suivante qui consiste à concevoir un système de gestion de maintenance assistée par ordinateur en passant par l'automatisation de l'ancien système et en tenant compte des axes d'améliorations proposés.\\[0.5\baselineskip]
+L'objectif de cette étape est de déterminer de façon détaillée et précise ce que le système devrait faire, afin de répondre à nos objectifs cités dans le premier chapitre.\\[0.5\baselineskip]
+Pour notre conception, nous optons pour la modélisation orientée objet UML qui sera pilotée par la démarche 2TUP.
+« UML se définit comme un langage de modélisation graphique et textuel destiné à comprendre et décrire des besoins, spécifier et documenter des systèmes, esquisser des architectures logicielles, concevoir des solutions et communiquer des points de vue ».\cite{ref07}\\[0.5\baselineskip]
+Sa stabilité de modélisation, sa normalisation ainsi que la facilité et la clarté de ses diagrammes ont fait d'UML un outil de choix pour notre modélisation.\\[0.5\baselineskip]
+« 2TUP signifie « 2 Tracks Unified Process », il apporte une réponse aux contraintes de changement continuel imposées aux systèmes d'information de l'entreprise. En ce sens, il renforce le contrôle sur les capacités d'évolution et de correction de tels systèmes. « 2 Tracks » signifie littéralement que le processus suit deux chemins. Il s'agit des chemins « fonctionnels » et « d'architecture technique », qui correspondent aux deux axes de changement imposés au système informatique ».\cite{ref08}\\[0.5\baselineskip]
+la figure suivante représente le schéma du processus 2TUP.\\[0.5\baselineskip]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/2TUP}
+	\caption[Le processus de développement en Y (2TUP)]{Le processus de développement en Y (2TUP)}\cite{ref08}
+	\label{fig:2TUP}
+\end{figure}
+\begin{itemize}
+	\item \textbf{ La branche fonctionnelle (partie gauche) : }comporte la capture et l'analyse des besoins fonctionnels, qui produisent un modèle des besoins focalisé sur le métier des utilisateurs.\cite{ref08}
+	\item \textbf{ La branche technique (partie droite) : }comporte la capture des besoins techniques, qui recense toutes les contraintes et les choix dimensionnant la conception du système, ainsi que la conception générique qui définit les composants nécessaires à la construction de l'architecture technique.\cite{ref08}
+	\item \textbf{ La branche du milieu  : }consiste à fusionner les résultats des 2 branches. Elle comporte la conception préliminaire, la conception détaillée, le codage et l'intégration. Cette fusion conduit à l'obtention d'un processus en forme d'Y.\cite{ref08}
+\end{itemize}
+
+Le choix de cette démarche n'est pas fortuit, mais obéit à des considérations hautement professionnelles, notamment :
+\begin{itemize}
+	\item La compatibilité avec UML.
+	\item Chaque phase du processus 2TUP peut être décomposée en plusieurs itérations.
+	\item Chaque itération produit un incrément du produit.
+\end{itemize}
+\newpage
+\section{ Etude préliminaire }
+
+L'étude préliminaire est la première étape du processus de développement, elle consiste à effectuer un premier repérage des besoins fonctionnels et techniques, en identifiant : \cite{ref08}
+\begin{itemize}
+	\item Les acteurs qui vont interagir avec le système.
+	\item Les messages qu'échangent les acteurs et le système.
+	\item Le diagramme du contexte.
+\end{itemize}
+\subsection{ Identification des acteurs  }
+Les acteurs sont toute entité externe (utilisateur humain, dispositif matériel ou autre système) ayant une interaction directe avec le système étudié. \cite{ref08}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/acteur}
+	\caption[Représentation d'un acteur dans l'UML]{Représentation d'un acteur dans l'UML}
+	\label{fig:acteur}
+\end{figure}
+L'étude des documents et procédures de travail effectuée dans le chapitre étude de l'existant et la prise en considération des exigences et des propositions du groupe SAIDAL, nous ont permis de dresser une liste exhaustive des acteurs qui vont interagir avec le nouveau système et leurs rôles comme la montre le tableau suivant :\\
+
+\begin{center}
+	\begin{tabular}{|p{3.5cm}|p{11cm}|}
+		\hline
+		\textbf{Acteur} &  \textbf{Rôle}\\
+		\hline
+		\textbf{Administrateur} & 
+		\begin{itemize}
+			\item Gérer les utilisateurs, définir les profils et attribuer les privilèges et les droits d'accès.
+			\item S'occuper aussi de la maintenance
+			du système.			
+		\end{itemize}\\
+		\hline
+		\textbf{Sous-directeur de la maintenance} & 
+		\begin{itemize}
+			\item Recevoir et valider les opérations de sous-traitance et de réforme des équipements.
+			\item Demander des statistiques (le volume horaire et le coût des interventions, la PDR
+			utilisée, intervenants, ...etc.).			
+		\end{itemize}\\
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{3.5cm}|p{11cm}|}
+		\hline
+		\textbf{Acteur} &  \textbf{Rôle}\\
+		\hline
+		\textbf{Chef du département de gestion des équipements} & 
+		\begin{itemize}
+			\item Gérer les équipements (fiches techniques, nomenclature, documentation, gammes de maintenance ) des équipements.
+			\item Demander des statistiques concernant la maintenance.			
+		\end{itemize}\\
+		\hline	
+		\textbf{Chef du service méthode} & 
+		\begin{itemize}
+			\item Recevoir les demandes de réparations.
+			\item Établir les ordres de travail.
+			\item Demander le PMP d'un équipement.
+			\item Établir les plannings préventifs des équipements.		
+			\item Retirer l'équipement réformé de la liste des équipements.
+			\item Demander des statistiques concernant la maintenance.
+		\end{itemize}\\
+		\hline
+		\textbf{Chef de service de production} & 
+		\begin{itemize}
+			\item Établir les demandes de réparation.			
+		\end{itemize}\\
+		\hline
+		\textbf{Chef de service électrique} & 
+		\begin{itemize}
+			\item Affecter l'ordre de travail aux intervenants (électriciens).
+			\item Demander des statistiques de la maintenance concernant son service.			
+		\end{itemize}\\
+		\hline
+		\textbf{Chef de service mécanique} & 
+		\begin{itemize}
+			\item Affecter l'ordre de travail aux intervenants (mécaniciens).
+			\item Demander des statistiques de la maintenance concernant son service.			
+		\end{itemize}\\
+		\hline
+		\textbf{Intervenant} & 
+		\begin{itemize}
+			\item Consulter le planning des
+			interventions.
+			\item Exécuter les interventions qui lui sont assignées et remettre l'ordre de travail à son chef de service.			
+		\end{itemize}\\
+		\hline	
+		\textbf{Système de gestion des stocks} & 
+		\begin{itemize}
+			\item Envoyer au système l'état des stocks de la PDR.			
+		\end{itemize}\\
+		\hline
+	\end{tabular} \\
+	\captionof{table}{Les acteurs et leurs rôles dans le système }
+	\label{tab16}
+\end{center}
+
+\newpage
+\subsection{ Identification des messages  }
+Les messages sont des communications unidirectionnelles entre objets transportant de l'information pour déclencher un évènement chez le récepteur.  \cite{ref08}\\[0.5\baselineskip]
+\textbf{Note : }Nous avons numéroté les messages qui sont représentés dans le diagramme de contexte. Les numéros attribués ne représentent pas un ordre.\\[0.5\baselineskip]
+Les deux tableaux suivants illustrent la liste des messages reçus et émis par le nouveau système :\\[0.5\baselineskip]
+\textbf{Le système reçoit les messages suivants : }
+
+\begin{center}
+	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
+		\hline
+		\textbf{Numéro} &  \textbf{Source} &  \textbf{Description} \\
+		\hline
+		\textbf{1} & Administrateur & Créer ou modifier les utilisateurs.\\
+		\hline		
+		\textbf{2} & Chef du service de production & Etablir une demande de réparation.\\
+		\hline	
+		\textbf{3} & Sous-directeur de la maintenance & Valider les demandes de sous-traitance et de réforme des équipements.\\
+		\hline			
+		\textbf{4} & Sous-directeur de la maintenance & Demander des statistiques, ratios sur la maintenance.\\
+		\hline		
+		\textbf{5} & Chef du département de gestion des équipements & Définir et mettre à jour la fiche technique d'un équipement.\\
+		\hline
+		\textbf{6} & Chef du département de gestion des équipements & Créer la nomenclature d'un équipement.\\
+		\hline
+		\textbf{7} & Chef du département de gestion des équipements & Créer la documentation d'un équipement.\\
+		\hline
+		\textbf{8} & Chef du département de gestion des équipements & Créer les gammes de maintenance d'un équipement.\\
+		\hline
+		\textbf{9} & Chef du département de gestion des équipements & Demander l'historique des interventions.\\
+		\hline
+		\textbf{10} & Chef du département de gestion des équipements & Demander des statistiques, ratios sur la maintenance.\\
+		\hline	
+		\textbf{11} & Chef du service méthodes & Créer des ordres de travail.\\
+		\hline
+		\textbf{12} & Chef du service méthodes & Demander le PMP d'un équipement.\\
+		\hline	
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
+		\hline
+		\textbf{13} & Chef du service méthodes & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{14} & Chef de service méthodes & Demander des statistiques, ratios sur la maintenance.\\
+		\hline
+		\textbf{15} & Chef de service méthodes & Demander l'historique des interventions.\\
+		\hline
+		\textbf{16} & Chef de service électrique & Demander des statistiques concernant son service.\\
+		\hline
+		\textbf{17} & Chef de service électrique & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{18} & Chef de service mécanique & Demander des statistiques concernant son service.\\
+		\hline
+		\textbf{19} & Chef de service mécanique & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{20} & Intervenant & Demander le PMP d'un équipement.\\
+		\hline
+		\textbf{21} & Intervenant & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{36} & Système de gestion des stocks & Envoyer au système l'état des stocks de la PDR.\\
+		\hline
+		
+	\end{tabular} \\
+	\captionof{table}{Liste des messages reçus par le système }
+	\label{tab17}
+\end{center}
+
+\textbf{Le système émet les messages suivants :  }
+
+\begin{center}
+	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
+		\hline
+		\textbf{Numéro} &  \textbf{Destination} &  \textbf{Description} \\
+		\hline	
+		\textbf{22} & Sous-directeur de la maintenance & statistiques et ratios.\\
+		\hline
+		\textbf{23} & Sous-directeur de la maintenance & historique des interventions.\\
+		\hline
+		\textbf{24} & Chef du département de gestion des équipements & statistiques et ratios.\\
+		\hline
+		\textbf{25} & Chef du département de gestion des équipements & historique des interventions.\\
+		\hline	
+		\textbf{26} & Chef de service méthodes & statistiques et ratios.\\
+		\hline
+		\textbf{27} & Chef de service méthodes & historique des interventions.\\
+		\hline
+		\textbf{28} & Chef de service méthodes & Générer le PMP automatiquement.\\
+		\hline
+		\textbf{29} & Chef de service méthodes & Générer le planning préventif des équipements automatiquement.\\
+		\hline	
+	\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
+		\hline
+		\textbf{30} & Chef de service électrique & statistiques et ratios.\\
+		\hline
+		\textbf{31} & Chef de service électrique & Générer le planning préventif des équipements automatiquement.\\
+		\hline
+		\textbf{32} & Chef de service mécanique & statistiques et ratios.\\
+		\hline
+		\textbf{33} & Chef de service mécanique & Générer le planning préventif des équipements automatiquement.\\
+		\hline
+		\textbf{34} & Intervenant & Générer le PMP automatiquement.\\
+		\hline
+		\textbf{35} & Intervenant & Générer le planning préventif des équipements automatiquement.\\
+		\hline
+		
+	\end{tabular} \\
+	\captionof{table}{Liste des messages émis  par le système }
+	\label{tab18}
+\end{center}
+
+\subsection{ Diagramme de contexte  }
+Le diagramme suivant représente les messages échangés entre le nouveau système d'information et les acteurs :
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/diagramme_contexte}
+	\caption[Diagramme de contexte dynamique du nouveau système]{Diagramme de contexte dynamique du nouveau système.}
+	\label{fig:diagramme du contexte}
+\end{figure}
+\newpage
+
+\section{ Capture de besoins  }
+\subsection{ Captures des besoins fonctionnels   }
+La capture des besoins fonctionnels est la première étape de la branche gauche du cycle en Y. Elle formalise et détaille ce qui a été ébauché au cours de l'étude préliminaire.\cite{ref08}\\[0.5\baselineskip]
+Cette phase comporte :\cite{ref08}
+\begin{itemize}
+	\item L'identification des cas d'utilisation fonctionnels.
+	\item La description textuelle des cas d'utilisation.
+\end{itemize}
+\subsubsection{ Identification des cas d'utilisations fonctionnels }
+\textbf{Définition}\\[0.5\baselineskip]
+Un cas d'utilisation (use case) est un ensemble de séquences d'actions réalisées par le système et produisant un résultat observable intéressant pour un acteur particulier. Un cas d'utilisation modélise un service rendu par le système et exprime les interactions acteurs/système. \cite{ref09}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/use_case}
+	\caption[Représentation d'un cas d'utilisation dans l'UML.]{Représentation d'un cas d'utilisation dans l'UML.}
+	\label{fig:use_case}
+\end{figure}
+Les cas d'utilisation sont une technique de capture des
+besoins fonctionnels du système. C'est une description "narrative" de comment est utilisé le système.\cite{web11}\\[0.5\baselineskip]
+
+\textbf{Découpage modulaire des cas d'utilisations fonctionnels}\\[0.5\baselineskip]
+
+Nous allons décomposer notre système en modules avant d'identifier les cas d'utilisations fonctionnels. Par la suite nous allons détailler chaque module en une liste de cas d'utilisations en respectant la cohérence fonctionnelle entre eux. \\[0.5\baselineskip]
+Plus tard, chaque module sera représenté par un package (paquetage).
+Le tableau suivant représente les modules de notre système :
+\newpage
+\begin{center}
+	\begin{tabular}{|p{5cm}|p{8cm}|}
+		\hline
+		\textbf{Numéro du Module} &  \textbf{Titre }  \\
+		\hline		
+		\textbf{Module 1} & Gestion des équipements\\
+		\hline	
+		\textbf{Module 2} & Gestion de la maintenance \\
+		\hline		
+		\textbf{Module 3} & Statistiques et ratios\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Découpage modulaire des cas d'utilisations fonctionnels en modules. }
+	\label{tab19}
+\end{center}
+
+Dans ce qui suit, nous allons détailler chaque module en identifiant ses cas d'utilisations et en donnant leurs descriptions :\\
+
+\textbf{Module1 : Gestion des équipements}\\
+\textbf{\small Liste des cas d'utilisations }\\
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8cm}|}
+		\hline
+		\textbf{Cas d'utilisation} &  \textbf{Acteurs }  \\
+		\hline
+		\textbf{Gérer la fiche technique de l'équipement} & Chef du département de gestion des équipements\\
+		\hline		
+		\textbf{Gérer la nomenclature de l'équipement} & Chef du département de gestion des équipements\\
+		\hline	
+		\textbf{Gérer la documentation de l'équipement} & Chef du département de gestion des équipements\\
+		\hline
+		\textbf{Gérer les gammes de maintenance de l'équipement } & Chef du département de gestion des équipements\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{liste des cas d'utilisations associés au module « Gestion des équipements  »}
+	\label{tab24}
+\end{center}
+
+
+
+
+\textbf{\small Diagramme des cas d'utilisations }\\
+La figure suivante représente le diagramme des cas d'utilisations du module « Gestion des équipements  » :\\
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/CUs_diagramme2}
+	\caption[Diagramme des cas d'utilisations du module « Gestion des équipements »]{Diagramme des cas d'utilisations du module « Gestion des équipements : »}
+	\label{fig:CUs_diagramme2}
+\end{figure}
+Dans ce qui suit, La description textuelle des différents cas d'utilisations contenus dans le module « Gestion des équipements »:\\[0.5\baselineskip]
+\textbf{\footnotesize Description du cas « Gérer les documents  }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU :  Gérer la fiche technique de l'équipement}\\
+		\hline	
+		\textbf{Titre :}  Gérer la fiche technique de l'équipement\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la fiche technique d' un équipement\\
+		\hline
+		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
+		\textbf{Enchainement (a): }Créer une fiche technique  \\
+		L'utilisateur accède au système, il ajoute un nouvel équipement en spécifiant ses informations ( code, désignation, secteur ...etc.). \\
+		 Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (b): }Modifier une fiche technique  \\
+	L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de modifier un ou plusieurs champs.\\
+	 Dans le cas d'une erreur dans la modification de la fiche technique, l'exception s'exécute. \\
+	 \hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+ \begin{tabular}{|p{15cm}|}
+     \hline
+	 \textbf{Enchainement (c): }Supprimer une fiche technique  \\
+	 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il effectue une suppression logique .\\
+		\textbf{Enchainement (d): }Consulter une fiche technique  \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de consulter la fiche technique de  à ce dernier.\\
+		\hline	
+		\textbf{Exception : }Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline	
+		\textbf{Post condition : }  La création / modification/ suppression /consultation de la fiche technique d'un équipement.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer la fiche technique de l'équipement   »}
+	\label{tab25}
+\end{center}
+
+
+\textbf{\footnotesize Description du cas « Gérer la nomenclature de l'équipement   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU :  Gérer la nomenclature de l'équipement}\\
+		\hline	
+		\textbf{Titre :}  Gérer la nomenclature de l'équipement\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la nomenclature d'un équipement\\
+		\hline
+		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
+		\textbf{Enchainement (a): }Créer la nomenclature   \\
+		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute un ou plusieurs organes en remplissant un formulaire (désignation, codification interne, repère, ...etc.). \\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (b): }Modifier la nomenclature   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de modifier un ou plusieurs organes.\\
+		 Dans le cas d'une erreur dans la modification des organes, l'exception s'exécute. \\
+		 \textbf{Enchainement (c): }Supprimer la nomenclature   \\
+		 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de supprimer des organes.\\
+		\textbf{Enchainement (d): }Consulter la nomenclature   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de consulter les organes de ce dernier.\\
+		\hline	
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation de la nomenclature d'un équipement.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer la nomenclature d'un  équipement  »}
+	\label{tab26}
+\end{center}
+\textbf{\footnotesize Description du cas « Gérer la documentation de l'équipement   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU :  Gérer la documentation de l'équipement}\\
+		\hline	
+		\textbf{Titre :}  Gérer la documentation de l'équipement\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la documentation d'un équipement\\
+		\hline
+		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
+		\textbf{Enchainement (a): }Créer la documentation   \\
+		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute un ou plusieurs documents en remplissant un formulaire (intitulé, type, contenu,  langue, ...etc.). \\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (b): }Modifier la documentation   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de modifier un ou plusieurs documents.\\
+		Dans le cas d'une erreur dans la modification des documents, l'exception s'exécute. \\
+		\textbf{Enchainement (c): }Supprimer la documentation   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de supprimer des documents.\\
+		\textbf{Enchainement (d): }Consulter la documentation   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements, après la sélection d'un équipement, il est possible de consulter les documents de ce dernier.\\
+		\hline	
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation de la documentation d'un équipement.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer la documentation d'un  équipement »}
+	\label{tab26}
+\end{center}
+\newpage
+\textbf{\footnotesize Gérer les gammes de maintenance de l'équipement  » }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU :  Gérer les gammes de maintenance de l'équipement  }\\
+		\hline	
+		\textbf{Titre :}  Gérer les gammes de maintenance de l'équipement.\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer / modifier/ supprimer/ consulter une gamme de maintenance.\\
+		\hline
+		\textbf{Acteur :} Chef du département de gestion des équipements\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
+		\textbf{Enchainement (a): }Créer une gamme   \\
+		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute une gamme (id\_gam, intitulé\_gam et periodicité\_gam ), puis il crée le mode opératoire. \\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (b): }Modifier une gamme   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements. Après la sélection d'un équipement, il choisit une gamme et il effectue les modifications qu'il veut apporter. \\
+		Dans le cas d'une erreur dans la modification d'une gamme, l'exception s'exécute. \\
+		\textbf{Enchainement (c): }Supprimer une gamme   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements. Après la sélection d'un équipement, il choisit une gamme et il la supprime. \\
+		\textbf{Enchainement (d): }Consulter une gamme   \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements. Après la sélection d'un équipement, il choisit une gamme et il affiche les informations relatives à cette dernière.\\
+		\hline	
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+		\textbf{Post condition : }  L'ajout/ modification/ suppression/ consultation d'une gamme de maintenance.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer les gammes de maintenance de l'équipement »}
+	\label{tab29}
+\end{center}
+\newpage
+
+\textbf{Module2 : Gestion de la maintenance}\\
+\textbf{\small Liste des cas d'utilisations }\\
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8cm}|}
+		\hline
+		\textbf{Cas d'utilisation} &  \textbf{Acteurs }  \\
+		\hline
+		\textbf{Gérer les demandes de réparation (DR) } & Chef de service de production\\
+		\hline		
+		\textbf{Gérer les ordres de travail (OR)} & Chef de service méthodes\\
+		\hline
+		\textbf{Générer le PMP d'un équipement} & Chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique et l'intervenant\\
+		\hline	
+		\textbf{Gérer le planning préventif des équipements} & Chef du service méthodes et le chef de service électrique ou mécanique\\
+		\hline		
+		\textbf{Gérer le dossier des travaux de sous-traitance} & Sous-directeur de la maintenance\\
+		\hline
+	\end{tabular} \\
+	\captionof{table}{liste des cas d'utilisations associés au module « Gestion de la maintenance »}
+	\label{tab31}
+\end{center}
+
+\textbf{\small Diagramme des cas d'utilisations }\\
+La figure suivante représente le diagramme des cas d'utilisations du module « Gestion de la maintenance » :
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/CUs_diagramme3}
+	\caption[Diagramme des cas d'utilisations du module « Gestion de la maintenance curative »]{Diagramme des cas d'utilisations du module « Gestion de la maintenance »}
+	\label{fig:CUs_diagramme3}
+\end{figure}
+Dans ce qui suit, La description textuelle des différents cas d'utilisations contenus dans le module « Gestion de la maintenance » : \\[0.5\baselineskip]
+
+\textbf{\footnotesize Description du cas « Gérer les demandes de réparation   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Gérer les demandes de réparation (DR)   }\\
+		\hline	
+		\textbf{Titre :}  Gérer les demandes de réparation.\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ /supprimer/ consulter une  demande de réparation.\\
+		\hline
+		\textbf{Acteur :} Chef du service de production.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
+		\textbf{Enchainement (a): } Créer une demande de réparation      \\
+		L'utilisateur sélectionne « établir une demande de réparation », puis il saisit les informations de cette dernière (id, date, détail de la panne , ...etc.). Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.\\
+		Dans le cas d'une maintenance préventive, la demande de réparation est créée automatiquement par système. \\
+		\textbf{Enchainement (b): } Modifier une demande de réparation      \\
+		L'utilisateur sélectionne une demande de réparation qu'il a établie, puis il met à jour les informations de cette dernière. \\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (c): } Supprimer une demande de réparation      \\
+		L'utilisateur sélectionne une demande de réparation qu'il a établie, puis il la supprime. \\
+		\textbf{Enchainement (d): } Consulter une demande de réparation     \\
+		L'utilisateur recherche une demande de réparation, une fois trouvée, il consulte les informations de cette dernière et il peut aussi suivre son état qui peut être en attente, validée ou annulée.\\
+		\hline
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation d'une demande de réparation.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer les demandes de réparation       »}
+	\label{tab32}
+\end{center}
+
+\newpage
+\textbf{\footnotesize Description du cas « Gérer les ordres de travail }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Gérer les ordres de travail (OT)  }\\
+		\hline	
+		\textbf{Titre :}  Gérer les ordres de travail .\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter un ordre de travail.\\
+		\hline
+		\textbf{Acteur (créer/ modifier/ supprimer) :}  Le chef du service méthodes.\\
+		\textbf{Acteur (consulter) :}  chef de service électrique ou mécanique et l'intervenant.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
+		\textbf{Enchainement (a): } Créer un ordre de travail      \\
+		L'utilisateur sélectionne une demande de réparation, puis il saisit les informations relatives à l'ordre de travail à savoir : id, date, description des travaux, date début prévue, date fin prévue, ...etc.\\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute. \\
+		\textbf{Enchainement (b): } Modifier un ordre de travail      \\
+		L'utilisateur sélectionne un ordre de travail, puis il met à jour les informations de ce dernier.\\ Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		\textbf{Enchainement (c): } supprimer un ordre de travail \\
+		L'utilisateur sélectionne un ordre de travail, puis il le supprime.\\ 
+		\textbf{Enchainement (d): } consulter un ordre de travail \\
+		L'utilisateur sélectionne un ordre de travail, puis il consulte les informations de ce dernier.\\
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression / consultation d'un ordre de travail.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer les ordres de travail »}
+	\label{tab33}
+\end{center}
+
+\textbf{\footnotesize Description du cas « Générer le PMP d'un équipement »   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Générer le PMP d'un équipement automatiquement     }\\
+		\hline	
+		\textbf{Titre :}  Générer le PMP ( Plan de Maintenance Préventive ) d'un équipement automatiquement.\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de consulter le PMP d'un équipement qui est créé automatiquement par le système.\\
+		\hline
+		\textbf{Acteur (consulter)  :} chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique et l'intervenant.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier et au moins une gamme de maintenance doit exister au préalable.\\
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite consulter le PMP d'un équipement. \\	
+		\textbf{Enchainement : } Consulter le PMP d'un équipement \\
+		L'utilisateur accède au système, puis il choisit un équipement pour lequel il veut consulter le PMP. Le système affiche les informations de ce dernier (les opérations préventives prévues, observations, ...etc.) \\
+		S'il n'existe pas au moins une gamme de maintenance établie concernant l'équipement, l'exception s'exécute.\\
+		\hline
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique qu'aucune gamme de maintenance n'a été créée.\\
+		\hline
+		\textbf{Post condition : }  La consultation du PMP d'un équipement.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Générer le PMP d'un équipement »}
+	\label{tab36}
+\end{center}
+
+\textbf{\footnotesize Description du cas « Gérer le planning préventif des équipements »   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Gérer le planning préventif des équipements     }\\
+		\hline	
+		\textbf{Titre :}  Gérer le planning préventif des équipements  qui est créé automatiquement par le système.\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de modifier/ consulter le planning préventif des équipements.\\
+		\hline
+		\textbf{Acteur (modifier)  :}  Le chef du service méthodes et le chef du service électrique ou mécanique.\\
+		\textbf{Acteur (consulter) :} Le chef du service méthodes, chef du service électrique ou mécanique et l'intervenant.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier et les gammes de maintenance doivent être enregistrées au préalable..\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
+		\hline
+		\textbf{Enchainement (a): } Modifier le planning préventif des équipements      \\
+		L'utilisateur accède au système, il sélectionne un planning et apporte des modification qu'il veut ( taches, intervenant, ...etc.).  
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception 1 s'exécute. \\
+		\textbf{Enchainement (b): } Consulter le planning préventif des équipements     \\
+		L'utilisateur accède au système, il recherche un planning préventif des équipements et il visualise les  informations relatives çà ce dernier.\\
+		S'il n'existe pas au moins une gamme de maintenance, l'exception 2 s'exécute.\\
+		\hline
+		\textbf{Exception 1 : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{Exception 2 : } Le système affiche un message d'erreur qui indique qu'aucune gamme de maintenance n'a été créée.\\
+		\hline
+		\textbf{Post condition : }  La modification/ consultation du planning préventif des équipements.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer le planning préventif des équipements  »}
+	\label{tab36}
+\end{center}
+
+
+\textbf{\footnotesize Description du cas « Gérer le dossier des travaux de sous-traitance     }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Gérer le dossier des travaux de  sous-traitance     }\\
+		\hline	
+		\textbf{Titre :}  Gérer le dossier des travaux de sous-traitance  .\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter un dossier des travaux de sous-traitance.\\
+		\hline
+		\textbf{Acteur :}  Sous-directeur de la maintenance.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier. \\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
+		\textbf{Enchainement (a): } Créer un dossier des travaux de sous-traitance      \\
+		L'utilisateur accède au système, il crée un dossier des travaux sous-traités, il saisit les informations concernant de ces derniers (le sous-traitant, les interventions réalisées par ce dernier,...etc.). Il procède ensuite au scan du contrat de sous-traitance version papier puis il met la version électronique dans le dossier. \\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.\\
+		\textbf{Enchainement (b): } Modifier un dossier des travaux de sous-traitance      \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et effectuer les modifications qu'il souhaite concernant ses informations.\\
+		 Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
+		 \textbf{Enchainement (c): } Supprimer un dossier des travaux de sous-traitance      \\
+		 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et il le supprime.\\
+		\textbf{Enchainement (d): } Consulter un dossier des travaux de sous-traitance     \\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et visualiser ses informations.\\
+		\hline
+		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation du dossier des travaux de sous-traitance.\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer le dossier des travaux de  sous-traitance  »}
+	\label{tab34}
+\end{center}
+\newpage
+
+\textbf{Module3 : Statistiques et ratios}\\
+\textbf{\small Liste des cas d'utilisations }\\
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8cm}|}
+		\hline
+		\textbf{Cas d'utilisation} &  \textbf{Acteurs }  \\
+		\hline
+		\textbf{Générer les statistiques et les ratios } & Sous-directeur de la maintenance, chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique \\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{cas d'utilisations associés au module « Statistiques et ratios »}
+	\label{tab31}
+\end{center}
+
+\textbf{\small Diagramme des cas d'utilisations }\\
+La figure suivante représente le diagramme des cas d'utilisations du module « Statistiques et ratios » :
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/CUs_diagramme5}
+	\caption[Diagramme des cas d'utilisations du module « Statistiques et les ratios »]{Diagramme des cas d'utilisations du module « Statistiques et ratios »}
+	\label{fig:CUs_diagramme3}
+\end{figure}
+
+Dans ce qui suit, La description textuelle du cas d'utilisation contenu dans le module « Statistiques et ratios  »: \\[0.5\baselineskip]
+\newpage
+\textbf{\footnotesize Description du cas « Générer les statistiques et les ratios   »   }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Générer les statistiques et les ratios      }\\
+		\hline	
+		\textbf{Titre :}  Générer les statistiques et les ratios concernant la maintenance   .\\
+		\hline
+		\textbf{But :} Permet à l'utilisateur de consulter les statistiques et les ratios sur la maintenance.\\
+		\hline
+		\textbf{Acteur :}  Sous-directeur de la maintenance, chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique.\\
+		\hline
+		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite consulter les statistiques et les ratios. \\	
+		\textbf{Enchainement : }      \\
+		L'utilisateur accède au système, il est possible qu'il consulte les statistiques et les ratios concernant la maintenance en choisissant des paramètres (service, date, ...etc.).\\
+		 Dans le cas où les statistiques ne sont pas disponibles, l'exception s'exécute.\\
+		\hline
+       \textbf{Exception : } Le système affiche un message d'erreur qui indique que les les statistiques et les ratios ne sont pas disponibles . \\
+       \hline
+       \textbf{Post condition : }  La consultation des statistiques et des ratios.\\
+       \hline		
+    \end{tabular} \\
+    \captionof{table}{Description du cas « Générer les statistiques et les ratios   »}
+    \label{tab37}
+\end{center}
+
+
+\subsection{ Captures des besoins techniques   }
+Nous avons précédemment identifié les besoins fonctionnels qui représentent la branche gauche (la branche fonctionnelle) de la méthode « 2TUP ». Dans cette partie, nous allons nous pencher à identifier les besoins techniques.\\[0.5\baselineskip]
+Cette étape représente la branche droite de la démarche 2TUP, elle consiste à déterminer tous les éléments nécessaires pour une architecture appropriée à la conception du système. Elle nous permet ainsi de connaître le matériel, à savoir les machines et réseaux, les progiciels à intégrer, ainsi que les outils retenus pour le développement. \cite{ref08}\\[0.5\baselineskip]
+
+« La capture des besoins techniques couvre, par complémentarité avec celle des besoins fonctionnels, toutes les contraintes qui ne traitent ni de la description du métier des utilisateurs, ni de la description applicative. ». \cite{ref08}.\\[0.5\baselineskip]
+
+Pour la capture des besoins techniques, nous avons procédé comme suit :
+
+\begin{itemize}
+	\item Spécifications techniques du point de vue matériel.
+	\item Spécifications techniques du point de vue logiciel.
+	\item Identification des exploitants du système.
+	\item Identification des cas d'utilisation.
+\end{itemize}
+
+\subsubsection{ Spécifications techniques du point de vue matériel  }
+La spécification technique du point de vue matériel consiste à traiter les contraintes relatives à la configuration du réseau matériel. Ces contraintes sont de nature géographique, organisationnelle et technique. Elles concernent les performances d'accès aux données, la sécurité du système, le mode d'utilisation du système, ... etc. \cite{ref08}.\\
+
+Dans cette partie, nous allons présenter la configuration choisie pour notre système et qui est l'architecture 3 niveaux (3-tiers).\\
+
+Le principe d'une architecture 3-tiers consiste à séparer la réalisation des trois parties (stockage des données, logique applicative, présentation). Les éléments permettant la réalisation classique d'un système en architecture trois tiers sont les suivants : \cite{web12}.\\
+\begin{itemize}
+	\item Navigateur web (client), c'est l'ordinateur demandeur de ressources, équipée d'une interface utilisateur qui représente la partie visible de l'application et qui est chargée de la présentation.
+	\item Serveur applicatif (middleware), chargé de la modélisation des processus métiers et la validation des données.
+	\item Système de base de données pour le stockage des données.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/web_3tiers}
+	\caption[Architecture à 3 niveaux] {Architecture à 3 niveaux}
+	\label{fig:web_3tiers}
+\end{figure}
+
+Nous avons opté pour ce type d'architectures pour les avantages que nous allons présenter ci-dessous :\\
+
+\begin{itemize}
+	\item Ne nécessite pas assez de temps pour la mise en \oe uvre (réalisable en court terme).
+	\item 	La modification et la mise à jour des composantes de l'application sont très faciles et cela permet une évolution régulière du système.
+	\item Amélioration de la sécurité (accès à la base n'est effectué que par le serveur).
+	\item De meilleures performances, étant donné le partage des tâches entre les différents
+	serveurs.
+	\item D'un point de vue développement, la séparation qui existe entre le client, le serveur et le SGBD permet une spécialisation des développeurs sur chaque tiers de l'architecture.
+\end{itemize}
+
+\subsubsection{ Spécifications techniques du point de vue logiciel  }
+\begin{itemize}
+	\item Langage de programmation : PHP 5.6.16.
+	\item 	Framework : Laravel 5.1.
+	\item Système de gestion des bases de données : MySQL 5.6.17.
+	\item Serveur d'application : Serveur Apache 2.4.17.
+	\item Environnement de développement : WAMPSERVER 2.5.
+\end{itemize}
+
+\subsubsection{ Identification des exploitants du système   }
+\textbf{Définition}\\
+L'exploitant est un acteur au sens d'UML, s'il ne bénéficie que des fonctionnalités techniques du système. » \cite{ref08}.\\[0.5\baselineskip]
+
+Pour notre cas les exploitants du système sont :
+\begin{itemize}
+	\item \textbf{L'administrateur :} chargé de gérer l'ensemble des utilisateurs du système : créer ces utilisateurs et de leur attribuer les droits d'accès.
+	\item \textbf{L'utilisateur :} celui qui utilise une des fonctionnalités du système.
+	
+\end{itemize}
+
+\subsubsection{  Identification des cas d'utilisation   }
+Dans ce qui suit, nous allons détailler le module qui contient les cas d'utilisations techniques en donnant leurs descriptions :\\
+
+\textbf{\small Liste des cas d'utilisations }\\
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8cm}|}
+		\hline
+		\textbf{Cas d'utilisation} &  \textbf{Acteurs }  \\
+		\hline
+		\textbf{Gérer l'authentification} & Tous les utilisateurs du système\\
+		\hline		
+		\textbf{Gérer les profils utilisateurs} & Administrateur\\
+		\hline	
+		\textbf{Gérer les utilisateurs} & Administrateur\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{liste des cas d'utilisations techniques}
+	\label{tab20}
+\end{center}
+\textbf{\small Diagramme des cas d'utilisations }\\
+La figure suivante représente le diagramme des cas d'utilisations techniques  :\\
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/CUs_diagramme1}
+	\caption[Diagramme des cas d'utilisations techniques ]{Diagramme des cas d'utilisations techniques}
+	\label{fig:CUs_diagramme1}
+\end{figure}
+Dans ce qui suit, La description textuelle des différents cas d'utilisations techniques : \\[0.5\baselineskip]
+\textbf{\footnotesize Description du cas « Gérer l'authentification  }
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU : Gérer l'authentification}\\
+		\hline	
+		\textbf{Titre:} Gérer l'authentification d'un utilisateur\\
+		\hline
+		\textbf{But:} Permet à l'utilisateur de se connecter\\
+		\hline
+		\textbf{Acteur:}  Tous les utilisateurs du système\\
+		\hline
+		\textbf{Précondition:}  L'utilisateur doit disposer d'un compte et des droits d'accès au système.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite se connecter à l'application. \\
+		\textbf{Enchainement : }
+		Une fois l'application lancée sur le navigateur web, l'utilisateur accède à une fenêtre de login, ce qui lui permet de saisir son nom d'utilisateur et son mot de passe. Le système vérifie les informations saisies par l'utilisateur en les comparants avec les données enregistrées sur la base de données.\\
+		Dans le cas où les informations ne correspondent pas aux informations enregistrées l'exception est exécutée.\\
+		\hline	
+		\textbf{Exception : }  Le système affiche un message d'erreur qui indique que les informations saisies sont erronées.\\
+		\hline
+		\textbf{Post condition : }  L'utilisateur se connecte au système et accède aux privilèges correspondants à son profil.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer l'authentification »}
+	\label{tab21}
+\end{center}
+\newpage
+\textbf{\footnotesize Description du cas « Gérer les profils utilisateurs »  }
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{CU :  Gérer les profils utilisateurs}\\
+		\hline	
+		\textbf{Titre :}  Gérer les profils utilisateurs\\
+		\hline
+		\textbf{But :} Permet d'ajouter/ modifier/ supprimer/ consulter un profil utilisateur\\
+		\hline
+		\textbf{Acteur :}  Administrateur\\
+		\hline
+		\textbf{Précondition :}  l'utilisateur doit d'abord s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'administrateur souhaite exécuter l'un des enchainements suivants : \\
+		\textbf{Enchainement (a): }Ajouter un profil utilisateur \\
+		L'administrateur insère un profil en spécifiant son intitulé et en lui affectant des privilèges.\\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.\\
+		\textbf{Enchainement (b): }Modifier un profil utilisateur \\
+		L'administrateur affiche la liste des profils utilisateur et sélectionne celui qu'il souhaite modifier, et enfin met à jour les données le concernant.\\
+		Si un ou plusieurs champs obligatoires sont vides ou invalides lors de la modification, l'exception s'exécute.\\
+		\textbf{Enchainement (c): }Supprimer  un profil utilisateur \\
+		L'administrateur affiche la liste des profils utilisateur, une fois le profil sélectionné, il supprime logiquement les informations et les privilèges de ce dernier.\\
+		\textbf{Enchainement (d): }Consulter un profil utilisateur \\
+		L'administrateur affiche la liste des profils utilisateur, après la sélection de celui qu'il souhaite consulter, il peut visualiser toutes ses informations (intitulé, privilège, ...etc).\\
+		\hline	
+		\textbf{Exception : }  Le système affiche un message d'erreur qui indique que les champs obligatoires n'e sont pas correctement remplis.\\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation d'un profil utilisateur.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer les profils utilisateurs  »}
+	\label{tab22}
+\end{center}
+
+\textbf{\footnotesize Description du cas « Gérer les utilisateurs  }
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{ CU :  Gérer les utilisateurs}\\
+		\hline	
+		\textbf{Titre :}  Gérer les utilisateurs\\
+		\hline
+		\textbf{But :} Permet d'ajouter/ modifier/ supprimer/ consulter un profil utilisateur\\
+		\hline
+		\textbf{Acteur :}  Administrateur\\
+		\hline
+		\textbf{Précondition :}  l'utilisateur doit d'abord s'authentifier.\\
+		\hline
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'administrateur souhaite exécuter l'un des enchainements suivants : \\
+		\hline
+		
+    \end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{Enchainement (a): }Ajouter un utilisateur \\
+		L'administrateur ajoute un utilisateur en saisissant ces informations (nom d'utilisateur, mot de passe, ...etc.), il effectue son enregistrement dans la base de données, dans le cas d'une erreur dans un champ l'exception s'exécute.\\
+		\textbf{Enchainement (b): }Modifier un utilisateur \\
+		L'administrateur consulte la liste des utilisateurs, une fois l'utilisateur sélectionné, il accède à ses informations et procède à la mise à jour de ces dernières.\\
+		Dans le cas d'une erreur dans un champ l'exception s'exécute.\\
+		\textbf{Enchainement (c): }Supprimer  un utilisateur \\
+		L'administrateur consulte la liste des utilisateurs, une fois l'utilisateur sélectionné, il supprime logiquement les informations et les privilèges de ce dernier.\\
+		\textbf{Enchainement (d): }Consulter un utilisateur \\
+		L'administrateur affiche la liste des utilisateur, après la sélection de celui qu'il souhaite consulter, il peut visualiser toutes ses informations (nom, prénom, nom d'utilisateur, ...etc.).\\
+		\hline	
+		\textbf{Exception : }  Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis.\\
+		\hline
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation d'un utilisateur.\\
+		\hline	
+	\end{tabular} \\
+	\captionof{table}{Description du cas « Gérer les utilisateurs  »}
+	\label{tab23}
+\end{center}
+
+
+
+\newpage
+\section{ Analyse  }
+
+L'analyse est la phase qui consiste à clarifier les besoins des utilisateurs du système d'une manière
+détaillée.\\[0.5\baselineskip]
+Cette phase comporte:\cite{ref08}
+\begin{itemize}
+	\item Découpage en catégories.
+	\item Développement du modèle statique.
+	\item Développement du modèle dynamique.
+\end{itemize}
+
+\subsection{ Découpage en catégories  }
+
+
+Cette phase constitue la première étape de l'analyse du système. La démarche
+mise en \oe uvre consiste à utiliser la notion de package pour définir les catégories.\\[0.5\baselineskip]
+Le découpage en catégories se base essentiellement sur deux principes qui
+sont : les classes et les catégories. \cite{ref08}.\\
+Cette activité va s'affiner de manière itérative au cours du
+développement du projet. Elle se situe sur la branche gauche du cycle en Y et succède à la
+capture des besoins fonctionnels.\\[0.5\baselineskip]
+Une catégorie consiste en un regroupement logique de classes à forte cohérence interne et
+faible couplage externe. \cite{ref08}\\[0.5\baselineskip]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{./image_chapitre4/Categorie}
+	\caption[Représentation d'une catégorie des classes dans l'UML.]{Représentation d'une catégorie des classes dans l'UML.}
+	\label{fig:catégorie}
+\end{figure}
+
+
+Le découpage en catégories de notre projet a donné le résultat suivant :
+
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8.5cm}|}
+		\hline
+		\textbf{Paquage} &  \textbf{Cas d'utilisation }  \\
+		\hline
+		\multirow{3}{*}{Administration du sytème} & Gérer l'authentification  \\ \cline{2-2} 
+		&  Gérer les profils utilisateurs \\ \cline{2-2} 
+		& Gérer les utilisateurs \\ 
+		\hline
+	\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{6cm}|p{8.5cm}|}
+		\hline
+		\multirow{4}{*}{Gestion des équipements} & Gérer la fiche technique de l'équipement  \\ \cline{2-2} 
+		&  Gérer la nomenclature de l'équipement \\ \cline{2-2} 
+		&  Gérer la documentation de l'équipement \\ \cline{2-2} 
+		&  Gérer les gammes de maintenance de l'équipement \\  
+		\hline
+		\multirow{5}{*}{Gestion de la maintenance} & Gérer les demandes de réparation (DR)  \\ \cline{2-2} 
+		&  Gérer les ordres de travail (OR) \\ \cline{2-2} 
+		&  Générer le PMP d'un équipement \\ \cline{2-2} 
+		&  Gérer le planning préventif des équipements \\ \cline{2-2} 
+		&  Gérer le dossier des travaux de sous-traitance \\
+		\hline
+		Statistiques et les ratios & Générer les statistiques et les ratios\\
+		\hline		
+	\end{tabular} \\
+	\captionof{table}{Découpage en catégories}
+	\label{tab38}
+\end{center}
+
+La figure suivante représente le  découpage en catégories de notre système sous UML :
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/decoupage_categories}
+	\caption[Découpage en catégories en UML.]{Découpage en catégories UML.}
+	\label{fig:decpupage_categorie}
+\end{figure}
+
+\subsection{ Développement du modèle statique  }
+Le développement du modèle statique est la deuxième activité de l'étape d'analyse. Elle se situe
+dans la branche gauche du cycle en Y et succède au découpage en catégories.\cite{ref08}.\\[0.5\baselineskip]
+cette étape consiste à détailler les classes, préalablement déterminées dans la capture des besoins, avec les attributs et les méthodes correspondants.\\[0.5\baselineskip]
+Une classe est l'abstraction d'un ensemble d'objets qui possèdent une structure identique
+(liste des attributs) et un même comportement (liste opérations). \cite{ref09}\\[0.5\baselineskip]
+Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de classe.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/Diagramme_classes_documentation}
+	\caption[Diagramme de classe correspondant à la catégorie  « Gestion de la documentation ».]{Diagramme de classe correspondant à la catégorie  « Gestion de la documentation ».}
+	\label{fig:Diagramme_classes_documentation}
+\end{figure}
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/Diagramme_classes_maintenance}
+	\caption[Diagramme de classe correspondant à la catégorie  « Gestion de la maintenance ».]{Diagramme de classe correspondant à la catégorie  « Gestion de la maintenance ».}
+	\label{fig:Diagramme_classes_maintenance}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/Diagramme_classes_admin}
+	\caption[Diagramme de classe correspondant à la catégorie  « Administration du système ».]{Diagramme de classe correspondant à la catégorie  « Administration du système ».}
+	\label{fig:Diagramme_classes_admin}
+\end{figure}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
+		\hline
+		\textbf{Classe} &  \textbf{Attribut} &  \textbf{Désignation}&  \textbf{Type} \\
+		\hline
+		\multirow{14}{*}{Equipement} & code\_equip & code de l'équipement & entier long   \\ \cline{2-4} 
+		& designation\_equip & désignation de l'équipement & chaine de cratères    \\ \cline{2-4} 
+		& date\_acquisition\_equip & date d'acquisition de l'équipement & date    \\ \cline{2-4} 
+		& date\_mise\_service\_equip & date de mise en service de l'équipement & date    \\ \cline{2-4} 
+		& caracteristique\_equip & caractéristique de l'équipement & chaine de cratères    \\ \cline{2-4} 
+		& etat\_equip & état de l'équipement & chaine de cratères    \\ \cline{2-4} 
+		& croquis\_equip & url du croquis de l'équipement & chaine de cratères    \\  
+		\hline
+		\multirow{4}{*}{TypeEquipement} & id\_type\_equip & identifiant du type de l'équipement & entier long   \\ \cline{2-4} 
+		& intitule\_type\_equip & intitulé du type de l'équipement & chaine de cratères    \\   
+		\hline
+		\multirow{5}{*}{Organe} & code\_org & code de l'organe & entier long   \\ \cline{2-4}  
+		& designation\_org & désignation de l'organe & chaine de cratères    \\ \cline{2-4} 
+		& observation\_org & observation sur l'organe & chaine de cratères    \\  
+		\hline
+		\multirow{6}{*}{Gamme} & id\_gam & identifiant de la gamme & entier long   \\ \cline{2-4} 
+		& intitule\_gam & intitulé de la gamme & chaine de cratères    \\ \cline{2-4} 
+		& periodicte\_gam & périodicité de la gamme & entier    \\  
+		\hline
+		\multirow{10}{*}{Operation} & id\_oper & identifiant de l'opération & entier long   \\ \cline{2-4} 
+		& intitule\_oper & intitulé de l'opération & chaine de cratères    \\ \cline{2-4} 
+		& duree\_oper & durée de l'opération & entier    \\ \cline{2-4}
+		& detail\_oper & détails de l'opération & chaine de cratères    \\  
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+		\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
+		\hline
+		\multirow{10}{*}{Constructeur} & id\_const & identifiant du constructeur & entier long   \\ \cline{2-4} 
+		& nom\_const & nom du constructeur & chaine de cratères    \\ \cline{2-4} 
+		& tel\_const & téléphone du constructeur & entier long    \\ \cline{2-4}  
+		& adresse\_const & adresse du constructeur & chaine de cratères    \\ \cline{2-4} 
+		& email\_const & email du constructeur & chaine de cratères    \\    
+		\hline	
+		\multirow{10}{*}{Fournisseur} & id\_four & identifiant du fournisseur & entier long   \\ \cline{2-4} 
+		& nom\_four & nom du fournisseur & chaine de cratères    \\ \cline{2-4} 
+		& tel\_four & téléphone du fournisseur & entier long    \\ \cline{2-4}  
+		& adresse\_four & adresse du fournisseur & chaine de cratères    \\ \cline{2-4} 
+		& email\_four & email du fournisseur & chaine de cratères    \\    
+		\hline
+		\multirow{12}{*}{Document} & id\_doc & identifiant du document & entier long   \\ \cline{2-4} 
+		& intitule\_doc & intitule du document & chaine de cratères    \\ \cline{2-4} 
+		& type\_doc &  type du document & chaine de cratères     \\ \cline{2-4} 
+		& langue\_doc & langue du document & chaine de cratères    \\ \cline{2-4} 
+		& contenu\_doc & contenu du document & chaine de cratères     \\ \cline{2-4} 
+		& nb\_exemp\_doc & nombre d'exemplaires du document & entier    \\ \cline{2-4} 
+		& lieu\_archiv\_doc & lieu d'archivage du document & chaine de cratères    \\
+		\hline
+		\multirow{6}{*}{Outillage} & id\_out & identifiant de l'outillage & entier long   \\ \cline{2-4} 
+		& designation\_out & désignation de l'outillage & chaine de cratères    \\ \cline{2-4} 
+		& utilisation\_out & utilisation de l'outillage & chaine de cratères     \\  
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
+		\hline
+		\multirow{6}{*}{PDR} & id\_PDR & identifiant de la pièce de rechange & entier long   \\ \cline{2-4} 
+		& intitule\_PDR & intitulé de la PDR & chaine de cratères    \\ \cline{2-4} 
+		& cout\_out & cout de de la PDR & entier     \\  
+		\hline
+		\multirow{21}{*}{DR} & id\_DR & identifiant de la demande de réparation & entier long   \\ \cline{2-4} 
+		& date\_DR & date de la demande de réparation & date    \\ \cline{2-4} 
+		& detail\_DR & détails de la demande de réparation & chaine de cratères    \\ \cline{2-4} 
+		& degre\_gravite\_DR & degré de gravité de la demande de réparation & entier (0..4)    \\ \cline{2-4} 
+		& emetteur\_DR & émetteur de la demande de réparation & chaine de cratères    \\ \cline{2-4} 
+		& etat\_DR & état de la demande de réparation & chaine de cratères    \\ \cline{2-4} 
+		& type\_DR & type de la demande de réparation & chaine de cratères    \\  
+		\hline	
+		\multirow{15}{*}{OR} & id\_OR & identifiant de l'ordre de réparation & entier long   \\ \cline{2-4} 
+		& date\_OR & date de l'ordre de réparation & date    \\ \cline{2-4} 
+		& description\_travaux\_OR & description des travaux contenus dans l'ordre de réparation & chaine de cratères    \\ \cline{2-4}
+		& date\_debut\_prevue\_OR & date début prévue de réparation & date    \\ \cline{2-4} 
+		& date\_fin\_prevue\_OR & date fin prévue de réparation & date    \\ \cline{2-4} 
+		& priorite\_OR & priorité de l'ordre de réparation & entier (0..4)    \\ 
+		\hline	
+	\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
+		\hline
+		\multirow{9}{*}{Intervention} & id\_inter & identifiant de l'intervention & entier long   \\ \cline{2-4} 
+		& date\_reelle\_inter & date réelle de l'intervention & date    \\ \cline{2-4} 
+		& duree\_inter & durée de l'intervention & entier    \\ \cline{2-4} 
+		& details\_inter & détails des travaux de l'intervention & chaine de cratères    \\ 
+		\hline
+		\multirow{10}{*}{Technicien} & id\_tech & identifiant du technicien & entier long   \\ \cline{2-4} 
+		& nom\_tech & nom du technicien & chaine de caractères     \\ \cline{2-4} 
+		& prenom\_tech & prénom du technicien & chaine de caractères    \\ \cline{2-4} 
+		& tel\_tech & téléphone du technicien & entier long    \\ \cline{2-4}
+		& mail\_tech & mail du technicien & chaine de cratères    \\ 
+		\hline
+		\multirow{12}{*}{PMP} & id\_PMP & identifiant du PMP (Plan de la Maintenance Préventive ) & entier long   \\ \cline{2-4} 
+		& date\_debut\_PMP & date début du PMP & date     \\ \cline{2-4} 
+		& date\_fin\_PMP & date fin du PMP & date     \\ \cline{2-4} 
+		& type\_PMP & type de la maintenance préventive (Systématique, conditionnelle ou prévisionnelle) & chaine de caractères    \\ 
+		\hline
+		\multirow{10}{*}{SousTraitant} & id\_sous\_trait & identifiant du sous-traitant  & entier long   \\ \cline{2-4} 
+		& nom\_sous\_trait & nom du sous-traitant  &  chaine de caractères   \\ \cline{2-4} 
+		& adresse\_sous\_trait & adresse du sous-traitant & chaine de caractères \\ \cline{2-4} 
+		& tel\_sous\_trait & téléphone du sous-traitant & entier long     \\ \cline{2-4} 
+		& mail\_sous\_trait & mail du sous-traitant & chaine de caractères     \\ 
+		\hline
+\end{tabular} \\
+\end{center}
+\newpage
+\begin{center}
+	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
+		\hline
+		\multirow{11}{*}{ContratSousTrait} & id\_contrat\_sous\_trait & identifiant du contrat de  sous-traitance  & entier long   \\ \cline{2-4} 
+		& date\_contrat\_sous\_trait & date du contrat de  sous-traitance  &  date   \\ \cline{2-4} 
+		& montant\_contrat\_sous\_trait & montant du contrat de  sous-traitance & entier \\ \cline{2-4} 
+		& mod\_pay\_contrat\_sous\_trait & mode de payement du contrat de  sous-traitance & chaine de caractères      \\ 
+		\hline	
+		\multirow{8}{*}{Utilisateur} & id\_user & identifiant de l'utilisateur  & entier long   \\ \cline{2-4} 
+		& nom\_user & nom de l'utilisateur  &  chaine de caractères   \\ \cline{2-4} 
+		& prenom\_user & prénom de l'utilisateur & chaine de caractères \\ \cline{2-4} 
+		& mot\_passe\_user & mot de passe de l'utilisateur & chaine de caractères \\ \cline{2-4}
+		& type\_user & type de l'utilisateur & chaine de caractères \\ \cline{2-4}
+		& date\_creation\_user & date de création de l'utilisateur  & date   \\ 
+		\hline	
+		\multirow{7}{*}{ProfilUtilisateur} & id\_profil\_user & identifiant du profil utilisateur  & entier long   \\ \cline{2-4} 
+		& intitule\_profil\_user & intitulé du profil utilisateur &  chaine de caractères   \\ \cline{2-4} 
+		& date\_creation\_profil\_user & date de création du profil utilisateur & date \\
+		\hline
+		\multirow{4}{*}{Fonctionnalite} & id\_fonc & identifiant de la fonctionnalité & entier long   \\ \cline{2-4} 
+		& intitule\_fonc & intitulé de la fonctionnalité &  chaine de caractères   \\ \cline{2-4}
+		& url\_fonc & url de la fonctionnalité &  chaine de caractères   \\
+		\hline
+    \end{tabular} \\
+    \captionof{table}{Dictionnaire de données du modèle statique}
+    \label{tab39}
+\end{center}
+\newpage
+\subsection{ Développement du modèle dynamique  }
+Le développement du modèle dynamique constitue la troisième étape de la partie analyse, elle
+consiste à dégager des scénarios et à étudier le comportement des classes du système à partir
+des diagrammes de séquence.\cite{ref08}\\[0.5\baselineskip]
+\subsubsection{ Diagrammes de séquence  }
+Le diagramme de séquence permet de représenter les messages échangés entre les différents objets du système, avec un ordre chronologique représenté de haut en bas.\cite{ref11}\\[0.5\baselineskip]
+ Le diagramme de séquence n'est pas la seule modélisation possible des échanges de messages entre objets ;
+le diagramme de communication le permet aussi.\cite{ref08}\\[0.5\baselineskip]
+La différence entre les deux diagrammes réside dans le fait que le diagramme de séquence
+met l'accent sur l'aspect chronologique des communications, alors que le diagramme de communication, quant à lui, met l'accent sur les relations structurelles des participants qui interagissent \cite{ref08}.
+Cette différence justifie le choix du diagramme de séquence dans notre
+cas.
+
+Dans ce qui suit, une liste de scénarios que nous allons représenter par des diagrammes de séquence.
+
+\begin{center}
+	\begin{tabular}{|p{15cm}|}
+		\hline
+		\textbf{Scénarios des diagrammes de séquence }  \\
+		\hline			
+		S'authentifier \\
+		\hline
+		Ajouter un utilisateur \\
+		\hline
+		Ajouter un équipement (sa fiche technique, ses gammes de maintenance, sa nomenclature et sa documentation)\\
+		\hline
+		Ajouter une demande de réparation (DR) \\
+		\hline
+		Ajouter un ordre de travail (OR) \\
+		\hline
+		Générer le PMP d'un équipement \\
+		\hline
+		Générer le planning préventif des équipements \\
+		\hline
+		Ajouter un dossier des travaux de sous-traitance \\
+		\hline
+		Générer les statistiques et les ratios\\
+		\hline
+	\end{tabular} \\
+	\captionof{table}{liste des principaux scénarios}
+	\label{tab34}
+\end{center}
+\newpage
+
+Dans ce qui suit, nous allons présenter chaque scénario par un diagramme de séquence sous UML :\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/DSQ_authentification}
+	\caption[Diagramme de séquence de « S'authentifier ».]{Diagramme de séquence de « S'authentifier ».}
+	\label{fig:DSQ_authentifier}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre4/DSQ_ajouter_user}
+	\caption[Diagramme de séquence de « Ajouter un utilisateur ».]{Diagramme de séquence de « Ajouter un utilisateur ».}
+	\label{fig:DSQ_ajouter_user}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_ajouter_equip}
+	\caption[Diagramme de séquence de « Ajouter un équipement ».]{Diagramme de séquence de « Ajouter un équipement ».}
+	\label{fig:DSQ_ajouter_equip}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_ajouter_DR}
+	\caption[Diagramme de séquence de « Ajouter une demande de réparation ».]{Diagramme de séquence de « Ajouter une demande de réparation ».}
+	\label{fig:DSQ_ajouter_DR}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_ajouter_OT}
+	\caption[Diagramme de séquence de « Ajouter un ordre de travail ».]{Diagramme de séquence de « Ajouter un ordre de travail ».}
+	\label{fig:DSQ_ajouter_OT}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_generer_PMP}
+	\caption[Diagramme de séquence de « Générer le PMP d'un équipement ».]{Diagramme de séquence de « Générer le PMP d'un équipement ».}
+	\label{fig:DSQ_generer_PMP}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_generer_planning_preventif}
+	\caption[Diagramme de séquence de « Générer le planning préventif des équipements ».]{Diagramme de séquence de « Générer le planning préventif des équipements ».}
+	\label{fig:DSQ_generer_planning}
+\end{figure}
+\newpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{./image_chapitre4/DSQ_ajouter_dossier_sous_traitance}
+	\caption[Diagramme de séquence de « Ajouter un dossier des travaux de sous-traitance ».]{Diagramme de séquence de « 	Ajouter un dossier des travaux de sous-traitance ».}
+	\label{fig:DSQ_ajouter_dossierST}
+\end{figure}
+\newpage
+
+
+
+\subsection{ Conclusion  }
+À travers ce chapitre nous avons pu mettre en place une solution conceptuelle. D'abord,
+nous avons exprimé les besoins fonctionnels et techniques auxquels devra répondre notre système en utilisant diagrammes de cas d'utilisation. L'aspect fonctionnel du système attendu nous a permis de bien aborder la phase d'analyse en présentant le découpage du système en catégories et les différents diagrammes de classes de ces dernières. Nous avons ensuite défini le comportement du système en présentant les différents scénarios possibles des diagrammes de séquence. Pour finir, nous avons présenté la base de données qu'utilisera notre application.
+\newpage
+
+\chapter{\sc Réalisation et sécurité de la solution }
+\section{Introduction}
+Nous consacrons ce dernier chapitre à la présentation de la phase de réalisation de notre
+projet. La partie réalisation est tout aussi importante que la conception. En effet, c'est au
+cours de celle-ci que nous concrétisons notre travail. Ceci par l'implémentation d'un prototype de la solution présentée dans les précédents chapitres.
+Dans la suite de ce chapitre, nous décrivons, d'une part, les technologies utilisées, ainsi que l'aspect sécurité en présentant les qualités sécuritaires de notre solution et les différentes précautions prises. D'autre part, nous présenterons certaines fonctionnalités à travers des captures d'écrans des interfaces de notre application.
+\newpage
+
+\section{Les technologies de développements utilisées}
+\subsection{Choix du SGBD}
+
+\subsection{Choix du l'IDE}
+\subsection{Choix du serveur Web}
+\subsection{Choix du langage}
+\subsection{Nécessité d'un Framework}
+
+
+\section{La sécurité du système}
+
+
+\section{Présentation du prototype réalisé}
