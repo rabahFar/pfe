@@ -1,22 +1,23 @@
 \chapter{\sc Synthèse bibliographique}\label{chap2}
-Dans ce deuxième chapitre, nous introduisons, d'abord, quelques généralités sur la maintenance. Nous nous intéressons principalement sur les types de maintenance ainsi que les opérations associés à sa gestion. Par la suite, nous présenterons les concepts clés de la maintenance assistées par ordinateur (GMAO). 
+Dans ce deuxième chapitre, nous allons introduire
+les concepts clés dont nous aurons besoin dans notre projet. Il s'agit de généralités qui sont nécessaires afin d'obtenir une vision assez complète sur la gestion de la maintenance, puis sur  la gestion de la maintenance assistée par ordinateur (GMAO). 
 \section{Maintenance}
 \subsection{Définitions}
 Nous allons présenter ici deux définitions de la maintenance.
 \subsubsection{Définition AFNOR X 60-010 (décembre 1994)}
 Selon la norme NF X 60-010 donnée par l'AFNOR (Association Française de Normalisation), la maintenance est définie comme étant : « ensemble des actions permettant de maintenir ou de rétablir un bien dans un état spécifié ou en mesure d'assurer un service déterminé ». \cite{ref01}\\[0.5\baselineskip]
-Cette définition peut être complétée par le document d'introduction à la maintenance X 60-000 qui précise: «Bien maintenir, c'est assurer ces opérations au coût global optimal.»\cite{ref01}\\[0.5\baselineskip]
+Cette définition peut être complétée par le document d'introduction à la maintenance X 60-000 qui précise: « Bien maintenir, c'est assurer ces opérations au coût global optimal.»\cite{ref01}\\[0.5\baselineskip]
 A partir de cette définition, nous pouvons tirer deux mots clés importants :
 \begin{itemize}
 	\item Action de maintenir: contient la notion de surveillance et de prévention sur un bien en fonctionnement normal. \cite{ref01}
 	\item Action de prévenir: contient la notion de correction (remise à niveau) après perte de fonction. \cite{ref01}
 \end{itemize}
 \subsubsection{Définition CEN projet WI 319-003 (1997)}
-Selon le CEN (Comité européen de normalisation), La maintenance est «l'ensemble de toutes les actions techniques, administratives et de
-gestion durant le cycle de vie d'un bien, destinée à le maintenir ou à le rétablir dans
+Selon le CEN (Comité européen de normalisation), La maintenance est « l'ensemble de toutes les actions techniques, administratives et de
+gestion durant le cycle de vie d'un bien, destinées à le maintenir ou à le rétablir dans
 un état dans lequel il peut accomplir la fonction requise».\cite{ref01}\\[0.5\baselineskip]
-La fonction requise est ainsi définie : «fonction, ou ensemble de fonctions d'un bien
-considérées comme nécessaire pour fournir un service donné».\cite{ref01}\\[0.5\baselineskip]
+La fonction requise est ainsi définie : « fonction, ou ensemble de fonctions d'un bien
+considérées comme nécessaires pour fournir un service donné».\cite{ref01}\\[0.5\baselineskip]
 L'opération de maintenance peut se définir comme étant une suite d'actions organisées, intervenant sur un système et ayant deux objectif:
 \begin{itemize}
 	\item \textbf{Premier objectif: }rétablir un bien, en état de dysfonctionnement et le replacer en état
@@ -45,7 +46,7 @@ L'opération de maintenance peut se définir comme étant une suite d'actions organ
 %	\item la gestion des stocks de pièces détachées.\cite{r2} 
 %\end{itemize}
 \subsection{Types de la maintenance}
-Principalement, nous avons deux types de la maintenance : la maintenance préventive qui est effectuée avant l'arrivée de la panne et la maintenance corrective qui est effectuée après l'arrivée de la panne. Nous définissons dans la ci-dessous ces deux types de maintenance et leurs sous types.
+Principalement, nous avons deux types de la maintenance : la maintenance préventive qui est effectuée avant l'arrivée de la panne et la maintenance corrective qui est effectuée après l'arrivée de la panne. Nous définissons ci-dessous ces deux types de maintenance et leurs sous types.
 
 \begin{figure}[H]
 	\centering
@@ -55,7 +56,21 @@ Principalement, nous avons deux types de la maintenance : la maintenance prévent
 \end{figure}
 
 \subsubsection{Maintenance préventive}
-La maintenance préventive est une « maintenance exécutée à des intervalles prédéterminés ou selon des critères prescrits et destinés à réduire la probabilité de défaillance ou la dégradation du fonctionnement d'un bien » \cite{ref02}. Elle est divisée en :\\[0.5\baselineskip]
+La maintenance préventive est une « maintenance exécutée à des intervalles prédéterminés ou selon des critères prescrits et destinés à réduire la probabilité de défaillance ou la dégradation du fonctionnement d'un bien » \cite{ref02}.\\[0.5\baselineskip]
+la maintenance préventive d'un équipement se base sur un plan de maintenance composé de gammes qui sont à leurs tours composées d'opérations.\\[0.5\baselineskip]
+Les gammes sont des listes d'opérations successives qui permettent aux techniciens de réaliser des opérations sans erreur. Elles définissent les ressources nécessaires, les pièces de rechange, l'outillage spécifique, le temps à passer et les conditions de sécurité. Si la gamme est complexe, elle peut-être accompagnée d'un mode opératoire qui détaille plus
+précisément des opérations à effectuer et les phases de contrôle interne.\cite{web20}
+
+la figure suivante représente la relation entre le plan de maintenance, la gamme et l'opération.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./image_chapitre2/relation}
+	\caption[La relation entre le plan de maintenance, la gamme et l'opération. ]{La relation entre le plan de maintenance, la gamme et l'opération.}
+	\label{fig:relation}
+\end{figure}
+
+la maintenance préventive est divisée en :\\[0.5\baselineskip]
 \noindent \textbf{Maintenance conditionnelle:}
 
 La maintenance conditionnelle est une « maintenance préventive basée sur une surveillance du fonctionnement du bien et/ou des paramètres significatifs de ce fonctionnement et intégrant les actions qui en découlent ». \cite{ref02}
@@ -74,12 +89,12 @@ La maintenance systématique est une « maintenance préventive exécutée à des inte
 La maintenance corrective est une « maintenance exécutée après détection d'une panne et destinée à remettre un bien dans un état dans lequel il peut accomplir une fonction requise » \cite{ref02}. Elle est subdivisée en :\\[0.5\baselineskip]
 \noindent \textbf{Maintenance palliative}
 
-La maintenance palliative est une « Action de maintenance corrective destinée à permettre à un bien d'accomplir provisoirement tout ou partie d'une fonction requise ». Elle est souvent appelée « dépannage » qui doit être suivi d'une maintenance curative. \cite{ref02}
+La maintenance palliative est  « une action de maintenance corrective destinée à permettre à un bien d'accomplir provisoirement toute ou une partie d'une fonction requise ». Elle est souvent appelée « dépannage » qui doit être suivi d'une maintenance curative. \cite{ref02}
 \vspace{0.3cm}
 
 \noindent \textbf{Maintenance curative}
 
-La maintenance curative est une « Action de maintenance corrective ayant pour objet de rétablir un bien dans un état spécifié pour lui permettre d'accomplir une fonction requise ». Ce type de maintenance doit donner un caractère permanent pour remédier à la panne. \cite{ref02}
+La maintenance curative est  « une action de maintenance corrective ayant pour objet de rétablir un bien dans un état spécifié pour lui permettre d'accomplir une fonction requise ». Ce type de maintenance doit donner un caractère permanent pour remédier à la panne. \cite{ref02}
 
 \subsection{Niveaux de maintenance}
 Les opérations de la maintenance sont souvent nombreuses, parfois répétitives et parfois occasionnelles, d'où la nécessité de la hiérarchisation en niveaux \cite{ref02}. Selon la norme AFNOR X 60-000, il existe 5 niveaux de maintenance:
@@ -155,8 +170,8 @@ Il est imposé au service de la maintenance de faire le contrôle de ses déchets p
 \end{itemize}
 \subsection{Documentation de la maintenance}
 Une bonne connaissance du matériel passe par une documentation suffisamment
-exhaustive pour prendre en compte tous les équipements nécessitant un suivi, une politique de
-maintenance et un stockage de pièces de rechange. On dira même que la documentation est
+exhaustive pour prendre en compte tous les équipements nécessitant un suivi, pour déterminer la politique de
+maintenance et pour contrôler le stockage de pièces de rechange. On dira même que la documentation est
 un des piliers de la fonction maintenance et est indispensable à celle-ci afin qu'elle puisse
 accomplir sa mission le mieux possible. \cite{web01}\\[0.5\baselineskip]
 La fonction maintenance exige la circulation appropriée des informations entre les différents
@@ -166,7 +181,7 @@ service maintenance :
 	\item Dossiers techniques pour la préparation d'interventions plus efficaces et plus sûres.
 	\item Modes opératoires pour les interventions proprement dites.
 	\item Dossiers historiques pour la politique de maintenance à mettre en place.
-	\item Catalogues constructeurs pour la gestion du stock maintenance.
+	
 \end{itemize}
 La structure générale de la documentation d'un service maintenance est donnée ci-dessous.
 Cette documentation se décompose en deux grandes parties : la documentation générale et la
@@ -178,19 +193,18 @@ documentation stratégique.
 	\label{fig:documentation}
 \end{figure}
 \subsubsection*{Documentation générale}
-Le service se doit de se doter d'un service de documentation générale, mis à jour
-régulièrement. Celle-ci comprend tous les documents techniques qui ne sont pas affectés à des
-matériels particuliers, mais qui sont nécessaires aux maintenanciers pour répondre à des
+Le service de maintenance doit se doter d'un sous-service de documentation générale, mis à jour
+régulièrement. Celle-ci comprend tous les documents techniques jugés nécessaires à la maintenance pour répondre à des
 questions techniques plus générales \cite{web01}. Elle contient en particulier :
 \begin{itemize}
-	\item tous les ouvrages de technique fondamentale (mécanique, électricité, hydraulique,
+	\item Des ouvrages de technique fondamentale (mécanique, électricité, hydraulique,
 	pneumatique, thermique) où l'on trouvera les formulaires et abaques nécessaires au
 	dimensionnement rapide d'éléments techniques ou de composants. \cite{web01}
-	\item des ouvrages plus spécialisés, destinés à des lecteurs plus avertis, et très utiles lorsqu'on
+	\item Des ouvrages plus spécialisés, destinés à des lecteurs plus avertis, et très utiles lorsqu'on
 	veut conduire une étude d'amélioration et de fiabilisation d'un équipement. \cite{web01}
 \end{itemize}
 \subsubsection*{Documentation stratégique}
-Elle se décompose en quatre grandes parties:
+Elle se décompose en trois grandes parties:
 \begin{itemize}
 	\item La nomenclature des équipements.
 	\item Le dossier technique des équipements.
@@ -200,13 +214,13 @@ Elle se décompose en quatre grandes parties:
 	\item \textbf{Nomenclature des équipements:}\\[0.5\baselineskip]
 	La nomenclature est une liste exhaustive qui comporte la désignation des pièces qui rentrent
 	dans la composition d'un équipement. La décomposition est faite de façon arborescente de
-	plusieurs niveaux, chaque n\oe ud (équipement, organe ... pièce) est identifié par un code
+	plusieurs niveaux, chaque n\oe ud (équipement, organe, pièce, ... etc.) est identifié par un code
 	(codification) \cite{ref06}. La nomenclature peut se faire sous forme de schémas.\\[0.5\baselineskip]
 	Tous les matériels et biens durables de l'entreprise doivent être inventoriés, classés et codifiés
 	afin de constituer une nomenclature. Une telle nomenclature va faciliter l'établissement des
 	budgets de maintenance, la mise en place de plans de maintenance préventive et plus
 	généralement des méthodes de maintenance. \cite{web01}
-	\item \textbf{Dossier technique d'un équipement:}\\[0.5\baselineskip]
+	\item \textbf{Dossier technique des équipements:}\\[0.5\baselineskip]
 	Le dossier technique comprend tous les renseignements et documents qui concernent un même
 	type de matériel \cite{web01}:
 	\begin{itemize}
@@ -218,7 +232,7 @@ Elle se décompose en quatre grandes parties:
 	Le dossier est consulté lors des interventions de maintenance, préparation d'intervention ou lors
 	du dépouillement d'une expertise.
 	
-	\item \textbf{Fichier historique de l'équipement:}\\[0.5\baselineskip]
+	\item \textbf{Fichier historique des équipements:}\\[0.5\baselineskip]
 	C'est la partie de la documentation de maintenance qui enregistre les défaillances,
 	pannes et informations relatives à la maintenance d'un bien. Elle retrace la vie du matériel en
 	indiquant chronologiquement tous les faits marquants de maintenance ainsi que les
@@ -236,7 +250,7 @@ Ces fonctions sont:
 	\item \textbf{Gestion des actifs:}
 	
 	Pour les programmes d'investissement, l'étude des installations, les études de fiabilité et de maintenabilité, la standardisation du matériel, la documentation technique des constructeurs, le choix des sous-traitants et des entrepreneurs, la réception technique du matériel sont à la charge de la gestion des actifs. \cite{ref03}
-	\item \textbf{Méthodes de fabrication:}
+	\item \textbf{Méthodes et fabrication:}
 	
 	Le service méthodes et fabrication donne au service maintenance les procédures d'utilisation des équipements, leur taux d'utilisation, le niveau de sécurité de ce matériel et du personnel de fabrication et la documentation technique des équipements. \cite{ref03}
 	\item \textbf{Gestion des stocks:}
@@ -266,7 +280,7 @@ La fugure ci-dessous que nous présentons représente le système de gestion de la 
 	\item A partir du type de maintenance choisi (conditionnelle, systématique ou corrective), nous précisons les étapes du processus de maintenance telles que la planification des interventions, les procédures de détection des défaillances, l'exécution et le suivi de l'intervention.
 	\item La dernière étape concerne la réalisation et le suivi de l'opération de maintenance.	
 \end{itemize}
-\newpage
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{./image_chapitre2/systeme}
@@ -276,7 +290,7 @@ La fugure ci-dessous que nous présentons représente le système de gestion de la 
 
 
 
-\section{Gestion de maintenance assistée par ordinateur (GMAO)}
+\section{Gestion de la maintenance assistée par ordinateur (GMAO)}
 \subsection{Définition de la GMAO}
 \subsubsection*{Définition 1}
 
@@ -289,7 +303,7 @@ partir de terminaux disséminés dans les bureaux techniques, les ateliers, les ma
 d'approvisionnement.» \cite{web02}\\[0.5\baselineskip]
 \subsubsection*{Définition 2}
 
-La GMAO ou Gestion de la Maintenance Assistée par Ordinateur est un outil d'aide à la maintenance très utilisé dans le monde industriel. La GMAO est utilisée pour planifier des tâches de maintenance, gérer les fiches de suivi machines, les modes opératoires, les fiches d'intervention, indiquer aux opérateurs les actions à effectuer, gérer le stock de pièces de rechange, suivre l'historique des opérations ... C'est un outil puissant mais qui demande à l'entreprise une politique de maintenance réelle. \cite{ref05}
+La GMAO ou Gestion de la Maintenance Assistée par Ordinateur est un outil d'aide à la maintenance très utilisé dans le monde industriel. La GMAO est utilisée pour planifier des tâches de maintenance, gérer les fiches de suivi machines, les modes opératoires, les fiches d'intervention, indiquer aux opérateurs les actions à effectuer, gérer le stock de pièces de rechange, suivre l'historique des opérations ... etc. C'est un outil puissant mais qui demande à l'entreprise une politique de maintenance réelle. \cite{ref05}
 
 \subsection{Fonctionnalités d'un GMAO}
 Les logiciels de GMAO ont progressivement intégré des fonctionnalités dépassant le cadre
@@ -297,30 +311,30 @@ des besoins d'un service de maintenance, en permettant une prise en charge plus 
 des processus associés aux équipements. On va citer ici les principales fonctions d'un logiciel GMAO.
 \begin{itemize}
 	\item \textbf{Gestion des équipements: }inventaire des équipements, historique des travaux,
-	gestion d'information dédiée par type d'équipement (bâtiments, véhicules, réseaux, ordinateurs ...).
-	\item \textbf{Gestion des actions de maintenance: } maintenance corrective (avec OT : ordre de travaux, ou BT : bon de travaux, ou ODM : ordre de maintenance), maintenance préventive (systématique, conditionnelle, prévisionnelle),gestion des outillages (utilisé pour réaliser des actions de maintenance). Ce module inclut
+	gestion d'information dédiée par type d'équipement (bâtiments, véhicules, réseaux, ordinateurs ... etc.).
+	\item \textbf{Gestion des actions de maintenance: } maintenance corrective (avec OT : ordre de travaux, ou BT : bon de travaux, ou ODM : ordre de maintenance), maintenance préventive (systématique, conditionnelle, prévisionnelle), gestion des outillages (utilisé pour réaliser des actions de maintenance). Ce module inclut
 	souvent des fonctionnalités ouvertes à des utilisateurs au-delà du service maintenance, comme une gestion des demandes d'intervention	(DI) permettant à toute personne autorisée de l'entreprise de signaler une anomalie devant être prise en compte par le service de maintenance.
-	\item \textbf{Gestion des stocks: }magasins (entrés/sorties), quantités minimum et maximum de réapprovisionnement, référencement et recherche, articles de rechange, catalogue des fournisseurs, inventaire des pièces, ...
+	\item \textbf{Gestion des stocks: }magasins (entrés/sorties), quantités minimum et maximum de réapprovisionnement, référencement et recherche, articles de rechange, catalogue des fournisseurs, inventaire des pièces, ... etc.
 	\item \textbf{Gestion des achats :} demandes d'achat, commandes, bons de réception.
-	\item \textbf{Gestion du pesonnel: }activités, métiers, planning de	charge, prévisionnel, pointage des heures ...
-	\item \textbf{Gestion des coûts et budget: }de main d'\oe uvre, de stocks, d'achat, de	location de matériel, préparation des budgets, suivi périodique,...\cite{web03}
+	\item \textbf{Gestion du pesonnel: }activités, métiers, planning de	charge, prévisionnel, pointage des heures ... etc.
+	\item \textbf{Gestion des coûts et budget: }de main d'\oe uvre, de stocks, d'achat, de	location de matériel, préparation des budgets, suivi périodique, ... etc.\cite{web03}
 \end{itemize}
 
 \subsection{Secteurs d'activité concernés par la GMAO}
 Tous les secteurs d'activité qui ont des équipements à maintenir sont potentiellement concernés par l'exploitation d'un outil de GMAO. On peut ainsi citer les secteurs:
 \begin{itemize}
-	\item de industrie (automobile, pharmaceutique, etc.),
-	\item de l'énergie (gaz, pétrole, électricité, etc.),
-	\item des transports (routier, ferroviaire, aérien, transports publics, etc.),
-	\item médicaux (hôpitaux, cliniques, etc.),
-	\item des travaux publics,
-	\item des télécoms (gestion des équipements réseau), ...
+	\item Industriel (automobile, pharmaceutique, ... etc.),
+	\item Énergétique (gaz, pétrole, électricité, ... etc.),
+	\item médical (hôpitaux, cliniques, ... etc.),
+	\item De transports (routier, ferroviaire, aérien, transports publics, ... etc.),
+	\item Des travaux publics,
+	\item Des télécommunications (gestion des équipements réseau ... etc.)
 \end{itemize}
 
 \subsection{Apport de la GMAO}
 Aujourd'hui, dans nos entreprises modernes, la maintenance ne peut plus se résumer à des taches d'entretien basiques.
 Il faut anticiper les pannes, afin de réduire les coûts et améliorer la productivité. En anticipant les pannes, on évite des pannes machines trop longues et les coûts de pertes de production liés à ces pannes.
-La GMAO s'avère donc crucial pour l'amélioration du service maintenance \cite{web04}. Donc l'avantage principal de la mise en place d'un GMAO est de faire basculer le ratio des interventions préventives/correctives, en augmentant le nombre d'interventions préventives au dépend des correctives. Cependant, d'autres avantages existent, nous allons citer les les plus évidents: 
+La GMAO s'avère donc crucial pour l'amélioration du service de la maintenance \cite{web04}. Donc l'avantage principal de la mise en place d'un GMAO est de faire basculer le ratio des interventions préventives/correctives, en augmentant le nombre d'interventions préventives au dépend des correctives. Cependant, d'autres avantages existent, nous allons citer les les plus évidents: 
 \begin{itemize}
 	\item L'information saisie est immédiatement consultable sur le réseau.
 	\item Centralisation du stockage de l'information.
@@ -332,38 +346,38 @@ La GMAO s'avère donc crucial pour l'amélioration du service maintenance \cite{we
 	interventions.
 	\item Organiser et faciliter le suivi des travaux préventifs.
 	\item Suivre le niveau des pièces en stock, connaître leurs
-	caractéristiques savoir sur quels équipements elles sont installées.
+	caractéristiques et savoir sur quels équipements elles sont installées.
 	\item Faciliter la gestion des achats de pièces et leur caractéristiques techniques.
 	\item Suivre les dépenses du service.
 	\item Archiver et accéder immédiatement à toute la documentation
-	technique maintenance.
-	\item Meilleure organisation donc moins de stress, donc meilleure
-	efficacité. \cite{web04}
+	technique de la maintenance.
+	\item Meilleure organisation donc moins de stress et meilleure efficacité. \cite{web04}
 \end{itemize}
 
 \subsection{Marché des GMAO}
-Selonune récente enquête de l'AFIM\footnote{Association française des ingénieurs et responsables de maintenance}, il existerait pas moins de 800 logiciels de GMAO (et d'aides diverses à la maintenance) pour les applications industrielles \cite{web06}. Le site officiel de l'AFIM recense actuellement 69 progiciels et 59 éditeurs de logiciels GMAO et propose des comparatifs par fonction, prix, références et chiffres d'affaires.\\[0.5\baselineskip]
+Selon une récente enquête de l'AFIM\footnote{Association française des ingénieurs et responsables de maintenance}, il existerait pas moins de 800 logiciels de GMAO (et d'aides diverses à la maintenance) pour les applications industrielles \cite{web06}. Le site officiel de l'AFIM recense actuellement 69 progiciels et 59 éditeurs de logiciels GMAO et propose des comparatifs par fonction, prix, références et chiffres d'affaires.\\[0.5\baselineskip]
 En Algérie, il est plus difficile d'accéder aux prix, par contre nous savons par exemple que les
 éditeurs de logiciels leaders en Europe : Sage, et SAP sont implantés en Algérie, et offrent des
 suites ERP où le module de GMAO peut être intégré. Le logiciel de GMAO OptiMaint est
 largement connu aussi.\\[0.5\baselineskip]
 Ci-dessous, nous allons présenter les principaux logiciels de GMAO qui existent actuellement sur le marché.
-
 \begin{center}
 	\begin{tabular}{|p{2cm}|p{1.8cm}|p{3.7cm}|p{3.7cm}|p{3.7cm}|}
 		\hline
 		\textbf{Nom} &  \textbf{Prix} & \textbf{Avantages} & \textbf{Ergonomie} & \textbf{Facilité d'utilisation}    \\
 		\hline
 		\textbf{OPTIMa} & Environ 3300 \euro pour le monoposte et environ 500 \euro par License supplémentaires & Possibilité de demander gratuitement un CD de démonstration. Compatibilité totale avec les logiciels de bureautique, complet : pas de modules supplémentaires à acquérir, multi-utilisateurs, avec différents niveaux de droit, évolutif (personnalisable). Gestion technique, gestion des intervenants, gestion des pièces, gestion des travaux, analyse , fonctions diverses & Très bonne à en croire le site car pas de visualisation disponible en ligne & Le paramétrage est simplifié et réalisé lors de la première utilisation. Vous n'avez pas besoin de plusieurs mois de travail avant d'être opérationnel : OPTIMa est utilisable immédiatement  \\
-		\hline		
-		\textbf{OptiMaint} & A partir de 2900 \euro & Téléchargement gratuit de la version démonstration en ligne. 
-		Gestion du patrimoine, des interventions, des achats, des stocks, du budjet, de projets etc ... & Il s'interface avec les logiciels de GPAO, comptabilité, gestion commerciale, achats, ERP, supervision ... , et permet les échanges d'informations entre logiciels afin d'éviter des doubles saisies inutiles et sources d'erreurs & Simple à mettre en place et immédiatement opérationnel, il alli une grande richesse fonctionnelle avec une facilité d'utilisation. Cependant une formation des employés est proposée  \\				
-		\hline
-	\end{tabular} \\
+		\hline	
+\end{tabular} \\
 \end{center}
 \newpage
 \begin{center}
 	\begin{tabular}{|p{2cm}|p{1.8cm}|p{3.7cm}|p{3.7cm}|p{3.7cm}|}
+		\hline
+		\textbf{Nom} &  \textbf{Prix} & \textbf{Avantages} & \textbf{Ergonomie} & \textbf{Facilité d'utilisation}    \\
+		\hline		
+		\textbf{OptiMaint} & A partir de 2900 \euro & Téléchargement gratuit de la version démonstration en ligne. 
+		Gestion du patrimoine, des interventions, des achats, des stocks, du budjet, de projets, ... etc. & Il s'interface avec les logiciels de GPAO, comptabilité, gestion commerciale, achats, ERP, supervision, ... etc. Il permet les échanges d'informations entre logiciels afin d'éviter des doubles saisies inutiles et sources d'erreurs & Simple à mettre en place et immédiatement opérationnel, il allie une grande richesse fonctionnelle avec une facilité d'utilisation. Cependant une formation des employés est proposée  \\				
 		\hline
 		\textbf{Nom} &  \textbf{Prix} & \textbf{Avantages} & \textbf{Ergonomie} & \textbf{Facilité d'utilisation}    \\
 		\hline	
@@ -375,9 +389,10 @@ Ci-dessous, nous allons présenter les principaux logiciels de GMAO qui existent 
 	\captionof{table}{Tableau comparatif des logiciels de GMAO \cite{web05}}
 	\label{tab}
 \end{center}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\linewidth]{./image_chapitre2/logos}
-	\caption[logos des GMAO (Altair,OPTIMa, OptiMaint, Q.I informatique)]{logos des GMAO (Altair,OPTIMa, OptiMaint, Q.I informatique)}
+	\includegraphics[width=0.8\linewidth]{./image_chapitre2/logos}
+	\caption[Logos des GMAO (Altair,OPTIMa, OptiMaint, Q.I informatique)]{logos des GMAO (Altair,OPTIMa, OptiMaint, Q.I informatique)}
 	\label{fig:logos}
 \end{figure}
