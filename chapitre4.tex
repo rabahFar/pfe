@@ -6,7 +6,7 @@ L'objectif de cette étape est de déterminer de façon détaillée et précise ce que
 Pour notre conception, nous optons pour la modélisation orientée objet UML qui sera pilotée par la démarche 2TUP.
 « UML se définit comme un langage de modélisation graphique et textuel destiné à comprendre et décrire des besoins, spécifier et documenter des systèmes, esquisser des architectures logicielles, concevoir des solutions et communiquer des points de vue ».\cite{ref07}\\[0.5\baselineskip]
 Sa stabilité de modélisation, sa normalisation ainsi que la facilité et la clarté de ses diagrammes ont fait d'UML un outil de choix pour notre modélisation.\\[0.5\baselineskip]
-« 2TUP signifie « 2 Tracks Unified Process », il apporte une réponse aux contraintes de changement continuel imposées aux systèmes d'information de l'entreprise. En ce sens, il renforce le contrôle sur les capacités d'évolution et de correction de tels systèmes. « 2 Tracks » signifie littéralement que le processus suit deux chemins. Il s'agit des chemins « fonctionnels » et « d'architecture technique », qui correspondent aux deux axes de changement imposés au système informatique ».\cite{ref08}\\[0.5\baselineskip]
+« 2TUP signifie « 2 Tracks Unified Process », il apporte une réponse aux contraintes de changement continuel imposées aux systèmes d'information de l'entreprise. En ce sens, il renforce le contrôle sur les capacités d'évolution et de correction de tels systèmes. « 2 Tracks » signifie littéralement que le processus suit deux chemins. Il s'agit des chemins « fonctionnel » et « d'architecture technique », qui correspondent aux deux axes de changement imposés au système informatique ».\cite{ref08}\\[0.5\baselineskip]
 la figure suivante représente le schéma du processus 2TUP.\\[0.5\baselineskip]
 \begin{figure}[H]
 	\centering
@@ -43,7 +43,7 @@ Les acteurs sont toute entité externe (utilisateur humain, dispositif matériel o
 	\caption[Représentation d'un acteur dans l'UML]{Représentation d'un acteur dans l'UML}
 	\label{fig:acteur}
 \end{figure}
-L'étude des documents et procédures de travail effectuée dans le chapitre étude de l'existant et la prise en considération des exigences et des propositions du groupe SAIDAL, nous ont permis de dresser une liste exhaustive des acteurs qui vont interagir avec le nouveau système et leurs rôles comme la montre le tableau suivant :\\
+L'étude des documents et des procédures de travail effectuée dans le chapitre étude de l'existant et la prise en considération des exigences et des propositions du groupe SAIDAL, nous ont permis de dresser une liste exhaustive des acteurs qui vont interagir avec le nouveau système et leurs rôles comme la montre le tableau suivant :\\
 
 \begin{center}
 	\begin{tabular}{|p{3.5cm}|p{11cm}|}
@@ -57,13 +57,7 @@ L'étude des documents et procédures de travail effectuée dans le chapitre étude 
 			du système.			
 		\end{itemize}\\
 		\hline
-		\textbf{Sous-directeur de la maintenance} & 
-		\begin{itemize}
-			\item Recevoir et valider les opérations de sous-traitance et de réforme des équipements.
-			\item Demander des statistiques (le volume horaire et le coût des interventions, la PDR
-			utilisée, intervenants, ...etc.).			
-		\end{itemize}\\
-		\hline
+		
 \end{tabular} \\
 \end{center}
 \newpage
@@ -71,35 +65,29 @@ L'étude des documents et procédures de travail effectuée dans le chapitre étude 
 	\begin{tabular}{|p{3.5cm}|p{11cm}|}
 		\hline
 		\textbf{Acteur} &  \textbf{Rôle}\\
-		\hline
-		\textbf{Chef du département de gestion des équipements} & 
-		\begin{itemize}
-			\item Gérer les équipements (fiches techniques, nomenclature, documentation, gammes de maintenance ) des équipements.
-			\item Demander des statistiques concernant la maintenance.			
-		\end{itemize}\\
 		\hline	
-		\textbf{Chef du service méthode} & 
+		\textbf{Chef du service de méthodes} & 
 		\begin{itemize}
 			\item Recevoir les demandes de réparations.
 			\item Établir les ordres de travail.
 			\item Demander le PMP d'un équipement.
-			\item Établir les plannings préventifs des équipements.		
+			\item Établir le planning préventif des équipements.		
 			\item Retirer l'équipement réformé de la liste des équipements.
 			\item Demander des statistiques concernant la maintenance.
 		\end{itemize}\\
 		\hline
-		\textbf{Chef de service de production} & 
+		\textbf{Chef du service de production} & 
 		\begin{itemize}
 			\item Établir les demandes de réparation.			
 		\end{itemize}\\
 		\hline
-		\textbf{Chef de service électrique} & 
+		\textbf{Chef du service électrique} & 
 		\begin{itemize}
 			\item Affecter l'ordre de travail aux intervenants (électriciens).
 			\item Demander des statistiques de la maintenance concernant son service.			
 		\end{itemize}\\
 		\hline
-		\textbf{Chef de service mécanique} & 
+		\textbf{Chef du service mécanique} & 
 		\begin{itemize}
 			\item Affecter l'ordre de travail aux intervenants (mécaniciens).
 			\item Demander des statistiques de la maintenance concernant son service.			
@@ -137,58 +125,36 @@ Les deux tableaux suivants illustrent la liste des messages reçus et émis par le
 		\textbf{1} & Administrateur & Créer ou modifier les utilisateurs.\\
 		\hline		
 		\textbf{2} & Chef du service de production & Etablir une demande de réparation.\\
-		\hline	
-		\textbf{3} & Sous-directeur de la maintenance & Valider les demandes de sous-traitance et de réforme des équipements.\\
 		\hline			
-		\textbf{4} & Sous-directeur de la maintenance & Demander des statistiques, ratios sur la maintenance.\\
-		\hline		
-		\textbf{5} & Chef du département de gestion des équipements & Définir et mettre à jour la fiche technique d'un équipement.\\
+		\textbf{3} & Chef du service de méthodes & Créer des ordres de travail.\\
 		\hline
-		\textbf{6} & Chef du département de gestion des équipements & Créer la nomenclature d'un équipement.\\
-		\hline
-		\textbf{7} & Chef du département de gestion des équipements & Créer la documentation d'un équipement.\\
-		\hline
-		\textbf{8} & Chef du département de gestion des équipements & Créer les gammes de maintenance d'un équipement.\\
-		\hline
-		\textbf{9} & Chef du département de gestion des équipements & Demander l'historique des interventions.\\
-		\hline
-		\textbf{10} & Chef du département de gestion des équipements & Demander des statistiques, ratios sur la maintenance.\\
+		\textbf{4} & Chef du service de méthodes & Demander le PMP d'un équipement.\\
 		\hline	
-		\textbf{11} & Chef du service méthodes & Créer des ordres de travail.\\
+		\textbf{5} & Chef du service de méthodes & Demander le planning préventif des équipements.\\
 		\hline
-		\textbf{12} & Chef du service méthodes & Demander le PMP d'un équipement.\\
-		\hline	
+		\textbf{6} & Chef du service de méthodes & Demander des statistiques, ratios sur la maintenance.\\
+		\hline
+		\textbf{7} & Chef du service de méthodes & Demander l'historique des interventions.\\
+		\hline
+		\textbf{8} & Chef du service électrique & Demander des statistiques concernant son service.\\
+		\hline
+		\textbf{9} & Chef du service électrique & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{10} & Chef du service mécanique & Demander des statistiques concernant son service.\\
+		\hline
+		\textbf{11} & Chef du service mécanique & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{12} & Intervenant & Demander le PMP d'un équipement.\\
+		\hline
+		\textbf{13} & Intervenant & Demander le planning préventif des équipements.\\
+		\hline
+		\textbf{14} & Système de gestion des stocks & Envoyer au système l'état des stocks de la PDR.\\
+		\hline
 \end{tabular} \\
+\captionof{table}{Liste des messages reçus par le système }
+\label{tab17}
 \end{center}
 \newpage
-\begin{center}
-	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
-		\hline
-		\textbf{13} & Chef du service méthodes & Demander le planning préventif des équipements.\\
-		\hline
-		\textbf{14} & Chef de service méthodes & Demander des statistiques, ratios sur la maintenance.\\
-		\hline
-		\textbf{15} & Chef de service méthodes & Demander l'historique des interventions.\\
-		\hline
-		\textbf{16} & Chef de service électrique & Demander des statistiques concernant son service.\\
-		\hline
-		\textbf{17} & Chef de service électrique & Demander le planning préventif des équipements.\\
-		\hline
-		\textbf{18} & Chef de service mécanique & Demander des statistiques concernant son service.\\
-		\hline
-		\textbf{19} & Chef de service mécanique & Demander le planning préventif des équipements.\\
-		\hline
-		\textbf{20} & Intervenant & Demander le PMP d'un équipement.\\
-		\hline
-		\textbf{21} & Intervenant & Demander le planning préventif des équipements.\\
-		\hline
-		\textbf{36} & Système de gestion des stocks & Envoyer au système l'état des stocks de la PDR.\\
-		\hline
-		
-	\end{tabular} \\
-	\captionof{table}{Liste des messages reçus par le système }
-	\label{tab17}
-\end{center}
 
 \textbf{Le système émet les messages suivants :  }
 
@@ -197,45 +163,31 @@ Les deux tableaux suivants illustrent la liste des messages reçus et émis par le
 		\hline
 		\textbf{Numéro} &  \textbf{Destination} &  \textbf{Description} \\
 		\hline	
-		\textbf{22} & Sous-directeur de la maintenance & statistiques et ratios.\\
+		\textbf{15} & Chef du service de méthodes & statistiques et ratios.\\
 		\hline
-		\textbf{23} & Sous-directeur de la maintenance & historique des interventions.\\
+		\textbf{16} & Chef du service de méthodes & historique des interventions.\\
 		\hline
-		\textbf{24} & Chef du département de gestion des équipements & statistiques et ratios.\\
+		\textbf{17} & Chef du service de méthodes & Générer le PMP automatiquement.\\
 		\hline
-		\textbf{25} & Chef du département de gestion des équipements & historique des interventions.\\
+		\textbf{18} & Chef du service de méthodes & Générer le planning préventif des équipements automatiquement.\\
 		\hline	
-		\textbf{26} & Chef de service méthodes & statistiques et ratios.\\
+		\textbf{19} & Chef du service électrique & statistiques et ratios.\\
 		\hline
-		\textbf{27} & Chef de service méthodes & historique des interventions.\\
+		\textbf{20} & Chef du service électrique & Générer le planning préventif des équipements automatiquement.\\
 		\hline
-		\textbf{28} & Chef de service méthodes & Générer le PMP automatiquement.\\
+		\textbf{21} & Chef du service mécanique & statistiques et ratios.\\
 		\hline
-		\textbf{29} & Chef de service méthodes & Générer le planning préventif des équipements automatiquement.\\
-		\hline	
-	\end{tabular} \\
-\end{center}
-\newpage
-\begin{center}
-	\begin{tabular}{|p{1.5cm}|p{3cm}|p{9.5cm}|}
+		\textbf{22} & Chef du service mécanique & Générer le planning préventif des équipements automatiquement.\\
 		\hline
-		\textbf{30} & Chef de service électrique & statistiques et ratios.\\
+		\textbf{23} & Intervenant & Générer le PMP automatiquement.\\
 		\hline
-		\textbf{31} & Chef de service électrique & Générer le planning préventif des équipements automatiquement.\\
+		\textbf{24} & Intervenant & Générer le planning préventif des équipements automatiquement.\\
 		\hline
-		\textbf{32} & Chef de service mécanique & statistiques et ratios.\\
-		\hline
-		\textbf{33} & Chef de service mécanique & Générer le planning préventif des équipements automatiquement.\\
-		\hline
-		\textbf{34} & Intervenant & Générer le PMP automatiquement.\\
-		\hline
-		\textbf{35} & Intervenant & Générer le planning préventif des équipements automatiquement.\\
-		\hline
-		
 	\end{tabular} \\
 	\captionof{table}{Liste des messages émis  par le système }
 	\label{tab18}
 \end{center}
+\newpage
 
 \subsection{ Diagramme de contexte  }
 Le diagramme suivant représente les messages échangés entre le nouveau système d'information et les acteurs :
