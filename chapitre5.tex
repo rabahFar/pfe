@@ -1,4 +1,4 @@
-\chapter{\sc Réalisation et déploiement de la solution}
+\chapter{\sc Réalisation de la solution}
 \label{chap:realisation-dep}
 Nous  consacrons ce dernier chapitre à la présentation de la phase de réalisation de notre projet.  La partie réalisation est tout aussi importante que la conception. En effet,  c'est au cours de celle-ci que nous concrétisons notre travail. Ceci par l'implémentation d'un prototype de la solution présentée dans les précédents  chapitres. \\[0.7\baselineskip]
 Dans la suite de ce chapitre, nous décrivons, d'une part, les plates-formes matérielles et logicielles sur lesquelles nous avons développé notre solution, ainsi que les  différents choix techniques que nous avons adopté. D'autre part, nous présentons notre application, ainsi achevée, à travers des captures d'écrans des interfaces relatives aux fonctionnalités principales.
@@ -67,7 +67,7 @@ Tout au long du développement de notre application, nous avons utilisé le serveu
 
 \subsection{Nécessité d'un Framework}
 \subsubsection{Framework PHP}
-Traduit littéralement en français, le terme Framework signifie «cadre de travail». C'est un ensemble de bibliothèques et de conventions permettant le développement rapide d'une application. Il fournit une palette de briques logicielles et impose suffisamment de rigueur de développement pour pouvoir produire une application aboutie et facile à maintenir. Ces composants sont organisés pour être utilisés en interaction les uns avec les autres \cite{ok14}.
+Traduit littéralement en français, le terme Framework signifie «cadre de travail». C'est un ensemble de bibliothèques et de conventions permettant le développement rapide d'une application. Il fournit une palette de briques logicielles et impose suffisamment de rigueur de développement pour pouvoir produire une application aboutie et facile à maintenir. Ces composants sont organisés pour être utilisés en interaction les uns avec les autres.
 
 \subsubsection{Avantages des Frameworks}
 Certes il n'est guère indispensable d'utiliser un Framework pour le développement d'une application Web. Et contrairement aux idées reçues, un Framework, en soi, n'est pas forcément un gage de qualité ni de sécurité. Tout dépend de son utilisation et de sa maîtrise, comme tout autre outil. Cependant, les Frameworks de développement ont de multiples avantages, et parmi lesquels, nous pouvons citer :
@@ -110,10 +110,143 @@ Par ailleurs notre choix est aussi motivé par les nombreux avantages offerts par
 \begin{itemize}
 	\item Il est soutenu par une large communauté et bénéficie d'une grande notoriété, 
 	
-	\item Une courbe d'apprentissage relativement rapide ( contrairement aux autre grands framework),
+	\item Une courbe d'apprentissage relativement rapide (contrairement aux autres grands framework),
 	
 	\item Des librairies sous forme de module,
 	
 	\item Librairie stable et fiable.
 	
 \end{itemize}
+
+\subsection{Eloquent ORM}
+\subsubsection{Définition d'un ORM}
+Un ORM, pour Object-Relational Mapping, est une couche d'abstraction entre l'application et la base de données. Il donne l'illusion de travailler avec une base de données orientée objet. En effet, il permet de mapper directement la base de données relationnelle en objet.  De ce fait, le développeur ne se soucie quasiment plus des requêtes SQL ni du SGBD que l'application utilise.
+\subsubsection{Eloquent}
+Eloquent ORM inclus avec Laravel permet de travailler facilement avec la base de données.
+Chaque table de base de données dispose d'un "modèle" correspondant qui est utilisé pour
+interagir avec cette table. Les modèles permettent d'effectuer toute les opérations sur une table (insertion, modification , suppression) et offre une multitudes de fonctions qui permettent d'interagir avec les données sans avoir recours a des requêtes SQL complexes.
+
+\subsection{Choix du standard de développement}
+\label{sec:standard-dev} 
+Il est généralement intéressant de suivre un certain design pattern (patron de conception) pour rendre le code plus aisé à maintenir et à faire évoluer. \\[0.7\baselineskip]
+Pour le développement de notre application, nous avons décidé de suivre le pattern MVC. L'architecture MVC est devenue un standard de conception des applications Web modernes. Suivant ce modèle,  la plupart du code d'une application se retrouve dans l'une de ces couches : présentation, logique métier, et accès aux données. Le pattern MVC modélise cette séparation d'une manière quasi-parfaite. Cette séparation est indispensable pour maintenir le code global organisé, particulièrement lorsque plusieurs développeurs travaillent ensemble sur la même application.\\[0.7\baselineskip]
+MVC est très utilisé avec PHP. Il est même devenu le pattern architectural le plus utilisé dans les Frameworks PHP, et Laravel n'en fait pas exception.\\[0.7\baselineskip]
+La figure suivante résume les différentes interactions entre les couches du modèle MVC.   
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{./image_chapitre5/mvc}
+	\caption{Schéma des interations entre couches du modèle MVC}
+\end{figure}
+
+\subsubsection{Organisation du projet}
+La hiérarchie de notre projet est comme présentée dans la figure ci-dessous. Chaque module possède ses propre contrôleurs, vues et repositories (classes de gestion de données).
+La séparation en module permet de simplifier la tâche de maintenance du code et l'amélioration du projet.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.3]{./image_chapitre5/application}
+	\caption{Arborescence de l'application selon le pattern MVC}
+	\label{fig:folder-structure}
+\end{figure}\\[0.7\baselineskip]
+Dans ce qui suit, nous donnons une brève explication de chaque répertoire du projet : 
+
+\begin{itemize}
+	\item \textbf{Module Administration :} qui contient les contrôleurs et vues relatifs l'administration de l'application.
+	\item \textbf{Module Auth :} ce module fourni permet la gestion d'authentification des utilisateurs (gestion des sessions).
+	\item \textbf{Module Equipements :} qui contient les contrôleurs et vues nécessaires à la fonctionnalité d'inventaire des équipements (nomenclature, gammes, documentation, fournisseurs ...) .
+	\item \textbf{Module Maintenance :} contient les contrôleurs et vue pour la gestion de la maintenance (corrective et préventive).
+	\item \textbf{Utilisateur :} qui contient les contrôleurs et vues nécessaires qui permet la gestion des notifications (en temps réel).
+	
+\end{itemize}
+
+\subsection{La sécurité de l'application}
+La sécurité des systèmes d'information est l'ensemble des mesures techniques et
+de protection permettant à un système d'information de résister à des évènements susceptibles
+de compromettre la disponibilité, l'intégrité ou la confidentialité des données stockées.
+Etant une solution web, notre solution est exposée d'avantages aux risques de failles
+sécuritaires. Par conséquent nous nous somme intéresser en premier lieu aux attaques les plus
+courantes, pour enfin trouver des solutions et protéger au mieux notre application.
+
+\subsubsection{Sécurisation des interactions avec l'utilisateur}
+\label{sec:secu-inject} 
+Les applications Web sont caractérisées par un très grand nombre d'échanges entre l'utilisateur et le serveur. Ces échanges constituent une véritable source de risques qu'il faut maîtriser.
+
+\subsubsection*{Validation et filtrage des formulaires}
+Laravel fournit deux composants facilitant la validation des formulaires : FormRequest. Une erreur de validation sera générée quand le type de données reçues d'un ou plusieurs champs ne correspondent à ce que l'on attend réellement. De plus, une validation coté client (javascript) est effectué en premier lieu pour alléger la charge du serveur. 
+
+\subsubsection*{Protection contre les injections SQL}
+C'est une des plus vieilles failles connues mais c'est également la plus dangereuse. Une injection SQL consiste à saisir des requêtes SQL dans un champ de formulaire, pour obtenir des informations sur le fonctionnement de l'application et de passer outre certaines autorisations.
+La protection contre les injections SQL est assurée par Eloquent ORM. L'utilisation des méthodes fourni par ce dernier permet d'éviter ce genre d'attaque.
+
+\subsubsection*{Protection contre les attaques CSRF}
+Cette attaque est relativement simple à mettre en place et consiste à envoyer à un client authentifié sur un site un script dissimulé (dans une page web ou un email) pour lui faire accomplir une action à son insu.
+Pour se prémunir contre ce genre d'attaque Laravel génère un token aléatoire associé au formulaire de telle sorte qu'à la soumission ce token est vérifié pour être sûr de l'origine (avec le composant VerifyCsrfToken).
+
+\subsubsection*{Protection contre les attaques XSS}
+C'est une technique qui consiste à injecter du code HTML contenant du JavaScript dans une page pour le faire exécuter à un utilisateur (pour voler une session ou un mot de passe par exemple).
+Les vulnérabilités de type XSS apparaissent dans les vues. Pour pallier ce problème, Laravel propose le composant Blade. Ce dernier propose une syntaxe (double accolades \{\{\ \}\}) qui permet d'échapper le code html et ainsi afficher les balise <> plutôt que de les exécuter.
+
+
+\subsubsection{Authentification et contrôles d'accès } 
+Un élément clef de la sécurisation d'une application web consiste à déterminer si un utilisateur donné a le droit d'accéder à la ressource qu'il demande. Cette sécurisation s'effectue en deux étapes : une étape d'authentification et une étape d'autorisation permettant de vérifier que l'utilisateur a bien le droit d'accéder à la ressource souhaitée.
+La plupart des Frameworks PHP modernes possèdent les concepts d'authentification ou de contrôle d'accès. Dans le cas de Laravel, l'authentification est gérée par le composant
+\begin{BVerbatim}
+Controller\auth
+\end{BVerbatim}, alors que le contrôle d'accès est géré par 
+\begin{BVerbatim}
+Middelware\authenticate
+\end{BVerbatim}
+
+\subsection{Autres choix technologiques}
+\subsubsection{jQuery}
+\begin{wrapfigure}{r}{4cm}
+	\includegraphics[width=4cm,height=2cm]{./image_chapitre5/jquery}
+\end{wrapfigure}
+jQuery est une bibliothèque libre développée en JavaScript (dit également Framework JavaScript). C'est un logiciel open source distribué sous les licences combinées du MIT et GPL.  JQuery permet de manipuler d'une manière aisée le Document Object Model plus connu sous son abréviation DOM, et qui est un standard du W3C. \\[0.7\baselineskip]
+En plus de l'utilisation de cette librairie, plusieurs plugins ont été utilisés, les plus importants sont:
+\begin{itemize}
+	\item Bootstrap validation.
+	\item Datatables.js.
+	\item Moment.js.
+	\item notifications.js
+	\item fullcalendar.js.
+	\item waitme.js.
+\end{itemize}
+\subsubsection{Node.js}
+\begin{wrapfigure}{r}{4cm}
+	\includegraphics[width=4cm,height=2cm]{./image_chapitre5/nodejs}
+\end{wrapfigure}
+Node.js est une plateforme logicielle libre et événementielle en JavaScript orientée vers les applications réseau qui doivent pouvoir monter en charge. il est distribué sous licence MIT. Concrètement, node.js est un environnement d'assez bas niveau permettant d'exécuter du javascript non plus dans le navigateur web mais sur le serveur.
+\subsubsection{Socket.IO}
+socket.io est l'une des bibliothèques les plus plus utilisées avec Node.js. Elle permet de
+\begin{wrapfigure}{r}{4cm}
+	\includegraphics[width=4cm,height=2cm]{./image_chapitre5/socketio}
+\end{wrapfigure}
+faire très simplement de la communication synchrone dans l'application, c'est-à-dire de la communication en temps réel.socket.io se base sur plusieurs techniques différentes qui permettent la communication en temps réel, La plus connue d'entre elles est WebSocket (API javascript).\\[0.5\baselineskip]
+ 
+ Ces deux technologies ( Node.JS et Socket.IO) combinées aux composant app\textbackslash Events de Laravel nous ont permet de mettre en place un système de notification en temps réel.
+ 
+ \section{Interfaces de l'application}
+ Nous donnons dans ce qui suit les principales interfaces de l'application produite.
+ \subsection{Interface d'authentification}
+ 
+ \subsubsection*{Authentification}
+ 
+ C'est la première interface qui apparait au lancement de l'application (voir figure \autoref{fig:interface-auth}).
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1\linewidth]{./image_chapitre5/connexion}
+ 	\caption{Interface d'authentification de l'application}
+ 	\label{fig:interface-auth}
+ \end{figure}
+ 
+ \subsubsection*{Réinitialisation de mot de passe}
+ En cas d'oubli de mot de passe, l'utilisateur peut demander un nouveau mot de passe que le système envoie par e-mail. Évidemment l'utilisateur doit introduire une adresse e-mail valide (c'est-à-dire qui existe dans la base de données).
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[width=1\linewidth]{./image_chapitre5/reset}
+ 	\caption{Réinitialisation de mot de passe en cas d'oubli}
+ \end{figure}
+ 
+ \section{Conclusion}
+ À travers ce dernier chapitre, nous avons décrit la partie réalisation de notre solution. Ainsi, nous avons exposé, en premier lieu, l'environnement matériel et logiciel dans lequel nous avons développé notre application, suivi d'une présentation de nos différents choix technologique.\\[0.7\baselineskip]
+ Nous avons, par la suite, présenté les interfaces les plus significatives de notre application moyennant des captures d'écrans, tout en donnant des explications brèves des fonctionnalités offertes par l'application finale.
