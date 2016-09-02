@@ -1,21 +1,119 @@
-\chapter{\sc Réalisation et sécurité de la solution }
-\section{Introduction}
-Nous consacrons ce dernier chapitre à la présentation de la phase de réalisation de notre
-projet. La partie réalisation est tout aussi importante que la conception. En effet, c'est au
-cours de celle-ci que nous concrétisons notre travail. Ceci par l'implémentation d'un prototype de la solution présentée dans les précédents chapitres.
-Dans la suite de ce chapitre, nous décrivons, d'une part, les technologies utilisées, ainsi que l'aspect sécurité en présentant les qualités sécuritaires de notre solution et les différentes précautions prises. D'autre part, nous présenterons certaines fonctionnalités à travers des captures d'écrans des interfaces de notre application.
-\newpage
+\chapter{\sc Réalisation et déploiement de la solution}
+\label{chap:realisation-dep}
+Nous  consacrons ce dernier chapitre à la présentation de la phase de réalisation de notre projet.  La partie réalisation est tout aussi importante que la conception. En effet,  c'est au cours de celle-ci que nous concrétisons notre travail. Ceci par l'implémentation d'un prototype de la solution présentée dans les précédents  chapitres. \\[0.7\baselineskip]
+Dans la suite de ce chapitre, nous décrivons, d'une part, les plates-formes matérielles et logicielles sur lesquelles nous avons développé notre solution, ainsi que les  différents choix techniques que nous avons adopté. D'autre part, nous présentons notre application, ainsi achevée, à travers des captures d'écrans des interfaces relatives aux fonctionnalités principales.
+\section{Environnement de travail}
+La réalisation de tout projet informatique nécessite des choix matériels ainsi que logiciels, lesquels constituent ce que nous appelons environnement de travail.
+\subsection{Environnement matériel}
+Le développement de l'application s'est fait sur deux machines de type PC portables. Nous donnons ici, la marque et quelques caractéristiques de chacune d'elles :\\
 
-\section{Les technologies de développements utilisées}
-\subsection{Choix du SGBD}
+\begin{itemize}
+\item \textbf{Machine 1 :} Acer TravelMate 5735
+\begin{itemize}
+\item[$\bullet$] Microprocesseur : Intel(R) Core(TM) i5-4210U CPU @ 1.70GHz 2.40 GHz,
+\item[$\bullet$] RAM : DDR3 6 GB,
+\item[$\bullet$] Disque dur : 1 To.
+\end{itemize}
+\item \textbf{Machine 2 :} Toshiba  Sattelite L50
+\begin{itemize}
+\item[$\bullet$] Microprocesseur : Intel(R) Core(TM) i5-4210U CPU @ 1.70GHz 2.40 GHz,
+\item[$\bullet$] RAM : DDR3 6 GB,
+\item[$\bullet$] Disque dur : 1 To.
+\end{itemize}
 
-\subsection{Choix du l'IDE}
-\subsection{Choix du serveur Web}
-\subsection{Choix du langage}
+\end{itemize}
+
+\subsection{Environnement logiciel}
+Durant toute la phase de développement, nous avons utilisé l'environnement logiciel décrit ci-dessous.
+\subsubsection{Système d'exploitation}
+Les deux machines utilisées pour le développement sont équipées d'un système d'exploitation Windows et dont les caractéristiques sont les suivantes :
+
+\begin{itemize}
+	\item \textbf{Édition Windows }: Windows 8.1 Professionnel
+	\item \textbf{Type du système :} Système d'exploitation 64 bits
+\end{itemize}
+
+\subsubsection{Choix du SGBD}
+MySQL est un système de gestion de bases de données relationnelles. Il est distribué sous une double licence GPL et propriétaire. Il fait partie des logiciels de gestion de base de données les plus utilisés au monde, autant par le grand public (applications web principalement) que par des professionnels.\\
+ \begin{wrapfigure}[4]{r}{3.5cm}
+ 	\includegraphics[width=0.8\linewidth]{./image_chapitre5/mysql}
+ \end{wrapfigure}
+MySQL est un serveur de bases de données développé dans un souci de performances élevées en lecture, ce qui signifie qu'il est davantage orienté vers le service de données déjà en place que vers celui de mises à jour fréquentes et fortement sécurisées. Il est multi-thread et multi-utilisateur.
+
+\subsubsection{Serveur Web}
+Tout au long du développement de notre application, nous avons utilisé le serveur
+ \begin{wrapfigure}[4]{r}{3.5cm}
+ 	\includegraphics[width=0.8\linewidth]{./image_chapitre5/apache}
+ \end{wrapfigure}
+ Apache version 2.4.18. Apache HTTP Server (Apache) est un serveur HTTP créé et maintenu au sein de la fondation Apache. C'est le serveur HTTP le plus populaire du Web. Il est distribué selon les termes de la licence Apache. Apache offre diverses fonctionnalités dont la possibilité de définir des restrictions d'accès grâce aux fichiers htaccess ainsi qu'un support de serveurs virtuels.
+ 
+ \section{Choix techniques}
+ Avant de se lancer dans le développement, il est nécessaire de faire des choix techniques. Ces derniers dépendent généralement des objectifs et moyens du projet. Nous ne pouvons pas parler de bons choix dans l'absolu mais des choix bien adaptés à nos besoins ont été adoptés, et dont la description est donnée dans la suite de cette section.
+ 
+ \subsection{Choix du langage}
+ En développement, chaque technologie a ses propres spécificités, ses avantages et ses inconvénients. Le choix d'une technologie est un choix qui peut être qualifié de crucial, car il engage le développeur tout au long de son projet. Il existe de nombreuses architectures et langages pour la réalisation d'application Web. On distingue, généralement, trois grandes plateformes : 
+ \begin{itemize}
+ 	\item J2EE (Java 2 Platform, Enterprise Edition),
+ 	\item Microsoft Dot Net,
+ 	\item et PHP (Hypertext Preprocessor).
+ \end{itemize}
+ Dans notre cas, nous avons décidé d'adopter le langage PHP en tant que principale technologie pour la réalisation du projet. Notre choix n'est pas fortuit mais découle d'une logique que nous pouvons résumer en citant les avantages majeurs qu'offre ce langage par rapport aux autres :
+ \begin{itemize}
+ 	\item Tout d'abord, PHP est gratuit et ne nécessite aucune licence d'utilisation. De plus, il s'agit du langage de programmation Web le plus utilisé,
+ 	\item Côté performances, PHP est visiblement plus rapide que les autres langages puisqu'il ne requiert aucune précompilation,
+ 	\item Depuis sa version 5, PHP supporte les concepts de la programmation orientée objets. Ce qui le change du statut d'un simple langage de script pour pages personnelles et l'ouvre à des réalisations complexes structurées et performantes. Ceci a causé notamment l'apparition de nombreux Frameworks PHP (laravel, Symphony et autres).
+ 	
+ \end{itemize}
+
 \subsection{Nécessité d'un Framework}
+\subsubsection{Framework PHP}
+Traduit littéralement en français, le terme Framework signifie «cadre de travail». C'est un ensemble de bibliothèques et de conventions permettant le développement rapide d'une application. Il fournit une palette de briques logicielles et impose suffisamment de rigueur de développement pour pouvoir produire une application aboutie et facile à maintenir. Ces composants sont organisés pour être utilisés en interaction les uns avec les autres \cite{ok14}.
 
+\subsubsection{Avantages des Frameworks}
+Certes il n'est guère indispensable d'utiliser un Framework pour le développement d'une application Web. Et contrairement aux idées reçues, un Framework, en soi, n'est pas forcément un gage de qualité ni de sécurité. Tout dépend de son utilisation et de sa maîtrise, comme tout autre outil. Cependant, les Frameworks de développement ont de multiples avantages, et parmi lesquels, nous pouvons citer :
+\begin{itemize}
+	\item Développement rapide d'application (il n'est plus nécessaire de redévelopper tout un tas de fonctions),
+	
+	\item Organisation du projet (séparation des logiques techniques et logiques de présentation),
+	
+	\item Des composants et bibliothèques réutilisables (un composant peut servir dans plusieurs projets),
+	
+	\item Instauration de bonnes pratiques de codage (comme les standard PSR; PHP Standards Recommendation),
+	
+	\item La souplesse (laisse de nombreuses libertés au développeur).
+\end{itemize}
 
-\section{La sécurité du système}
+\subsection{Laravel Framework}
+Laravel est un framework web open-source écrit en PHP5 respectant le principe 
+ \begin{wrapfigure}[4]{r}{4cm}
+ 	\includegraphics[width=1\linewidth]{./image_chapitre5/laravel}
+ \end{wrapfigure}
+ modèle-vue-contrôleur et entièrement développé en programmation orientée objet
+. Laravel est distribué sous licence MIT.\\
+C'est un Framework qui met beaucoup l'accent sur les
+bonnes pratiques. Laravel est très utilisé par des grands sites
+(vimeo par exemple) et est recommandé pour les
+moyens et grands projets.
+\subsubsection{Fonctionnalités principales}
+Zend est considéré comme le Framework le plus puissant, grâce notamment aux nombreuses fonctionnalités qu'il met à la disposition de ses utilisateurs:
+\begin{itemize}
+	\item \textbf{Sécurité : } protection contre injection SQL, filtrage et validation, etc.
+	\item \textbf{Organisation du code :} L'organisation des répertoires et des classes suit certaines normes.
+	\item \textbf{URL simples et claires :} un système de routage perfectionné (RESTFul et ressources).
+	\item \textbf{Architecture MVC :} offre de base une architecture MVC permettant de séparer la présentation, la navigation et l'accès aux données.
+	\item \textbf{Facilitation fonctions courantes  :} accès en base de données, authentification, droits d'accès, pagination etc.
+\end{itemize}
 
-
-\section{Présentation du prototype réalisé}
+\subsubsection{Choix de Laravel}
+Nous avons préféré Laravel aux autres Frameworks PHP car c'est un Framework qui nous est familier, et dont les mécanismes de fonctionnement ne nous sont pas totalement méconnus. Ceci diminue considérablement le temps d'apprentissage et améliore la capacité  à résoudre les problèmes liés au développement durant la phase de codage.\\[0.7\baselineskip]
+Par ailleurs notre choix est aussi motivé par les nombreux avantages offerts par ce Framework :
+\begin{itemize}
+	\item Il est soutenu par une large communauté et bénéficie d'une grande notoriété, 
+	
+	\item Une courbe d'apprentissage relativement rapide ( contrairement aux autre grands framework),
+	
+	\item Des librairies sous forme de module,
+	
+	\item Librairie stable et fiable.
+	
+\end{itemize}
