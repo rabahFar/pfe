@@ -155,6 +155,7 @@ Dans ce qui suit, nous donnons une brève explication de chaque répertoire du pro
 	\item \textbf{Module Equipements :} qui contient les contrôleurs et vues nécessaires à la fonctionnalité d'inventaire des équipements (nomenclature, gammes, documentation, fournisseurs ...) .
 	\item \textbf{Module Maintenance :} contient les contrôleurs et vue pour la gestion de la maintenance (corrective et préventive).
 	\item \textbf{Utilisateur :} qui contient les contrôleurs et vues nécessaires qui permet la gestion des notifications (en temps réel).
+	\item \textbf{Module Statistiques :} contient les contrôleurs et vue pour les statistiques.
 	
 \end{itemize}
 
@@ -231,7 +232,7 @@ faire très simplement de la communication synchrone dans l'application, c'est-à-
  
  \subsubsection*{Authentification}
  
- C'est la première interface qui apparait au lancement de l'application (voir figure \autoref{fig:interface-auth}).
+ C'est la première interface qui apparait au lancement de l'application.
  \begin{figure}[H]
  	\centering
  	\includegraphics[width=1\linewidth]{./image_chapitre5/connexion}
@@ -246,6 +247,44 @@ faire très simplement de la communication synchrone dans l'application, c'est-à-
  	\includegraphics[width=1\linewidth]{./image_chapitre5/reset}
  	\caption{Réinitialisation de mot de passe en cas d'oubli}
  \end{figure}
+ 
+ \subsection{Fiche équipement}
+
+ L'interface ci-dessous montre la fiche équipement. Elle contient les caractéristiques de l'équipement ainsi que sa nomenclature, sa documentation, et l'historique des intervention sur l'équipement. 
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1\linewidth]{./image_chapitre5/equipement}
+ 	\caption{Fiche équipement}
+ 	\label{fig:interface-auth}
+ \end{figure}
+
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1\linewidth]{./image_chapitre5/document}
+ 	\caption{Documentation de l'équipement}
+ 	\label{fig:interface-auth}
+ \end{figure}
+ \newpage
+  \subsection{Gamme de maintenance}
+  
+  L'interface ci-dessous montre le mode opératoire d'une gamme de maintenance d'un équipement. Elle contient une description de la gamme, la liste des opérations ainsi que l'organigramme de Gantt des opérations. 
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=1\linewidth]{./image_chapitre5/detail_gamme}
+  	\caption{Description et mode opératoire}
+  \end{figure}
+  
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=1\linewidth]{./image_chapitre5/detail_gamme2}
+    	\caption{Description et mode opératoire (suite)}
+    \end{figure}
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=1\linewidth]{./image_chapitre5/gantt}
+  	\caption{Diagramme de Gantt}
+  \end{figure}
  
  \section{Conclusion}
  À travers ce dernier chapitre, nous avons décrit la partie réalisation de notre solution. Ainsi, nous avons exposé, en premier lieu, l'environnement matériel et logiciel dans lequel nous avons développé notre application, suivi d'une présentation de nos différents choix technologique.\\[0.7\baselineskip]
