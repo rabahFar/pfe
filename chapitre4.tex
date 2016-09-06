@@ -414,7 +414,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
 		\textbf{Enchainement (a): }Créer une gamme   \\
-		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute une gamme (id\_gam, intitulé\_gam, type\_gam et unité\_usage ), puis il crée le mode opératoire. \\
+		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute une gamme (code\_gam, intitulé\_gam, type\_gam et unité\_usage ), puis il crée le mode opératoire. \\
 		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
 		\textbf{Enchainement (b): }Modifier une gamme   \\
 		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements. Après la sélection d'un équipement, il choisit une gamme et il effectue les modifications qu'il veut apporter. \\
@@ -548,7 +548,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de consulter le PMP d'un équipement qui est créé automatiquement par le système.\\
 		\hline
-		\textbf{Acteur (consulter)  :} chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique et l'intervenant.\\
+		\textbf{Acteur} Chef du service méthodes.\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier et au moins une gamme de maintenance doit exister au préalable.\\
 		\hline
@@ -558,69 +558,25 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 \begin{center}
 	\begin{tabular}{|p{15cm}|}
 		\hline
-		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite consulter le PMP d'un équipement. \\	
-		\textbf{Enchainement : } Consulter le PMP d'un équipement \\
-		L'utilisateur accède au système, puis il choisit un équipement pour lequel il veut consulter le PMP. Le système affiche les informations de ce dernier (les opérations préventives prévues, observations, ...etc.) \\
-		S'il n'existe pas au moins une gamme de maintenance établie concernant l'équipement, l'exception s'exécute.\\
+		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite créer le PMP d'un équipement. \\	
+		\textbf{Enchainement : } Créer le PMP d'un équipement \\
+		L'utilisateur accède au système, puis il sélectionne les gammes arrivées a terme. Il planifie une intervention préventive en créant un ordre de travail (OT).\\
 		\hline
-		\textbf{Exception : } Le système affiche un message d'erreur qui indique qu'aucune gamme de maintenance n'a été créée.\\
+		\textbf{Exception : } / \\
 		\hline
-		\textbf{Post condition : }  La consultation du PMP d'un équipement.\\
+		\textbf{Post condition : }  La création du PMP d'un équipement.\\
 		\hline		
 	\end{tabular} \\
-	\captionof{table}{Description du cas « Générer le PMP d'un équipement »}
+	\captionof{table}{Description du cas « Gérer le PMP d'un équipement »}
 	\label{tab36}
 \end{center}
 
-\textbf{\footnotesize Description du cas « Gérer le planning préventif des équipements »   }
+\textbf{\footnotesize Description du cas « Gérer les travaux de sous-traitance     }
 
 \begin{center}
 	\begin{tabular}{|p{15cm}|}
 		\hline
-		\textbf{CU : Gérer le planning préventif des équipements     }\\
-		\hline	
-		\textbf{Titre :}  Gérer le planning préventif des équipements  qui est créé automatiquement par le système.\\
-		\hline
-		\textbf{But :} Permet à l'utilisateur de modifier/ consulter le planning préventif des équipements.\\
-		\hline
-		\textbf{Acteur (modifier)  :}  Le chef du service méthodes et le chef du service électrique ou mécanique.\\
-		\textbf{Acteur (consulter) :} Le chef du service méthodes, chef du service électrique ou mécanique et l'intervenant.\\
-		\hline
-		\textbf{Précondition :}  L'utilisateur doit s'authentifier et les gammes de maintenance doivent être enregistrées au préalable..\\
-		\hline
-		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
-		\hline
-		\textbf{Enchainement (a): } Modifier le planning préventif des équipements      \\
-		L'utilisateur accède au système, il sélectionne un planning et apporte des modification qu'il veut ( taches, intervenant, ...etc.).  
-		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception 1 s'exécute. \\
-		\textbf{Enchainement (b): } Consulter le planning préventif des équipements     \\
-		L'utilisateur accède au système, il recherche un planning préventif des équipements et il visualise les  informations relatives çà ce dernier.\\
-		S'il n'existe pas au moins une gamme de maintenance, l'exception 2 s'exécute.\\
-		\hline
-		\textbf{Exception 1 : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
-		\hline
-\end{tabular} \\
-\end{center}
-\newpage
-\begin{center}
-	\begin{tabular}{|p{15cm}|}
-		\hline
-		\textbf{Exception 2 : } Le système affiche un message d'erreur qui indique qu'aucune gamme de maintenance n'a été créée.\\
-		\hline
-		\textbf{Post condition : }  La modification/ consultation du planning préventif des équipements.\\
-		\hline		
-	\end{tabular} \\
-	\captionof{table}{Description du cas « Gérer le planning préventif des équipements  »}
-	\label{tab36}
-\end{center}
-
-
-\textbf{\footnotesize Description du cas « Gérer le dossier des travaux de sous-traitance     }
-
-\begin{center}
-	\begin{tabular}{|p{15cm}|}
-		\hline
-		\textbf{CU : Gérer le dossier des travaux de  sous-traitance     }\\
+		\textbf{CU : Gérer les travaux de  sous-traitance     }\\
 		\hline	
 		\textbf{Titre :}  Gérer le dossier des travaux de sous-traitance  .\\
 		\hline
@@ -631,15 +587,15 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier. \\
 		\hline
 		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
-		\textbf{Enchainement (a): } Créer un dossier des travaux de sous-traitance      \\
+		\textbf{Enchainement (a): } Créer les travaux de sous-traitance      \\
 		L'utilisateur accède au système, il crée un dossier des travaux sous-traités, il saisit les informations concernant de ces derniers (le sous-traitant, les interventions réalisées par ce dernier,...etc.). Il procède ensuite au scan du contrat de sous-traitance version papier puis il met la version électronique dans le dossier. \\
 		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.\\
-		\textbf{Enchainement (b): } Modifier un dossier des travaux de sous-traitance      \\
+		\textbf{Enchainement (b): } Modifier les travaux de sous-traitance      \\
 		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et effectuer les modifications qu'il souhaite concernant ses informations.\\
 		 Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
-		 \textbf{Enchainement (c): } Supprimer un dossier des travaux de sous-traitance      \\
+		 \textbf{Enchainement (c): } Supprimer les travaux de sous-traitance      \\
 		 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et il le supprime.\\
-		\textbf{Enchainement (d): } Consulter un dossier des travaux de sous-traitance     \\
+		\textbf{Enchainement (d): } Consulter les travaux de sous-traitance     \\
 		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et visualiser ses informations.\\
 		\hline
 		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
@@ -647,7 +603,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\textbf{Post condition : }  La création/ modification/ suppression/ consultation du dossier des travaux de sous-traitance.\\
 		\hline		
 	\end{tabular} \\
-	\captionof{table}{Description du cas « Gérer le dossier des travaux de  sous-traitance  »}
+	\captionof{table}{Description du cas « Gérer les travaux de  sous-traitance  »}
 	\label{tab34}
 \end{center}
 \newpage
