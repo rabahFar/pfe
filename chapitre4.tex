@@ -188,12 +188,11 @@ Les deux tableaux suivants illustrent la liste des messages reçus et émis par le
 	\label{tab18}
 \end{center}
 \newpage
-
 \subsection{ Diagramme de contexte  }
 Le diagramme suivant représente les messages échangés entre le nouveau système d'information et les acteurs :
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{./image_chapitre4/diagramme_contexte}
+	\includegraphics[width=1\linewidth]{./image_chapitre4/diagramme_contexte}
 	\caption[Diagramme de contexte dynamique du nouveau système]{Diagramme de contexte dynamique du nouveau système.}
 	\label{fig:diagramme du contexte}
 \end{figure}
@@ -251,16 +250,16 @@ Dans ce qui suit, nous allons détailler chaque module en identifiant ses cas d'u
 		\hline
 		\textbf{Cas d'utilisation} &  \textbf{Acteurs }  \\
 		\hline
-		\textbf{Gérer la fiche technique de l'équipement} & Chef du département de gestion des équipements\\
+		\textbf{Gérer la fiche technique de l'équipement} & Chef du service méthodes\\
 		\hline		
-		\textbf{Gérer la nomenclature de l'équipement} & Chef du département de gestion des équipements\\
+		\textbf{Gérer la nomenclature de l'équipement} & Chef du service méthodes\\
 		\hline	
-		\textbf{Gérer la documentation de l'équipement} & Chef du département de gestion des équipements\\
+		\textbf{Gérer la documentation de l'équipement} & Chef du service méthodes\\
 		\hline
-		\textbf{Gérer les gammes de maintenance de l'équipement } & Chef du département de gestion des équipements\\
+		\textbf{Gérer les gammes de maintenance de l'équipement } & Chef du service méthodes\\
 		\hline		
 	\end{tabular} \\
-	\captionof{table}{liste des cas d'utilisations associés au module « Gestion des équipements  »}
+	\captionof{table}{Liste des cas d'utilisations associés au module « Gestion des équipements  »}
 	\label{tab24}
 \end{center}
 
@@ -444,13 +443,11 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{Gérer les demandes de réparation (DR) } & Chef de service de production\\
 		\hline		
-		\textbf{Gérer les ordres de travail (OR)} & Chef de service méthodes\\
+		\textbf{Gérer les ordres de travail (OT)} & Chef de service méthodes, chef du service électrique, chef du service mécanique et l'intervenant\\
 		\hline
-		\textbf{Générer le PMP d'un équipement} & Chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique et l'intervenant\\
-		\hline	
-		\textbf{Gérer le planning préventif des équipements} & Chef du service méthodes et le chef de service électrique ou mécanique\\
+		\textbf{Gérer le PMP d'un équipement} & Chef du service méthodes\\
 		\hline		
-		\textbf{Gérer le dossier des travaux de sous-traitance} & Sous-directeur de la maintenance\\
+		\textbf{Gérer les travaux de sous-traitance} & Chef du service méthodes\\
 		\hline
 	\end{tabular} \\
 	\captionof{table}{liste des cas d'utilisations associés au module « Gestion de la maintenance »}
@@ -758,11 +755,11 @@ Nous avons opté pour ce type d'architectures pour les avantages que nous allons 
 
 \subsubsection{ Spécifications techniques du point de vue logiciel  }
 \begin{itemize}
-	\item Langage de programmation : PHP 5.6.16.
-	\item 	Framework : Laravel 5.1.
-	\item Système de gestion des bases de données : MySQL 5.6.17.
-	\item Serveur d'application : Serveur Apache 2.4.17.
-	\item Environnement de développement : WAMPSERVER 2.5.
+	\item Langage de programmation : PHP 5.6.19.
+	\item Framework : Laravel 5.2.
+	\item Système de gestion des bases de données : MySQL 5.7.11.
+	\item Serveur web : Apache 2.4.18.
+	\item Environnement de développement : WAMPSERVER 3.0.4.
 \end{itemize}
 
 \subsubsection{ Identification des exploitants du système   }
@@ -1013,7 +1010,7 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{./image_chapitre4/Diagramme_classes_PMP}
-	\caption[Diagramme de classe correspondant à « Gestion du plan de la maintenance préventive (PMP) ».]{Diagramme de classe correspondant à « Gestion du plan de la maintenance préventive (PMP) ».}
+	\caption[Diagramme de classe correspondant à la « Gestion du plan de la maintenance préventive (PMP) ».]{Diagramme de classe correspondant à « Gestion du plan de la maintenance préventive (PMP) ».}
 	\label{fig:Diagramme_classes_PMP}
 \end{figure}
 \begin{figure}[H]
@@ -1023,33 +1020,33 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 	\label{fig:Diagramme_classes_admin}
 \end{figure}
 \newpage
+Le  tableau  suivant  représente  les attributs  contenus  dans  les différentes classes avec leurs descriptions et leurs types :
 \begin{center}
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
 		\textbf{Classe} &  \textbf{Attribut} &  \textbf{Désignation}&  \textbf{Type} \\
 		\hline
-		\multirow{14}{*}{Equipement} & code\_equip & code de l'équipement & entier long   \\ \cline{2-4} 
-		& designation\_equip & désignation de l'équipement & chaine de cratères    \\ \cline{2-4} 
+		\multirow{12}{*}{Equipement} & code\_equip & code de l'équipement & chaine de caractères   \\ \cline{2-4} 
+		& designation\_equip & désignation de l'équipement & chaine de caractères    \\ \cline{2-4} 
 		& date\_acquisition\_equip & date d'acquisition de l'équipement & date    \\ \cline{2-4} 
 		& date\_mise\_service\_equip & date de mise en service de l'équipement & date    \\ \cline{2-4} 
-		& caracteristique\_equip & caractéristique de l'équipement & chaine de cratères    \\ \cline{2-4} 
-		& etat\_equip & état de l'équipement & chaine de cratères    \\ \cline{2-4} 
-		& croquis\_equip & url du croquis de l'équipement & chaine de cratères    \\  
+		& caracteristique\_equip & caractéristique de l'équipement & chaine de caractères    \\ \cline{2-4} 
+		& croquis\_equip & url du croquis de l'équipement & chaine de caractères    \\  
 		\hline
-		\multirow{11}{*}{Organe} & code\_org & code de l'organe & entier long   \\ \cline{2-4}  
-		& designation\_org & désignation de l'organe & chaine de cratères    \\ \cline{2-4} 
-		& observation\_org & observation sur l'organe & chaine de cratères    \\ \cline{2-4} 
-		&  ref\_fournisseur  &  & chaine de cratères    \\ \cline{2-4} 
-		& num\_plan &  & chaine de cratères    \\ \cline{2-4} 
-		& repere &  & chaine de cratères    \\ \cline{2-4} 
+		\multirow{13}{*}{Organe} & code\_org & code de l'organe & entier long   \\ \cline{2-4}  
+		& designation\_org & désignation de l'organe & chaine de caractères    \\ \cline{2-4} 
+		& observation\_org & observation sur l'organe & chaine de caractères    \\ \cline{2-4} 
+		&  ref\_fournisseur  & la référence attribuée par le fournisseur à l'organe & chaine de caractères    \\ \cline{2-4} 
+		& num\_plan & le numéro du plan où figure l'organe  & chaine de caractères   \\ \cline{2-4} 
+		& repere & le repère où figure l'organe sur le plan   & chaine de caractères    \\ \cline{2-4} 
 		\hline
-		\multirow{5}{*}{Gamme} & code\_gam & identifiant de la gamme & entier long   \\ \cline{2-4} 
-		& intitule\_gam & intitulé de la gamme & chaine de cratères    \\ \cline{2-4} 
-		& nombre\_unites &  & entier    \\  
+		\multirow{5}{*}{Gamme} & code\_gam & code de la gamme & entier long   \\ \cline{2-4} 
+		& intitule\_gam & intitulé de la gamme & chaine de caractères    \\ \cline{2-4} 
+		& nombre\_unites & le nombre d'unités d'usage & entier    \\  
 		\hline
-		\multirow{5}{*}{UniteUsage} & id\_unit\_usage & identifiant de l'unité d'usage & entier long   \\ \cline{2-4} 
-		& type\_unit\_usage & type de l'unité d'usage & chaine de cratères    \\ \cline{2-4} 
-		& designation\_unit\_usage & désignation de l'unité d'usage & entier    \\  
+		\multirow{6}{*}{UniteUsage} & id\_unit\_usage & identifiant de l'unité d'usage & entier long   \\ \cline{2-4} 
+		& type\_unit\_usage & type de l'unité d'usage & chaine de caractères    \\ \cline{2-4} 
+		& designation\_unit\_usage & désignation de l'unité d'usage & chaine de caractères    \\  
 		\hline
 		
 \end{tabular} \\
@@ -1059,27 +1056,28 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 \begin{center}
 		\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
-		\multirow{5}{*}{TypeGamme} & id\_type\_gam & identifiant du type de la gamme & entier long   \\ \cline{2-4} 
-		& designation\_type\_gam & designation du type de la gamme & chaine de cratères    \\   
+		\multirow{4}{*}{TypeGamme} & id\_type\_gam & identifiant du type de la gamme & entier long   \\ \cline{2-4} 
+		& designation\_type\_gam & designation du type de la gamme & chaine de caractères    \\   
 		\hline
-		\multirow{10}{*}{Operation} & id\_oper & identifiant de l'opération & entier long   \\ \cline{2-4} 
-		& intitule\_oper & intitulé de l'opération & chaine de cratères    \\ \cline{2-4} 
+		\multirow{14}{*}{Operation} & id\_oper & identifiant de l'opération & entier long   \\ \cline{2-4} 
+		& intitule\_oper & intitulé de l'opération & chaine de caractères    \\ \cline{2-4} 
 		& duree\_oper & durée de l'opération & entier    \\ \cline{2-4}
-		& description\_oper &  & chaine de cratères    \\ \cline{2-4}
-		& consigne\_securité  &  & entier \\ \cline{2-4} 
-		& illustration  &  & entier \\    
+		& description\_oper & description du déroulement de l'opération  & chaine de caractères    \\ \cline{2-4}
+		& consigne\_securité  & consignes de sécurité & chaine de caractères \\ \cline{2-4} 
+		& illustration  & url de l'image qui illustre l'opération & chaine de caractères \\    
 		\hline
+		
 		\multirow{10}{*}{Constructeur} & id\_const & identifiant du constructeur & entier long   \\ \cline{2-4} 
-		& nom\_const & nom du constructeur & chaine de cratères    \\ \cline{2-4} 
-		& tel\_const & téléphone du constructeur & entier long    \\ \cline{2-4}  
-		& adresse\_const & adresse du constructeur & chaine de cratères    \\ \cline{2-4} 
-		& email\_const & email du constructeur & chaine de cratères    \\    
+		& nom\_const & nom du constructeur & chaine de caractères    \\ \cline{2-4} 
+		& tel\_const & téléphone du constructeur & chaine de caractères    \\ \cline{2-4}  
+		& adresse\_const & adresse du constructeur & chaine de caractères    \\ \cline{2-4} 
+		& email\_const & email du constructeur & chaine de caractères    \\    
 		\hline	
 		\multirow{10}{*}{Fournisseur} & id\_four & identifiant du fournisseur & entier long   \\ \cline{2-4} 
 		& nom\_four & nom du fournisseur & chaine de cratères    \\ \cline{2-4} 
-		& tel\_four & téléphone du fournisseur & entier long    \\ \cline{2-4}  
-		& adresse\_four & adresse du fournisseur & chaine de cratères    \\ \cline{2-4} 
-		& email\_four & email du fournisseur & chaine de cratères    \\    
+		& tel\_four & téléphone du fournisseur & chaine de caractères  \\ \cline{2-4}  
+		& adresse\_four & adresse du fournisseur & chaine de caractères    \\ \cline{2-4} 
+		& email\_four & email du fournisseur & chaine de caractères    \\    
 		\hline
 \end{tabular} \\
 \end{center}
@@ -1088,23 +1086,23 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
 		\multirow{15}{*}{Document} & id\_doc & identifiant du document & entier long   \\ \cline{2-4} 
-		& intitule\_doc & intitule du document & chaine de cratères    \\ \cline{2-4} 
-		& type\_doc &  type du document & chaine de cratères     \\ \cline{2-4} 
-		& langue\_doc & langue du document & chaine de cratères    \\ \cline{2-4} 
-		& contenu\_doc & contenu du document & chaine de cratères     \\ \cline{2-4} 
+		& intitule\_doc & intitule du document & chaine de caractères    \\ \cline{2-4} 
+		& type\_doc &  type du document & chaine de caractères     \\ \cline{2-4} 
+		& langue\_doc & langue du document & chaine de caractères    \\ \cline{2-4} 
+		& contenu\_doc & contenu du document & chaine de caractères     \\ \cline{2-4} 
 		& nb\_exemp\_doc & nombre d'exemplaires du document & entier    \\ \cline{2-4} 
-		& lieu\_archiv\_doc & lieu d'archivage du document & chaine de cratères    \\
+		& lieu\_archiv\_doc & lieu d'archivage du document & chaine de caractères    \\
 		\hline
 		\multirow{6}{*}{Outils} & ref\_out & référence de l'outil & entier long   \\ \cline{2-4} 
-		& designation\_out & désignation de l'outil & chaine de cratères    \\ \cline{2-4} 
-		& utilisation\_out & utilisation de l'outil & chaine de cratères     \\  
+		& designation\_out & désignation de l'outil & chaine de caractères    \\ \cline{2-4} 
+		& utilisation\_out & utilisation de l'outil & chaine de caractères     \\  
 		\hline
-		\multirow{5}{*}{PDR} & ref\_PDR & référence de la pièce de rechange & entier long   \\ \cline{2-4} 
-		& designation\_PDR & désignation de la PDR & chaine de cratères    \\ \cline{2-4} 
+		\multirow{5}{*}{PDR} & ref\_PDR & référence de la pièce de rechange & chaine de caractères   \\ \cline{2-4} 
+		& designation\_PDR & désignation de la PDR & chaine de caractères    \\ \cline{2-4} 
 		& cout\_out & cout de de la PDR & entier     \\  
 		\hline
 		\multirow{5}{*}{TypePDR} & id\_type\_PDR & identifiant du type de la pièce de rechange & entier long   \\ \cline{2-4} 
-		& designation\_PDR & désignation du type de la PDR & chaine de cratères    \\ 
+		& designation\_PDR & désignation du type de la PDR & chaine de caractères    \\ 
 		\hline
 	\end{tabular} \\
 \end{center}
@@ -1112,58 +1110,49 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 \begin{center}
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
-		\multirow{15}{*}{DT} & id\_DT & identifiant de la demande de réparation & entier long   \\ \cline{2-4} 
-		& type\_DT & type de la demande de réparation & chaine de cratères    \\  \cline{2-4}
-		& description\_DT & description de la demande de réparation & chaine de cratères    \\ \cline{2-4} 
-		& etat\_DT & état de la demande de réparation & chaine de cratères    \\ \cline{2-4} 
-		& date\_DT & date de la demande de réparation & date    \\   
+		\multirow{15}{*}{DT} & id\_DT & identifiant de la demande de travail & entier long   \\ \cline{2-4} 
+		& type\_DT & type de la demande de travail & chaine de caractères    \\  \cline{2-4}
+		& description\_DT & description de la demande de travail & chaine de caractères    \\ \cline{2-4} 
+		& etat\_DT & état de la demande de travail (en attente, validée ou annulée)  & chaine de caractères    \\ \cline{2-4} 
+		& date\_DT & date de création de la demande de travail & date    \\   
 		\hline	
-		\multirow{21}{*}{OT} & id\_OT & identifiant de l'ordre de travail & entier long   \\ \cline{2-4} 
+		\multirow{22}{*}{OT} & id\_OT & identifiant de l'ordre de travail & entier long   \\ \cline{2-4} 
 		& date\_debut\_prevue\_OT & date debut prévue de l'ordre de travail & date    \\ \cline{2-4}
 		& date\_fin\_prevue\_OT & date fin prévue de l'ordre de travail & date    \\ \cline{2-4} 
-		& date\_debut\_reelle\_OT & date debut reelle de l'ordre de travail & date    \\ \cline{2-4}
-		& date\_fin\_reelle\_OT & date fin reelle de l'ordre de travail & date    \\ \cline{2-4} 
-		& description\_OT & description des travaux contenus dans l'ordre de travail & chaine de cratères    \\ \cline{2-4}
-		& type\_intervention\_OT &  & date    \\ \cline{2-4} 
-		& etat\_OT & état de l'ordre de travail & string    \\ \cline{2-4} 
-		& compte\_rendu\_OT & priorité de l'ordre de travail & entier (0..4)  \\ 
+		& date\_debut\_reelle\_OT & date debut reelle de l'OT & date    \\ \cline{2-4}
+		& date\_fin\_reelle\_OT & date fin reelle de l'OT & date    \\ \cline{2-4} 
+		& description\_OT & description des travaux à exécuter & chaine de caractères    \\ \cline{2-4} 
+		& etat\_OT & état de l'OT (en attente, validé, terminé ou annulé) & chaine de caractères    \\ \cline{2-4} 
+		& compte\_rendu\_OT & description des travaux faits pendant l'intervention & chaine de caractères  \\ 
 		\hline	
-			\multirow{6}{*}{TypeOT} & id\_type\_OT & identifiant du type de l'ordre de travail & entier long   \\ \cline{2-4} 
-			& designation\_type\_OT & désignation du type de l'ordre de travail & string    \\
-			\hline
 \end{tabular} \\
 \end{center}
 \newpage
 \begin{center}
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
-		\multirow{14}{*}{Intervenant} & id\_inter & identifiant de l'intervenant & entier long   \\ \cline{2-4} 
-		& nom\_inter & nom de l'intervenant & chaine de caractères     \\ \cline{2-4} 
-		& prenom\_inter & prénom de l'intervenant & chaine de caractères    \\ \cline{2-4} 
-		& adresse\_inter & adresse de l'intervenant & chaine de caractères    \\ \cline{2-4}
-		& tel\_inter & téléphone de l'intervenant & entier long    \\ \cline{2-4}
-		& mail\_inter & mail de l'intervenant & chaine de cratères    \\ \cline{2-4}
-		& mot\_de\_passe\_inter & mail de l'intervenant & chaine de cratères    \\ \cline{2-4}
+		\multirow{6}{*}{TypeOT} & id\_type\_OT & identifiant du type de l'ordre de travail & entier long   \\ \cline{2-4} 
+		& designation\_type\_OT & désignation du type de l'ordre de travail  & chaine de caractères    \\
+		\hline
+		\multirow{14}{*}{Utilisateur} & id\_user & identifiant de l'utilisateur & entier long   \\ \cline{2-4} 
+		& nom\_user & nom de l'utilisateur & chaine de caractères     \\ \cline{2-4} 
+		& prenom\_user & prénom de l'utilisateur & chaine de caractères    \\ \cline{2-4} 
+		& adresse\_user & adresse de l'utilisateur & chaine de caractères    \\ \cline{2-4}
+		& tel\_user & téléphone de l'utilisateur & chaine  de caractères    \\ \cline{2-4}
+		& mail\_user & mail de l'utilisateur &  chaine de caractères    \\ \cline{2-4}
+		& mot\_de\_passe\_user & mot de passe de l'utilisateur & chaine de caractères    \\ \cline{2-4}
 		\hline
 		\multirow{10}{*}{SousTraitant} & id\_sous\_trait & identifiant du sous-traitant  & entier long   \\ \cline{2-4} 
 		& nom\_sous\_trait & nom du sous-traitant  &  chaine de caractères   \\ \cline{2-4} 
 		& adresse\_sous\_trait & adresse du sous-traitant & chaine de caractères \\ \cline{2-4} 
-		& tel\_sous\_trait & téléphone du sous-traitant & entier long     \\ \cline{2-4} 
+		& tel\_sous\_trait & téléphone du sous-traitant & chaine de caractères     \\ \cline{2-4} 
 		& mail\_sous\_trait & mail du sous-traitant & chaine de caractères     \\ 
 		\hline
-		\multirow{6}{*}{CompteurGamme} & id\_cpt\_gam & identifiant du compteur de la gamme  & entier long   \\ \cline{2-4} 
-		& cpt & compteur & long     \\ \cline{2-4} 
-		& date\_derniere\_maint &  & date     \\ \cline{2-4} 
-		& planification  &  & booléen    \\ 
+		\multirow{12}{*}{CompteurGamme} & id\_cpt\_gam & identifiant du compteur de la gamme  & entier long   \\ \cline{2-4} 
+		& cpt & compteur d'unités d'usage & entier     \\ \cline{2-4} 
+		& date\_derniere\_maint & la date de la dernière maintenance & date     \\ \cline{2-4} 
+		& planification  & booléen qui indique si la maintenance est programmée  & booléen    \\ 
 		\hline
-	
-		\multirow{8}{*}{Utilisateur} & id\_user & identifiant de l'utilisateur  & entier long   \\ \cline{2-4} 
-		& nom\_user & nom de l'utilisateur  &  chaine de caractères   \\ \cline{2-4} 
-		& prenom\_user & prénom de l'utilisateur & chaine de caractères \\ \cline{2-4} 
-		& mot\_passe\_user & mot de passe de l'utilisateur & chaine de caractères \\ \cline{2-4}
-		& type\_user & type de l'utilisateur & chaine de caractères \\ \cline{2-4}
-		& date\_creation\_user & date de création de l'utilisateur  & date   \\ 
-		\hline	
 \end{tabular} \\
 \end{center}
 \newpage
@@ -1171,12 +1160,7 @@ Au cours de cette phase, nous allons associer à chaque catégorie un diagramme de
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
 		\multirow{7}{*}{ProfilUtilisateur} & id\_profil\_user & identifiant du profil utilisateur  & entier long   \\ \cline{2-4} 
-		& intitule\_profil\_user & intitulé du profil utilisateur &  chaine de caractères   \\ \cline{2-4} 
-		& date\_creation\_profil\_user & date de création du profil utilisateur & date \\
-		\hline
-		\multirow{4}{*}{Fonctionnalite} & id\_fonc & identifiant de la fonctionnalité & entier long   \\ \cline{2-4} 
-		& intitule\_fonc & intitulé de la fonctionnalité &  chaine de caractères   \\ \cline{2-4}
-		& url\_fonc & url de la fonctionnalité &  chaine de caractères   \\
+		& intitule\_profil\_user & intitulé du profil utilisateur &  chaine de caractères   \\
 		\hline
     \end{tabular} \\
     \captionof{table}{Dictionnaire de données du modèle statique}
