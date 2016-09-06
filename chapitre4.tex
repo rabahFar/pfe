@@ -582,25 +582,25 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter un dossier des travaux de sous-traitance.\\
 		\hline
-		\textbf{Acteur :}  Sous-directeur de la maintenance.\\
+		\textbf{Acteur :}  Chef du service de méthodes.\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier. \\
 		\hline
 		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\	
 		\textbf{Enchainement (a): } Créer les travaux de sous-traitance      \\
-		L'utilisateur accède au système, il crée un dossier des travaux sous-traités, il saisit les informations concernant de ces derniers (le sous-traitant, les interventions réalisées par ce dernier,...etc.). Il procède ensuite au scan du contrat de sous-traitance version papier puis il met la version électronique dans le dossier. \\
+		L'utilisateur accède au système, il sélectionne une demande de travail (DT), puis il ajoute un sous-traitant. Ensuite, il crée un ordre de travail en lui affectant le sous-traitant  créé. \\
 		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.\\
 		\textbf{Enchainement (b): } Modifier les travaux de sous-traitance      \\
-		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et effectuer les modifications qu'il souhaite concernant ses informations.\\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des ordres de travail affectés aux sous-traitants, ensuite il peut sélectionner un OT et effectuer les modifications qu'il souhaite concernant ses informations.\\
 		 Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
 		 \textbf{Enchainement (c): } Supprimer les travaux de sous-traitance      \\
-		 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et il le supprime.\\
+		 L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des ordres de travail affectés aux sous-traitants, ensuite il peut sélectionner un OT et le supprimer.\\
 		\textbf{Enchainement (d): } Consulter les travaux de sous-traitance     \\
-		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des dossiers de travaux sous-traités, ensuite il peut sélectionner un dossier et visualiser ses informations.\\
+		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des ordres de travail affectés aux sous-traitants, ensuite il peut sélectionner un OT et visualiser ses informations. \\ 
 		\hline
 		\textbf{Exception : } Le système affiche un message d'erreur qui indique que les champs obligatoires ne sont pas correctement remplis. \\
 		\hline
-		\textbf{Post condition : }  La création/ modification/ suppression/ consultation du dossier des travaux de sous-traitance.\\
+		\textbf{Post condition : }  La création/ modification/ suppression/ consultation des travaux de sous-traitance.\\
 		\hline		
 	\end{tabular} \\
 	\captionof{table}{Description du cas « Gérer les travaux de  sous-traitance  »}
