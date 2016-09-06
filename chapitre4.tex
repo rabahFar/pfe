@@ -276,7 +276,7 @@ La figure suivante représente le diagramme des cas d'utilisations du module « Ge
 	\label{fig:CUs_diagramme2}
 \end{figure}
 Dans ce qui suit, La description textuelle des différents cas d'utilisations contenus dans le module « Gestion des équipements »:\\[0.5\baselineskip]
-\textbf{\footnotesize Description du cas « Gérer les documents  }
+\textbf{\footnotesize Description du cas « Gérer la fiche technique de l'équipement  }
 
 \begin{center}
 	\begin{tabular}{|p{15cm}|}
@@ -287,7 +287,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la fiche technique d' un équipement\\
 		\hline
-		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\textbf{Acteur :}  Chef du service de méthodes\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
@@ -331,7 +331,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la nomenclature d'un équipement\\
 		\hline
-		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\textbf{Acteur :}  Chef du service de méthodes\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
@@ -372,7 +372,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter la documentation d'un équipement\\
 		\hline
-		\textbf{Acteur :}  Chef du département de gestion des équipements\\
+		\textbf{Acteur :}  Chef du service de méthodes\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
@@ -408,13 +408,13 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer / modifier/ supprimer/ consulter une gamme de maintenance.\\
 		\hline
-		\textbf{Acteur :} Chef du département de gestion des équipements\\
+		\textbf{Acteur :} Chef du service de méthodes\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
 		\textbf{Scénario nominal : } Ce cas commence lorsque l'utilisateur souhaite exécuter l'un des enchainements suivants : \\
 		\textbf{Enchainement (a): }Créer une gamme   \\
-		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute une gamme (id\_gam, intitulé\_gam et periodicité\_gam ), puis il crée le mode opératoire. \\
+		L'utilisateur accède au système, il sélectionne un équipement, puis il ajoute une gamme (id\_gam, intitulé\_gam, type\_gam et unité\_usage ), puis il crée le mode opératoire. \\
 		Si un ou plusieurs champs obligatoires sont vides ou invalides, l'exception s'exécute.  \\
 		\textbf{Enchainement (b): }Modifier une gamme   \\
 		L'utilisateur accède au système, ce qui lui permet d'accéder à la liste des équipements. Après la sélection d'un équipement, il choisit une gamme et il effectue les modifications qu'il veut apporter. \\
@@ -459,7 +459,7 @@ La figure suivante représente le diagramme des cas d'utilisations du module « Ge
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{./image_chapitre4/CUs_diagramme3}
+	\includegraphics[width=1\linewidth]{./image_chapitre4/CUs_diagramme3}
 	\caption[Diagramme des cas d'utilisations du module « Gestion de la maintenance curative »]{Diagramme des cas d'utilisations du module « Gestion de la maintenance »}
 	\label{fig:CUs_diagramme3}
 \end{figure}
@@ -513,8 +513,8 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter un ordre de travail.\\
 		\hline
-		\textbf{Acteur (créer/ modifier/ supprimer) :}  Le chef du service méthodes.\\
-		\textbf{Acteur (consulter) :}  chef de service électrique ou mécanique et l'intervenant.\\
+		\textbf{Acteur (créer/ supprimer) :}  Le chef du service de méthodes.\\
+		\textbf{Acteur (consulter/ modifier) :}  chef de service électrique ou mécanique et l'intervenant.\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
@@ -537,14 +537,14 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 	\label{tab33}
 \end{center}
 
-\textbf{\footnotesize Description du cas « Générer le PMP d'un équipement »   }
+\textbf{\footnotesize Description du cas « Gérer le PMP d'un équipement »   }
 
 \begin{center}
 	\begin{tabular}{|p{15cm}|}
 		\hline
-		\textbf{CU : Générer le PMP d'un équipement automatiquement     }\\
+		\textbf{CU : Gérer le PMP d'un équipement      }\\
 		\hline	
-		\textbf{Titre :}  Générer le PMP ( Plan de Maintenance Préventive ) d'un équipement automatiquement.\\
+		\textbf{Titre :}  Gérer le PMP ( Plan de Maintenance Préventive ) d'un équipement.\\
 		\hline
 		\textbf{But :} Permet à l'utilisateur de consulter le PMP d'un équipement qui est créé automatiquement par le système.\\
 		\hline
@@ -875,7 +875,7 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations tec
 		\hline	
 		\textbf{Titre :}  Gérer les utilisateurs\\
 		\hline
-		\textbf{But :} Permet d'ajouter/ modifier/ supprimer/ consulter un profil utilisateur\\
+		\textbf{But :} Permet d'ajouter/ modifier/ supprimer/ consulter un utilisateur\\
 		\hline
 		\textbf{Acteur :}  Administrateur\\
 		\hline
@@ -968,9 +968,8 @@ Le découpage en catégories de notre projet a donné le résultat suivant :
 		\hline
 		\multirow{5}{*}{Gestion de la maintenance} & Gérer les demandes de réparation (DR)  \\ \cline{2-2} 
 		&  Gérer les ordres de travail (OR) \\ \cline{2-2} 
-		&  Générer le PMP d'un équipement \\ \cline{2-2} 
-		&  Gérer le planning préventif des équipements \\ \cline{2-2} 
-		&  Gérer le dossier des travaux de sous-traitance \\
+		&  Gérer le PMP d'un équipement \\ \cline{2-2}  
+		&  Gérer les travaux de sous-traitance \\
 		\hline
 		Statistiques et les ratios & Générer les statistiques et les ratios\\
 		\hline		
@@ -982,7 +981,7 @@ Le découpage en catégories de notre projet a donné le résultat suivant :
 La figure suivante représente le  découpage en catégories de notre système sous UML :
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{./image_chapitre4/decoupage_categories}
+	\includegraphics[width=1\linewidth]{./image_chapitre4/decoupage_categories}
 	\caption[Découpage en catégories en UML.]{Découpage en catégories UML.}
 	\label{fig:decpupage_categorie}
 \end{figure}
@@ -1134,14 +1133,6 @@ Le  tableau  suivant  représente  les attributs  contenus  dans  les différentes
 		\multirow{6}{*}{TypeOT} & id\_type\_OT & identifiant du type de l'ordre de travail & entier long   \\ \cline{2-4} 
 		& designation\_type\_OT & désignation du type de l'ordre de travail  & chaine de caractères    \\
 		\hline
-		\multirow{14}{*}{Utilisateur} & id\_user & identifiant de l'utilisateur & entier long   \\ \cline{2-4} 
-		& nom\_user & nom de l'utilisateur & chaine de caractères     \\ \cline{2-4} 
-		& prenom\_user & prénom de l'utilisateur & chaine de caractères    \\ \cline{2-4} 
-		& adresse\_user & adresse de l'utilisateur & chaine de caractères    \\ \cline{2-4}
-		& tel\_user & téléphone de l'utilisateur & chaine  de caractères    \\ \cline{2-4}
-		& mail\_user & mail de l'utilisateur &  chaine de caractères    \\ \cline{2-4}
-		& mot\_de\_passe\_user & mot de passe de l'utilisateur & chaine de caractères    \\ \cline{2-4}
-		\hline
 		\multirow{10}{*}{SousTraitant} & id\_sous\_trait & identifiant du sous-traitant  & entier long   \\ \cline{2-4} 
 		& nom\_sous\_trait & nom du sous-traitant  &  chaine de caractères   \\ \cline{2-4} 
 		& adresse\_sous\_trait & adresse du sous-traitant & chaine de caractères \\ \cline{2-4} 
@@ -1153,14 +1144,34 @@ Le  tableau  suivant  représente  les attributs  contenus  dans  les différentes
 		& date\_derniere\_maint & la date de la dernière maintenance & date     \\ \cline{2-4} 
 		& planification  & booléen qui indique si la maintenance est programmée  & booléen    \\ 
 		\hline
+		\multirow{14}{*}{Utilisateur} & id\_user & identifiant de l'utilisateur & entier long   \\ \cline{2-4} 
+		& nom\_user & nom de l'utilisateur & chaine de caractères     \\ \cline{2-4} 
+		& prenom\_user & prénom de l'utilisateur & chaine de caractères    \\ \cline{2-4} 
+		& adresse\_user & adresse de l'utilisateur & chaine de caractères    \\ \cline{2-4}
+		& tel\_user & téléphone de l'utilisateur & chaine  de caractères    \\ \cline{2-4}
+		& mail\_user & mail de l'utilisateur &  chaine de caractères    \\ \cline{2-4}
+		& mot\_de\_passe\_user & mot de passe de l'utilisateur & chaine de caractères    \\ \cline{2-4}
+		\hline
 \end{tabular} \\
 \end{center}
 \newpage
 \begin{center}
 	\begin{tabular}{|p{3cm}|p{5cm}|p{3cm}|p{2.5cm}|}
 		\hline
-		\multirow{7}{*}{ProfilUtilisateur} & id\_profil\_user & identifiant du profil utilisateur  & entier long   \\ \cline{2-4} 
+		\multirow{4}{*}{ProfilUtilisateur} & id\_profil\_user & identifiant du profil utilisateur  & entier long   \\ \cline{2-4} 
 		& intitule\_profil\_user & intitulé du profil utilisateur &  chaine de caractères   \\
+		\hline
+		\multirow{7}{*}{RéinitMotDePasse} & mail & mail de l'utilisateur  & chaine de caractères   \\ \cline{2-4} 
+		& token & chaine de caractères générée aléatoirement   &  chaine de caractères   \\ \cline{2-4}
+		& date\_reinitialisation & date de demande de réinitialisation &  date   \\ 
+		\hline
+		\multirow{15}{*}{Notification} & id\_not & identifiant de la notification  & entier long   \\ \cline{2-4} 
+		& type\_not & type de la notification (DT ou OT)  &  chaine de caractères   \\ \cline{2-4}
+		& lien\_not & une url vers (DT ou OT) &  chaine de caractères   \\ \cline{2-4}
+		& description\_not & description de la notification &  chaine de caractères   \\ \cline{2-4}
+		& lu & booléen si la notification est lue &  booleen   \\ \cline{2-4}
+		& emetteur\_not & émetteur de la notification &  chaine de caractères   \\ \cline{2-4}
+		& date\_not & date de l'émission de la notification &  date   \\ \cline{2-4}
 		\hline
     \end{tabular} \\
     \captionof{table}{Dictionnaire de données du modèle statique}
