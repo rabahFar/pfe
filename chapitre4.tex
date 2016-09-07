@@ -569,9 +569,9 @@ Dans ce qui suit, La description textuelle des différents cas d'utilisations con
 		\hline
 		\textbf{CU : Gérer les travaux de  sous-traitance     }\\
 		\hline	
-		\textbf{Titre :}  Gérer le dossier des travaux de sous-traitance  .\\
+		\textbf{Titre :}  Gérer les travaux de sous-traitance  .\\
 		\hline
-		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter un dossier des travaux de sous-traitance.\\
+		\textbf{But :} Permet à l'utilisateur de créer/ modifier/ supprimer/ consulter les travaux de sous-traitance.\\
 		\hline
 		\textbf{Acteur :}  Chef du service de méthodes.\\
 		\hline
@@ -636,7 +636,7 @@ Dans ce qui suit, La description textuelle du cas d'utilisation contenu dans le 
 		\hline
 		\textbf{But :} Permet à l'utilisateur de consulter les statistiques et les ratios sur la maintenance.\\
 		\hline
-		\textbf{Acteur :}  Sous-directeur de la maintenance, chef du département de gestion des équipements, chef du service méthodes, chef du service électrique ou mécanique.\\
+		\textbf{Acteur :}  Chef du service méthodes et le chef du service électrique ou mécanique.\\
 		\hline
 		\textbf{Précondition :}  L'utilisateur doit s'authentifier.\\
 		\hline
@@ -979,14 +979,14 @@ Le  tableau  suivant  représente  les attributs  contenus  dans  les différentes
 		& caracteristique\_equip & caractéristique de l'équipement & chaine de caractères    \\ \cline{2-4} 
 		& croquis\_equip & url du croquis de l'équipement & chaine de caractères    \\  
 		\hline
-		\multirow{13}{*}{Organe} & code\_org & code de l'organe & entier long   \\ \cline{2-4}  
+		\multirow{13}{*}{Organe} & code\_org & code de l'organe & chaine de caractères   \\ \cline{2-4}  
 		& designation\_org & désignation de l'organe & chaine de caractères    \\ \cline{2-4} 
 		& observation\_org & observation sur l'organe & chaine de caractères    \\ \cline{2-4} 
-		&  ref\_fournisseur  & la référence attribuée par le fournisseur à l'organe & chaine de caractères    \\ \cline{2-4} 
+		&  ref\_fournisseur  & la référence attribuée à l'organe & chaine de caractères    \\ \cline{2-4} 
 		& num\_plan & le numéro du plan où figure l'organe  & chaine de caractères   \\ \cline{2-4} 
 		& repere & le repère où figure l'organe sur le plan   & chaine de caractères    \\ \cline{2-4} 
 		\hline
-		\multirow{5}{*}{Gamme} & code\_gam & code de la gamme & entier long   \\ \cline{2-4} 
+		\multirow{5}{*}{Gamme} & code\_gam & code de la gamme & chaine de caractères   \\ \cline{2-4} 
 		& intitule\_gam & intitulé de la gamme & chaine de caractères    \\ \cline{2-4} 
 		& nombre\_unites & le nombre d'unités d'usage & entier    \\  
 		\hline
@@ -1039,7 +1039,7 @@ Le  tableau  suivant  représente  les attributs  contenus  dans  les différentes
 		& nb\_exemp\_doc & nombre d'exemplaires du document & entier    \\ \cline{2-4} 
 		& lieu\_archiv\_doc & lieu d'archivage du document & chaine de caractères    \\
 		\hline
-		\multirow{6}{*}{Outils} & ref\_out & référence de l'outil & entier long   \\ \cline{2-4} 
+		\multirow{6}{*}{Outils} & ref\_out & référence de l'outil & chaine de caractères   \\ \cline{2-4} 
 		& designation\_out & désignation de l'outil & chaine de caractères    \\ \cline{2-4} 
 		& utilisation\_out & utilisation de l'outil & chaine de caractères     \\  
 		\hline
@@ -1230,10 +1230,6 @@ Dans ce qui suit, nous allons présenter chaque scénario par un diagramme de séqu
 	\caption[Diagramme de séquence de « Gérer les travaux de sous-traitance ».]{Diagramme de séquence de « 	Gérer les travaux de sous-traitance ».}
 	\label{fig:DSQ_ajouter_dossierST}
 \end{figure}
-<<<<<<< HEAD
-=======
-
->>>>>>> 377f56727876683b65caf5b94c1d0740c71f42d9
 \subsection{Passage au modèle relationnel}
 \noindent \textbf{Utilisateur}(\underline{id}, nom, prenom, email, mot\_de\_passe, adresse, telephone)\\
 
