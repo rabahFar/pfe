@@ -1239,10 +1239,60 @@ Dans ce qui suit, nous allons présenter chaque scénario par un diagramme de séqu
 	\caption[Diagramme de séquence de « Gérer les travaux de sous-traitance ».]{Diagramme de séquence de « 	Gérer les travaux de sous-traitance ».}
 	\label{fig:DSQ_ajouter_dossierST}
 \end{figure}
+
+\subsection{Passage au modèle relationnel}
+\noindent \textbf{Utilisateur}(\underline{id}, nom, prenom, email, mot\_de\_passe, adresse, telephone)\\
+
+\noindent \textbf{reinitialisation\_mot\_de\_passe}(\underline{email}, token, date\_creation)\\
+
+\noindent \textbf{profil\_utilisateur}(\underline{id}, intitulé)\\
+
+\noindent \textbf{notification}(\underline{id}, type, url, description, lu, emetteur, date\_creation, utilisateur\_id)\\
+
+\noindent \textbf{constructeur}(\underline{id}, nom, adresse, telephone, email)\\
+
+\noindent \textbf{fournisseur}(\underline{id}, nom, adresse, telephone, email)\\
+
+\noindent \textbf{atelier}(\underline{Code}, designation)\\
+
+\noindent \textbf{equipement}(\underline{Code},Désignation,date\_acquisition,date\_mise\_en\_service,caracteristiques, croquis,atlier\_code,constructeur\_id,fournisseur\_id)\\
+
+\noindent \textbf{document}(\underline{id}, intitule, type, contenu, langue, nombre\_exemplaires, lieu\_archivage, equipement\_code)\\
+
+\noindent \textbf{organe}(\underline{Code}, ref\_fournisseur, designation, numero\_plan, repere, observations, equipement\_code)\\
+
+\noindent \textbf{type\_pdr}(\underline{id}, Designation)\\
+
+\noindent \textbf{outil}(\underline{Reference}, Designation, Utilisation)\\
+
+\noindent \textbf{operation}(\underline{id}, intitule, duree, consignes\_securité, description, illustration, gamme\_code)\\
+
+\noindent \textbf{operation\_outil}(\underline{operation\_id, outil\_reference})\\
+
+\noindent \textbf{operation\_pdr}(\underline{operation\_id, outil\_id})\\
+
+\noindent \textbf{unité\_usage}(\underline{id}, type, designation)\\
+
+\noindent \textbf{type\_gamme}(\underline{id}, designation)\\
+
+\noindent \textbf{gamme}(\underline{Code}, designation, nombre\_unites, unité\_usage\_id, type\_gamme\_code, equipement\_code)\\
+
+\noindent \textbf{DT}(\underline{numero}, Type, Description, Etat, Date\_creation, Equipement\_code)\\
+
+\noindent \textbf{pdr}(\underline{reference}, designation, coût, type\_PDR\_id, OT\_id)\\
+
+\noindent \textbf{type\_OT}(\underline{id}, designation)\\
+
+\noindent \textbf{OT}(\underline{numero}, debut\_prevu, fin\_prevu, debut\_reel, fin\_reel, description, etat, compte\_rendu, numero\_DT, sous-traitant\_id,  type\_OT\_id)\\
+
+\noindent \textbf{OT\_Utilisateur}(\underline{OT\_numero, utilisateur\_id})\\
+
+\noindent \textbf{sous-traitant}(\underline{id}, nom, adresse, telephone, email)\\
+
+\noindent \textbf{compteur\_gamme}(\underline{id}, cpt, date\_derniere\_maintenance, plannification, code\_gamme)
+
+
 \newpage
-
-
-
 \subsection{ Conclusion  }
 À travers ce chapitre nous avons pu mettre en place une solution conceptuelle. D'abord,
 nous avons exprimé les besoins fonctionnels et techniques auxquels devra répondre notre système en utilisant diagrammes de cas d'utilisation. L'aspect fonctionnel du système attendu nous a permis de bien aborder la phase d'analyse en présentant le découpage du système en catégories et les différents diagrammes de classes de ces dernières. Nous avons ensuite défini le comportement du système en présentant les différents scénarios possibles des diagrammes de séquence. Pour finir, nous avons présenté la base de données qu'utilisera notre application.
